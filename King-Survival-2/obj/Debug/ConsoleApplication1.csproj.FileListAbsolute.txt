@@ -1,0 +1,5 @@
+C:\Users\Teodor\Desktop\OOPTeamProject\RadonProject\King-Survival-2\bin\Debug\ConsoleApplication1.exe
+C:\Users\Teodor\Desktop\OOPTeamProject\RadonProject\King-Survival-2\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Teodor\Desktop\OOPTeamProject\RadonProject\King-Survival-2\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Teodor\Desktop\OOPTeamProject\RadonProject\King-Survival-2\obj\Debug\ConsoleApplication1.exe
+C:\Users\Teodor\Desktop\OOPTeamProject\RadonProject\King-Survival-2\obj\Debug\ConsoleApplication1.pdb
