@@ -3,3 +3,8 @@ D:\Telerik Academy\Telerik\C# 4\18.TeamWork\RadonProject-master\King-Survival-2\
 D:\Telerik Academy\Telerik\C# 4\18.TeamWork\RadonProject-master\King-Survival-2\obj\Debug\ConsoleApplication1.pdb
 D:\Telerik Academy\Telerik\C# 4\18.TeamWork\RadonProject-master\King-Survival-2\bin\Debug\ConsoleApplication1.exe
 D:\Telerik Academy\Telerik\C# 4\18.TeamWork\RadonProject-master\King-Survival-2\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Teodor\Desktop\C# Projects\RadonProject\King-Survival-2\bin\Debug\ConsoleApplication1.exe
+C:\Users\Teodor\Desktop\C# Projects\RadonProject\King-Survival-2\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Teodor\Desktop\C# Projects\RadonProject\King-Survival-2\obj\Debug\KingSurvival.csprojResolveAssemblyReference.cache
+C:\Users\Teodor\Desktop\C# Projects\RadonProject\King-Survival-2\obj\Debug\ConsoleApplication1.exe
+C:\Users\Teodor\Desktop\C# Projects\RadonProject\King-Survival-2\obj\Debug\ConsoleApplication1.pdb
