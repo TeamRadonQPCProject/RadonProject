@@ -5,6 +5,8 @@
     public abstract class Figure
     {
         // fileds
+        public abstract char FigureSign { get; }
+
         public abstract int[,] FigurePosition { get; set; }
 
         public abstract bool MoveFigure(string command);

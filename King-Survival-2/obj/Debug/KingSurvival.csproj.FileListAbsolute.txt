@@ -1,5 +1,0 @@
-C:\Users\Teodor\Desktop\C# Projects\RadonProject\King-Survival-2\bin\Debug\ConsoleApplication1.exe
-C:\Users\Teodor\Desktop\C# Projects\RadonProject\King-Survival-2\bin\Debug\ConsoleApplication1.pdb
-D:\GitHub\RadonProject\King-Survival-2\obj\Debug\KingSurvival.csprojResolveAssemblyReference.cache
-C:\Users\Teodor\Desktop\C# Projects\RadonProject\King-Survival-2\obj\Debug\ConsoleApplication1.exe
-C:\Users\Teodor\Desktop\C# Projects\RadonProject\King-Survival-2\obj\Debug\ConsoleApplication1.pdb
