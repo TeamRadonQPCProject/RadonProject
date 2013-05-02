@@ -1,0 +1,5 @@
+D:\Telerik Academy\Telerik\C# 4\18.TeamWork\RadonProject-master\King-Survival-2\obj\Debug\KingSurvival.csprojResolveAssemblyReference.cache
+D:\Telerik Academy\Telerik\C# 4\18.TeamWork\RadonProject-master\King-Survival-2\obj\Debug\ConsoleApplication1.exe
+D:\Telerik Academy\Telerik\C# 4\18.TeamWork\RadonProject-master\King-Survival-2\obj\Debug\ConsoleApplication1.pdb
+D:\Telerik Academy\Telerik\C# 4\18.TeamWork\RadonProject-master\King-Survival-2\bin\Debug\ConsoleApplication1.exe
+D:\Telerik Academy\Telerik\C# 4\18.TeamWork\RadonProject-master\King-Survival-2\bin\Debug\ConsoleApplication1.pdb

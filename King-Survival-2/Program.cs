@@ -64,6 +64,9 @@
 
         static void ShowBoard()
         {
+            // After every figure move clear console
+            // Console.Clear();
+
             // This will print empty line on console
             Console.WriteLine();
 
@@ -159,175 +162,27 @@
 
         static bool CheckPlayerInput(string checkedString)
         {
-            if (movementsCounter % 2 == 0)
+            char startLetter = checkedString[0];
+            bool hasAnEqual = false;
+            if (movementsCounter % 2 == 0) // King turn
             {
-                int[] equal = new int[4];
-                for (int i = 0; i < validKingInputs.Length; i++)
-                {
-                    string reference = validKingInputs[i];
-                    int result = checkedString.CompareTo(reference);
-                    if (result != 0)
-                    {
-                        equal[i] = 0;
-                    }
-                    else
-                    {
-                        equal[i] = 1;
-                    }
-                }
-
-                bool hasAnEqual = false;
-                for (int i = 0; i < 4; i++)
-                {
-                    if (equal[i] == 1)
-                    {
-                        hasAnEqual = true;
-                    }
-                }
-
-                if (!hasAnEqual)
-                {
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid command name!");
-                    Console.ResetColor();
-                }
-
-                return hasAnEqual;
+                return ChechInput(checkedString, validKingInputs, ref hasAnEqual);
             }
-            else
+            else // PawnsTurn
             {
-                char startLetter = checkedString[0];
-                int[] equal = new int[2];
-                bool hasAnEqual = false;
                 switch (startLetter)
                 {
                     case 'A':
-                        for (int i = 0; i < validAPawnInputs.Length; i++)
-                        {
-                            string reference = validAPawnInputs[i];
-                            int result = checkedString.CompareTo(reference);
-                            if (result != 0)
-                            {
-                                equal[i] = 0;
-                            }
-                            else
-                            {
-                                equal[i] = 1;
-                            }
-                        }
-
-                        for (int i = 0; i < 2; i++)
-                        {
-                            if (equal[i] == 1)
-                            {
-                                hasAnEqual = true;
-                            }
-                        }
-
-                        if (!hasAnEqual)
-                        {
-                            Console.BackgroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Invalid command name!");
-                            Console.ResetColor();
-                        }
-
-                        return hasAnEqual;
+                        return ChechInput(checkedString, validAPawnInputs, ref hasAnEqual);
 
                     case 'B':
-                        for (int i = 0; i < validBPawnInputs.Length; i++)
-                        {
-                            string reference = validBPawnInputs[i];
-                            int result = checkedString.CompareTo(reference);
-                            if (result != 0)
-                            {
-                                equal[i] = 0;
-                            }
-                            else
-                            {
-                                equal[i] = 1;
-                            }
-                        }
-
-                        for (int i = 0; i < 2; i++)
-                        {
-                            if (equal[i] == 1)
-                            {
-                                hasAnEqual = true;
-                            }
-                        }
-
-                        if (!hasAnEqual)
-                        {
-                            Console.BackgroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Invalid command name!");
-                            Console.ResetColor();
-                        }
-
-                        return hasAnEqual;
+                        return ChechInput(checkedString, validBPawnInputs, ref hasAnEqual);
 
                     case 'C':
-                        for (int i = 0; i < validCPawnInputs.Length; i++)
-                        {
-                            string reference = validCPawnInputs[i];
-                            int result = checkedString.CompareTo(reference);
-                            if (result != 0)
-                            {
-                                equal[i] = 0;
-                            }
-                            else
-                            {
-                                equal[i] = 1;
-                            }
-                        }
-
-                        for (int i = 0; i < 2; i++)
-                        {
-                            if (equal[i] == 1)
-                            {
-                                hasAnEqual = true;
-                            }
-                        }
-
-                        if (!hasAnEqual)
-                        {
-                            Console.BackgroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Invalid command name!");
-                            Console.ResetColor();
-                        }
-
-                        return hasAnEqual;
+                        return ChechInput(checkedString, validCPawnInputs, ref hasAnEqual);
 
                     case 'D':
-                        for (int i = 0; i < validDPawnInputs.Length; i++)
-                        {
-                            string reference = validDPawnInputs[i];
-                            int result = checkedString.CompareTo(reference);
-                            if (result != 0)
-                            {
-                                equal[i] = 0;
-                            }
-                            else
-                            {
-                                equal[i] = 1;
-                            }
-                        }
-
-                        for (int i = 0; i < 2; i++)
-                        {
-                            if (equal[i] == 1)
-                            {
-                                hasAnEqual = true;
-                            }
-                        }
-
-                        if (!hasAnEqual)
-                        {
-                            Console.BackgroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Invalid command name!");
-                            Console.ResetColor();
-                        }
-
-                        return hasAnEqual;
+                        return ChechInput(checkedString, validDPawnInputs, ref hasAnEqual);
 
                     default:
                         Console.BackgroundColor = ConsoleColor.Red;
@@ -336,155 +191,62 @@
                         return false;
                 }
             }
+        }
+  
+        private static bool ChechInput(string checkedString, string[] currentFigureValidInput, ref bool hasAnEqual)
+        {
+            int[] equal = new int[currentFigureValidInput.Length];
+            for (int i = 0; i < currentFigureValidInput.Length; i++)
+            {
+                string reference = currentFigureValidInput[i];
+                int result = checkedString.CompareTo(reference);
+                if (result != 0)
+                {
+                    equal[i] = 0;
+                }
+                else
+                {
+                    equal[i] = 1;
+                }
+            }
 
-            return true;
+            for (int i = 0; i < currentFigureValidInput.Length; i++)
+            {
+                if (equal[i] == 1)
+                {
+                    hasAnEqual = true;
+                }
+            }
+
+            if (!hasAnEqual)
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid command name!");
+                Console.ResetColor();
+            }
+
+            return hasAnEqual;
         }
 
         static bool CheckAndProcess(string checkedInput)
         {
-            bool commandNameIsOK = CheckPlayerInput(checkedInput);
-            if (commandNameIsOK)
+            bool isCommandNameCorrect = CheckPlayerInput(checkedInput);
+            if (isCommandNameCorrect)
             {
                 char startLetter = checkedInput[0];
                 switch (startLetter)
                 {
                     case 'A':
-
-                        if (checkedInput[2] == 'L')
-                        {
-                            int[] oldCoordinates = new int[2];
-                            oldCoordinates[0] = pawnsPosition[0, 0];
-
-                            oldCoordinates[1] = pawnsPosition[0, 1];
-
-                            int[] coords = new int[2];
-                            coords = CheckNextPownPosition(oldCoordinates, 'L', 'A');
-                            if (coords != null)
-                            {
-                                pawnsPosition[0, 0] = coords[0];
-                                pawnsPosition[0, 1] = coords[1];
-                            }
-                        }
-                        else
-                        {
-                            // =='D'
-                            int[] oldCoordinates = new int[2];
-                            oldCoordinates[0] = pawnsPosition[0, 0];
-
-                            oldCoordinates[1] = pawnsPosition[0, 1];
-                            int[] coords = new int[2];
-
-                            coords = CheckNextPownPosition(oldCoordinates, 'R', 'A');
-                            if (coords != null)
-                            {
-                                pawnsPosition[0, 0] = coords[0];
-
-                                pawnsPosition[0, 1] = coords[1];
-                            }
-                        }
-
-                        return true;
+                        return MoveFigureLeftOrRight(checkedInput, 'A');
 
                     case 'B':
-                        if (checkedInput[2] == 'L')
-                        {
-                            int[] oldCoordinates = new int[2];
-                            oldCoordinates[0] = pawnsPosition[1, 0];
-                            oldCoordinates[1] = pawnsPosition[1, 1];
-
-                            int[] coords = new int[2];
-
-                            coords = CheckNextPownPosition(oldCoordinates, 'L', 'B');
-                            if (coords != null)
-                            {
-                                pawnsPosition[1, 0] = coords[0];
-
-                                pawnsPosition[1, 1] = coords[1];
-                            }
-                        }
-                        else
-                        {
-                            // =='D'
-                            int[] oldCoordinates = new int[2];
-
-                            oldCoordinates[0] = pawnsPosition[1, 0];
-
-                            oldCoordinates[1] = pawnsPosition[1, 1];
-
-                            int[] coords = new int[2];
-                            coords = CheckNextPownPosition(oldCoordinates, 'R', 'B');
-                            if (coords != null)
-                            {
-                                pawnsPosition[1, 0] = coords[0];
-
-                                pawnsPosition[1, 1] = coords[1];
-                            }
-                        }
-
-                        return true;
+                        return MoveFigureLeftOrRight(checkedInput, 'B');
 
                     case 'C':
-                        if (checkedInput[2] == 'L')
-                        {
-                            int[] oldCoordinates = new int[2];
-                            oldCoordinates[0] = pawnsPosition[2, 0];
-
-                            oldCoordinates[1] = pawnsPosition[2, 1];
-                            int[] coords = new int[2];
-                            coords = CheckNextPownPosition(oldCoordinates, 'L', 'C');
-                            if (coords != null)
-                            {
-                                pawnsPosition[2, 0] = coords[0];
-                                pawnsPosition[2, 1] = coords[1];
-                            }
-                        }
-                        else
-                        {
-                            // =='D'
-                            int[] oldCoordinates = new int[2];
-                            oldCoordinates[0] = pawnsPosition[2, 0];
-                            oldCoordinates[1] = pawnsPosition[2, 1];
-                            int[] coords = new int[2];
-                            coords = CheckNextPownPosition(oldCoordinates, 'R', 'C');
-                            if (coords != null)
-                            {
-                                pawnsPosition[1, 0] = coords[0];
-                                pawnsPosition[1, 1] = coords[1];
-                            }
-                        }
-
-                        return true;
+                        return MoveFigureLeftOrRight(checkedInput, 'C');
 
                     case 'D':
-                        if (checkedInput[2] == 'L')
-                        {
-                            int[] oldCoordinates = new int[2];
-                            oldCoordinates[0] = pawnsPosition[3, 0];
-                            oldCoordinates[1] = pawnsPosition[3, 1];
-                            int[] coords = new int[2];
-                            coords = CheckNextPownPosition(oldCoordinates, 'L', 'D');
-                            if (coords != null)
-                            {
-                                pawnsPosition[3, 0] = coords[0];
-                                pawnsPosition[3, 1] = coords[1];
-                            }
-                        }
-                        else
-                        {
-                            // =='D'
-                            int[] oldCoordinates = new int[2];
-                            oldCoordinates[0] = pawnsPosition[3, 0];
-                            oldCoordinates[1] = pawnsPosition[3, 1];
-                            int[] coords = new int[2];
-                            coords = CheckNextPownPosition(oldCoordinates, 'R', 'D');
-                            if (coords != null)
-                            {
-                                pawnsPosition[3, 0] = coords[0];
-                                pawnsPosition[3, 1] = coords[1];
-                            }
-                        }
-
-                        return true;
+                        return MoveFigureLeftOrRight(checkedInput, 'D');
 
                     case 'K':
                         if (checkedInput[1] == 'U')
@@ -494,6 +256,7 @@
                                 int[] oldCoordinates = new int[2];
                                 oldCoordinates[0] = kingPosition[0];
                                 oldCoordinates[1] = kingPosition[1];
+
                                 int[] coords = new int[2];
                                 coords = CheckNextKingPosition(oldCoordinates, 'U', 'L');
                                 if (coords != null)
@@ -507,6 +270,7 @@
                                 int[] oldCoordinates = new int[2];
                                 oldCoordinates[0] = kingPosition[0];
                                 oldCoordinates[1] = kingPosition[1];
+
                                 int[] coords = new int[2];
                                 coords = CheckNextKingPosition(oldCoordinates, 'U', 'R');
                                 if (coords != null)
@@ -561,6 +325,42 @@
             {
                 return false; // message is from other
             }
+        }
+  
+        private static bool MoveFigureLeftOrRight(string checkedInput, char figure)
+        {
+            int pawnsPositionFirstCoord = (int)figure - (int)'A';
+            if (checkedInput[2] == 'L')
+            {
+                int[] oldCoordinates = new int[2];
+                oldCoordinates[0] = pawnsPosition[pawnsPositionFirstCoord, 0];
+                oldCoordinates[1] = pawnsPosition[pawnsPositionFirstCoord, 1];
+
+                int[] coords = new int[2];
+                coords = CheckNextPownPosition(oldCoordinates, 'L', figure);
+                if (coords != null)
+                {
+                    pawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
+                    pawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                }
+            }
+            else
+            {
+                // =='R'
+                int[] oldCoordinates = new int[2];
+                oldCoordinates[0] = pawnsPosition[pawnsPositionFirstCoord, 0];
+                oldCoordinates[1] = pawnsPosition[pawnsPositionFirstCoord, 1];
+
+                int[] coords = new int[2];
+                coords = CheckNextPownPosition(oldCoordinates, 'R', figure);
+                if (coords != null)
+                {
+                    pawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
+                    pawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                }
+            }
+
+            return true;
         }
 
         static void ProcessKingSide()
@@ -671,69 +471,23 @@
                 }
                 else
                 {
-                    /* switch (currentPawn)
-                    {
-                    case 'A':
-                    pawnExistingMoves[0, 0] = false;
-                    break;
-                    case 'B':
-                    pawnExistingMoves[1, 0] = false;
-                    break;
-                    case 'C':
-                    pawnExistingMoves[2, 0] = false;
-                    break;
-                    case 'D':
-                    pawnExistingMoves[3, 0] = false;
-                    break;
-                    default:
-                    Console.WriteLine("ERROR!");
-                    break;
-                    }*/
                     bool allAreFalse = true;
                     switch (currentPawn)
                     {
                         case 'A':
                             pawnExistingMoves[0, 0] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[0,i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
                             break;
 
                         case 'B':
                             pawnExistingMoves[1, 0] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[1, i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
                             break;
 
                         case 'C':
                             pawnExistingMoves[2, 0] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[2, i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
                             break;
 
                         case 'D':
                             pawnExistingMoves[3, 0] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[3, i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
                             break;
 
                         default:
@@ -803,66 +557,20 @@
                 }
                 else
                 {
-                    /*   switch (currentPawn)
-                    {
-                    case 'A':
-                    pawnExistingMoves[0, 1] = false;
-                    break;
-                    case 'B':
-                    pawnExistingMoves[1, 1] = false;
-                    break;
-                    case 'C':
-                    pawnExistingMoves[2, 1] = false;
-                    break;
-                    case 'D':
-                    pawnExistingMoves[3, 1] = false;
-                    break;
-                    default:
-                    Console.WriteLine("ERROR!");
-                    break;
-                    }*/
                     bool allAreFalse = true;
                     switch (currentPawn)
                     {
                         case 'A':
                             pawnExistingMoves[0, 1] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[0, i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
                             break;
                         case 'B':
                             pawnExistingMoves[1, 1] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[1, i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
                             break;
                         case 'C':
                             pawnExistingMoves[2, 1] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[2, i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
                             break;
                         case 'D':
                             pawnExistingMoves[3, 1] = false;
-                            /*for (int i = 0; i < 2; i++)
-                            {
-                            if (pawnExistingMoves[3, i] == true)
-                            {
-                            allAreFalse = false;
-                            }
-                            }*/
                             break;
                         default:
                             Console.WriteLine("ERROR!");
@@ -898,198 +606,70 @@
 
         static int[] CheckNextKingPosition(int[] currentCoordinates, char firstDirection, char secondDirection)
         {
-            int[] displasmentDownLeft = { 1, -2 };
-            int[] displasmentDownRight = { 1, 2 };
-            int[] displasmentUpLeft = { -1, -2 };
-            int[] displasmentUpRight = { -1, 2 };
-            int[] newCoords = new int[2];
+            int[] displacementDownLeft = { 1, -2 };
+            int[] displacementDownRight = { 1, 2 };
+            int[] displacementUpLeft = { -1, -2 };
+            int[] displacementUpRight = { -1, 2 };
 
-            if (firstDirection == 'U')
+            string direction = firstDirection.ToString() + secondDirection.ToString();
+            switch (direction)
             {
-                if (secondDirection == 'L')
+                case "UL":
+                    return CheckKingAvailableMove(currentCoordinates, displacementUpLeft);
+                case "UR":
+                    return CheckKingAvailableMove(currentCoordinates, displacementUpRight);
+                case "DL":
+                    return CheckKingAvailableMove(currentCoordinates, displacementDownLeft);
+                case "DR":
+                    return CheckKingAvailableMove(currentCoordinates, displacementDownRight);
+                default:
+                    return null;
+            }
+        }
+  
+        private static int[] CheckKingAvailableMove(int[] currentCoordinates, int[] displacementDirection)
+        {
+            int[] newCoords = new int[2];
+            newCoords[0] = currentCoordinates[0] + displacementDirection[0];
+            newCoords[1] = currentCoordinates[1] + displacementDirection[1];
+            if (CheckPositionInBoard(newCoords) && board[newCoords[0], newCoords[1]] == ' ')
+            {
+                char sign = board[currentCoordinates[0], currentCoordinates[1]];
+                board[currentCoordinates[0], currentCoordinates[1]] = ' ';
+                board[newCoords[0], newCoords[1]] = sign;
+                movementsCounter++;
+
+                for (int i = 0; i < 4; i++)
                 {
-                    newCoords[0] = currentCoordinates[0] + displasmentUpLeft[0];
-                    newCoords[1] = currentCoordinates[1] + displasmentUpLeft[1];
-                    if (CheckPositionInBoard(newCoords) && board[newCoords[0], newCoords[1]] == ' ')
-                    {
-                        char sign = board[currentCoordinates[0], currentCoordinates[1]];
-                        board[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                        board[newCoords[0], newCoords[1]] = sign;
-                        movementsCounter++;
-
-                        for (int i = 0; i < 4; i++)
-                        {
-                            kingExistingMoves[i] = true;
-                        }
-
-                        CheckForKingExit(newCoords[0]);
-                        return newCoords;
-                    }
-                    else
-                    {
-                        kingExistingMoves[0] = false;
-                        bool allAreFalse = true;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            if (kingExistingMoves[i] == true)
-                            {
-                                allAreFalse = false;
-                            }
-                        }
-
-                        if (allAreFalse)
-                        {
-                            gameIsFinished = true;
-                            Console.WriteLine("King loses!");
-                            return null;
-                        }
-
-                        Console.BackgroundColor = ConsoleColor.DarkYellow;
-                        Console.WriteLine("You can't go in this direction! ");
-                        Console.ResetColor();
-                        return null;
-                    }
+                    kingExistingMoves[i] = true;
                 }
-                else
-                {
-                    newCoords[0] = currentCoordinates[0] + displasmentUpRight[0];
-                    newCoords[1] = currentCoordinates[1] + displasmentUpRight[1];
 
-                    if (CheckPositionInBoard(newCoords) && board[newCoords[0], newCoords[1]] == ' ')
-                    {
-                        char sign = board[currentCoordinates[0], currentCoordinates[1]];
-                        board[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                        board[newCoords[0], newCoords[1]] = sign;
-                        movementsCounter++;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            kingExistingMoves[i] = true;
-                        }
-
-                        CheckForKingExit(newCoords[0]);
-                        return newCoords;
-                    }
-                    else
-                    {
-                        kingExistingMoves[1] = false;
-                        bool allAreFalse = true;
-
-                        for (int i = 0; i < 4; i++)
-                        {
-                            if (kingExistingMoves[i] == true)
-                            {
-                                allAreFalse = false;
-                            }
-                        }
-
-                        if (allAreFalse)
-                        {
-                            gameIsFinished = true;
-                            Console.WriteLine("King loses!");
-                            return null;
-                        }
-
-                        Console.BackgroundColor = ConsoleColor.DarkYellow;
-                        Console.WriteLine("You can't go in this direction! ");
-                        Console.ResetColor();
-                        return null;
-                    }
-                }
+                CheckForKingExit(newCoords[0]);
+                return newCoords;
             }
             else
             {
-                if (secondDirection == 'L')
+                kingExistingMoves[0] = false;
+                bool allAreFalse = true;
+                for (int i = 0; i < 4; i++)
                 {
-                    newCoords[0] = currentCoordinates[0] + displasmentDownLeft[0];
-                    newCoords[1] = currentCoordinates[1] + displasmentDownLeft[1];
-                    if (CheckPositionInBoard(newCoords) && board[newCoords[0], newCoords[1]] == ' ')
+                    if (kingExistingMoves[i] == true)
                     {
-                        char sign = board[currentCoordinates[0], currentCoordinates[1]];
-                        board[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                        board[newCoords[0], newCoords[1]] = sign;
-                        movementsCounter++;
-
-                        for (int i = 0; i < 4; i++)
-                        {
-                            kingExistingMoves[i] = true;
-                        }
-
-                        CheckForKingExit(newCoords[0]);
-                        return newCoords;
-                    }
-                    else
-                    {
-                        kingExistingMoves[2] = false;
-                        bool allAreFalse = true;
-
-                        for (int i = 0; i < 4; i++)
-                        {
-                            if (kingExistingMoves[i] == true)
-                            {
-                                allAreFalse = false;
-                            }
-                        }
-
-                        if (allAreFalse)
-                        {
-                            gameIsFinished = true;
-                            Console.WriteLine("King loses!");
-                            return null;
-                        }
-
-                        Console.BackgroundColor = ConsoleColor.DarkYellow;
-                        Console.WriteLine("You can't go in this direction! ");
-                        Console.ResetColor();
-                        return null;
-                    }
-                }
-                else
-                {
-                    newCoords[0] = currentCoordinates[0] + displasmentDownRight[0];
-                    newCoords[1] = currentCoordinates[1] + displasmentDownRight[1];
-                    if (CheckPositionInBoard(newCoords) && board[newCoords[0], newCoords[1]] == ' ')
-                    {
-                        char sign = board[currentCoordinates[0], currentCoordinates[1]];
-                        board[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                        board[newCoords[0], newCoords[1]] = sign;
-                        movementsCounter++;
-
-                        for (int i = 0; i < 4; i++)
-                        {
-                            kingExistingMoves[i] = true;
-                        }
-
-                        CheckForKingExit(newCoords[0]);
-                        return newCoords;
-                    }
-                    else
-                    {
-                        kingExistingMoves[3] = false;
-                        bool allAreFalse = true;
-
-                        for (int i = 0; i < 4; i++)
-                        {
-                            if (kingExistingMoves[i] == true)
-                            {
-                                allAreFalse = false;
-                            }
-                        }
-
-                        if (allAreFalse)
-                        {
-                            gameIsFinished = true;
-                            Console.WriteLine("King loses!");
-                            return null;
-                        }
-
-                        Console.BackgroundColor = ConsoleColor.DarkYellow;
-                        Console.WriteLine("You can't go in this direction! ");
-                        Console.ResetColor();
-                        return null;
+                        allAreFalse = false;
                     }
                 }
 
-                // checkForKingExit();
+                if (allAreFalse)
+                {
+                    gameIsFinished = true;
+                    Console.WriteLine("King loses!");
+                    return null;
+                }
+
+                Console.BackgroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("You can't go in this direction! ");
+                Console.ResetColor();
+                return null;
             }
         }
 
