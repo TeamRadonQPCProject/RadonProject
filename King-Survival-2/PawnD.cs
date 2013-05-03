@@ -2,7 +2,8 @@
 {
     using System;
 
-    class PawnD : Pawn
+    public class PawnD : Pawn
     {
+        public static string[] validDPawnInputs = { "DDL", "DDR" };
     }
 }

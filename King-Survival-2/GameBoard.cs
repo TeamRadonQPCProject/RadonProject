@@ -1,20 +1,117 @@
 ﻿namespace KingSurvival
 {
-    class GameBoard
-    {
-        private char[,] board;
-        private int[,] boardCorners;
+    using System;
 
-        public char[,] Board
+    public class GameBoard
+    {
+        public static char[,] board = 
         {
-            get { return this.board; }
-            set { this.board = value; }
+            { 'U', 'L', ' ', ' ', '0', ' ', '1', ' ', '2', ' ', '3', ' ', '4', ' ', '5', ' ', '6', ' ', '7', ' ', ' ', 'U', 'R' },
+            { ' ', ' ', ' ', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', ' ', ' ', ' ' },
+            { '0', ' ', '|', ' ', 'A', ' ', ' ', ' ', 'B', ' ', ' ', ' ', 'C', ' ', ' ', ' ', 'D', ' ', ' ', ' ', '|', ' ', '0' },
+            { '1', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '1' },
+            { '2', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '2' },
+            { '3', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '3' },
+            { '4', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '4' },
+            { '5', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '5' },
+            { '6', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '6' },
+            { '7', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', '7' },
+            { ' ', ' ', '|', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '|', ' ', ' ' },
+            { 'D', 'L', ' ', ' ', '0', ' ', '1', ' ', '2', ' ', '3', ' ', '4', ' ', '5', ' ', '6', ' ', '7', ' ', ' ', 'D', 'R' },
+        };
+
+        public static int[,] boardCorners = 
+        {
+            { 2, 4 }, { 2, 18 }, { 9, 4 }, { 9, 18 }
+        };
+
+        public static void ShowBoard()
+        {
+            // After every figure move clear console
+            Console.Clear();
+
+            // This will print empty line on console
+            Console.WriteLine();
+
+            // Make board colorful
+            for (int row = 0; row < GameBoard.board.GetLength(0); row++)
+            {
+                for (int col = 0; col < GameBoard.board.GetLength(1); col++)
+                {
+                    int[] coordinates = { row, col };
+                    bool isCellIn = GameBoard.CheckPositionInBoard(coordinates);
+                    if (isCellIn)
+                    {
+                        if (row % 2 == 0)
+                        {
+                            if (col % 4 == 0)
+                            {
+                                PrintGreenSquareWithBlackFont(row, col);
+                            }
+                            else if (col % 2 == 0)
+                            {
+                                PrintBlueSquareWithBlackFont(row, col);
+                            }
+                            else if (col % 2 != 0)
+                            {
+                                Console.Write(GameBoard.board[row, col]);
+                            }
+                        }
+                        else if (col % 4 == 0)
+                        {
+                            PrintBlueSquareWithBlackFont(row, col);
+                        }
+                        else if (col % 2 == 0)
+                        {
+                            PrintGreenSquareWithBlackFont(row, col);
+                        }
+                        else if (col % 2 != 0)
+                        {
+                            Console.Write(GameBoard.board[row, col]);
+                        }
+                    }
+                    else
+                    {
+                        Console.Write(GameBoard.board[row, col]);
+                    }
+                }
+
+                Console.WriteLine();
+                Console.ResetColor();
+            }
+
+            Console.WriteLine();
         }
 
-        public int[,] BoardCorners
+        public static bool CheckPositionInBoard(int[] positionCoodinates)
         {
-            get { return this.boardCorners; }
-            set { this.boardCorners = value; }
+            int positonRow = positionCoodinates[0];
+            bool isRowInBoard = (positonRow >= GameBoard.boardCorners[0, 0]) && (positonRow <= GameBoard.boardCorners[3, 0]);
+            int positonCol = positionCoodinates[1];
+            bool isColInBoard = (positonCol >= GameBoard.boardCorners[0, 1]) && (positonCol <= GameBoard.boardCorners[3, 1]);
+            return isRowInBoard && isColInBoard;
+        }
+
+        private static void PrintBlueSquareWithBlackFont(int row, int col)
+        {
+            // Set colors on console
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Black;
+
+            // Print element to board
+            Console.Write(GameBoard.board[row, col]);
+            Console.ResetColor();
+        }
+
+        private static void PrintGreenSquareWithBlackFont(int row, int col)
+        {
+            // Set colors on console
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Black;
+
+            // Print element to board
+            Console.Write(GameBoard.board[row, col]);
+            Console.ResetColor();
         }
     }
 }

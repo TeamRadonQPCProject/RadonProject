@@ -2,7 +2,8 @@
 {
     using System;
 
-    class PawnC : Pawn
+    public class PawnC : Pawn
     {
+        public static string[] validCPawnInputs = { "CDL", "CDR" };
     }
 }

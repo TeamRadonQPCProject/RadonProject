@@ -2,28 +2,24 @@
 {
     using System;
 
-    class Pawn : Figure
+    public class Pawn : Figure
     {
-        private bool[] pawnExistingMoves;
-        private int[] pawnPosition;
+        public static int[,] pawnsPosition = 
+        {
+            { 2, 4 }, { 2, 8 }, { 2, 12 }, { 2, 16 }
+        };
+
+        public static bool[,] pawnExistingMoves = 
+        {
+            { true, true }, { true, true }, { true, true }, { true, true }
+        };
+
         private string[] validPawnInputs;
 
         public string[] ValidPawnInputs
         {
             get { return this.validPawnInputs; }
             set { this.validPawnInputs = value; }
-        }
-
-        public bool[] PawnExistingMoves
-        {
-            get { return this.pawnExistingMoves; }
-            set { this.pawnExistingMoves = value; }
-        }
-
-        public int[] PawnPosition
-        {
-            get { return this.pawnPosition; }
-            set { this.pawnPosition = value; }
         }
     }
 }

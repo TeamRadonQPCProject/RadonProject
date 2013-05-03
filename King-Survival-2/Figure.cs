@@ -2,7 +2,7 @@
 {
     using System;
 
-    class Figure
+    public class Figure
     {
     }
 }
