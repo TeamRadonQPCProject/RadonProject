@@ -3,3 +3,8 @@ D:\Telerik Academy\Telerik\C# 4\18.TeamWork\RadonProject-master\KingSurvival.Tes
 D:\Telerik Academy\Telerik\C# 4\18.TeamWork\RadonProject-master\KingSurvival.Tests\obj\Debug\KingSurvival.Tests.csprojResolveAssemblyReference.cache
 D:\Telerik Academy\Telerik\C# 4\18.TeamWork\RadonProject-master\KingSurvival.Tests\obj\Debug\KingSurvival.Tests.dll
 D:\Telerik Academy\Telerik\C# 4\18.TeamWork\RadonProject-master\KingSurvival.Tests\obj\Debug\KingSurvival.Tests.pdb
+D:\GitHub\RadonProject\KingSurvival.Tests\bin\Debug\KingSurvival.Tests.dll
+D:\GitHub\RadonProject\KingSurvival.Tests\bin\Debug\KingSurvival.Tests.pdb
+D:\GitHub\RadonProject\KingSurvival.Tests\obj\Debug\KingSurvival.Tests.csprojResolveAssemblyReference.cache
+D:\GitHub\RadonProject\KingSurvival.Tests\obj\Debug\KingSurvival.Tests.dll
+D:\GitHub\RadonProject\KingSurvival.Tests\obj\Debug\KingSurvival.Tests.pdb
