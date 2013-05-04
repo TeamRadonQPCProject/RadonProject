@@ -17,7 +17,7 @@
 
         private int[,] pawnsPosition = 
         {
-            { 2, 12 }
+            { 2, 16 }
         };
 
         // properties

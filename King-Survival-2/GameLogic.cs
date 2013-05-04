@@ -218,23 +218,23 @@
                 // This is just temporarery. It will be moved to the Pawns Classes
                 if (figure == 'A')
                 {
-                    oldCoordinates[0] = firstPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
-                    oldCoordinates[1] = firstPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                    oldCoordinates[0] = firstPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = firstPawn.PawnsPosition[0, 1];
                 }
                 else if (figure == 'B')
                 {
-                    oldCoordinates[0] = secondPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
-                    oldCoordinates[1] = secondPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                    oldCoordinates[0] = secondPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = secondPawn.PawnsPosition[0, 1];
                 }
                 else if (figure == 'C')
                 {
-                    oldCoordinates[0] = thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
-                    oldCoordinates[1] = thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                    oldCoordinates[0] = thirdPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = thirdPawn.PawnsPosition[0, 1];
                 }
                 else if (figure == 'D')
                 {
-                    oldCoordinates[0] = fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
-                    oldCoordinates[1] = fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                    oldCoordinates[0] = fourthPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = fourthPawn.PawnsPosition[0, 1];
                 }
 
                 int[] coords = new int[2];
@@ -243,23 +243,23 @@
                 {
                     if (figure == 'A')
                     {
-                        firstPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
-                        firstPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                        firstPawn.PawnsPosition[0, 0] = coords[0];
+                        firstPawn.PawnsPosition[0, 1] = coords[1];
                     }
                     else if (figure == 'B')
                     {
-                        secondPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
-                        secondPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                        secondPawn.PawnsPosition[0, 0] = coords[0];
+                        secondPawn.PawnsPosition[0, 1] = coords[1];
                     }
                     else if (figure == 'C')
                     {
-                        thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
-                        thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                        thirdPawn.PawnsPosition[0, 0] = coords[0];
+                        thirdPawn.PawnsPosition[0, 1] = coords[1];
                     }
                     else if (figure == 'D')
                     {
-                        fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
-                        fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                        fourthPawn.PawnsPosition[0, 0] = coords[0];
+                        fourthPawn.PawnsPosition[0, 1] = coords[1];
                     }
                 }
             }
@@ -269,23 +269,23 @@
                 int[] oldCoordinates = new int[2];
                 if (figure == 'A')
                 {
-                    oldCoordinates[0] = firstPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
-                    oldCoordinates[1] = firstPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                    oldCoordinates[0] = firstPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = firstPawn.PawnsPosition[0, 1];
                 }
                 else if (figure == 'B')
                 {
-                    oldCoordinates[0] = secondPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
-                    oldCoordinates[1] = secondPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                    oldCoordinates[0] = secondPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = secondPawn.PawnsPosition[0, 1];
                 }
                 else if (figure == 'C')
                 {
-                    oldCoordinates[0] = thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
-                    oldCoordinates[1] = thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                    oldCoordinates[0] = thirdPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = thirdPawn.PawnsPosition[0, 1];
                 }
                 else if (figure == 'D')
                 {
-                    oldCoordinates[0] = fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
-                    oldCoordinates[1] = fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                    oldCoordinates[0] = fourthPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = fourthPawn.PawnsPosition[0, 1];
                 }
 
                 int[] coords = new int[2];
@@ -294,23 +294,23 @@
                 {
                     if (figure == 'A')
                     {
-                        firstPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
-                        firstPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                        firstPawn.PawnsPosition[0, 0] = coords[0];
+                        firstPawn.PawnsPosition[0, 1] = coords[1];
                     }
                     else if (figure == 'B')
                     {
-                        secondPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
-                        secondPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                        secondPawn.PawnsPosition[0, 0] = coords[0];
+                        secondPawn.PawnsPosition[0, 1] = coords[1];
                     }
                     else if (figure == 'C')
                     {
-                        thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
-                        thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                        thirdPawn.PawnsPosition[0, 0] = coords[0];
+                        thirdPawn.PawnsPosition[0, 1] = coords[1];
                     }
                     else if (figure == 'D')
                     {
-                        fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
-                        fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                        fourthPawn.PawnsPosition[0, 0] = coords[0];
+                        fourthPawn.PawnsPosition[0, 1] = coords[1];
                     }
                 }
             }
@@ -327,17 +327,17 @@
                 Console.Write("Please enter king's turn: ");
                 Console.ResetColor();
                 string input = Console.ReadLine();
-                if (!string.IsNullOrEmpty(input))
-                {
-                    input = input.ToUpper();
-                    isExecuted = CheckAndProcess(input);
-                }
-                else
+                if (string.IsNullOrEmpty(input))
                 {
                     isExecuted = false;
                     Console.BackgroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Please enter something!");
                     Console.ResetColor();
+                }
+                else
+                {
+                    input = input.ToUpper();
+                    isExecuted = CheckAndProcess(input); 
                 }
             }
 
@@ -354,17 +354,17 @@
                 Console.ResetColor();
                 string input = Console.ReadLine();
 
-                if (input != null)
-                {
-                    input = input.ToUpper();
-                    isExecuted = CheckAndProcess(input);
-                }
-                else
+                if (string.IsNullOrEmpty(input))
                 {
                     isExecuted = false;
                     Console.BackgroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Please enter something!");
                     Console.ResetColor();
+                }
+                else
+                {
+                    input = input.ToUpper();
+                    isExecuted = CheckAndProcess(input);
                 }
             }
 
