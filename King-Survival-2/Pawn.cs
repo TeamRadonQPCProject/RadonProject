@@ -2,24 +2,65 @@
 {
     using System;
 
-    public class Pawn : Figure
+    public abstract class Pawn : Figure
     {
-        public static int[,] pawnsPosition = 
+        // fileds
+        private static int[,] pawnsPosition = 
         {
-            { 2, 4 }, { 2, 8 }, { 2, 12 }, { 2, 16 }
+            { 2, 4 }, 
+            { 2, 8 }, 
+            { 2, 12 }, 
+            { 2, 16 }
         };
 
-        public static bool[,] pawnExistingMoves = 
+        private static bool[,] pawnExistingMoves = 
         {
-            { true, true }, { true, true }, { true, true }, { true, true }
+            { true, true }, 
+            { true, true }, 
+            { true, true }, 
+            { true, true }
         };
 
         private string[] validPawnInputs;
 
+        // properties
+        public static int[,] PawnsPosition
+        {
+            get
+            {
+                return pawnsPosition;
+            }
+
+            set
+            {
+                pawnsPosition = value;
+            }
+        }
+
+        public static bool[,] PawnExistingMoves
+        {
+            get
+            {
+                return pawnExistingMoves;
+            }
+
+            set
+            {
+                pawnExistingMoves = value;
+            }
+        }
+
         public string[] ValidPawnInputs
         {
-            get { return this.validPawnInputs; }
-            set { this.validPawnInputs = value; }
+            get 
+            { 
+                return this.validPawnInputs; 
+            }
+
+            set 
+            { 
+                this.validPawnInputs = value; 
+            }
         }
     }
 }

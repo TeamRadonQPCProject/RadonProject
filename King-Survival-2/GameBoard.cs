@@ -4,7 +4,8 @@
 
     public class GameBoard
     {
-        public static char[,] board = 
+        // fileds
+        private static readonly char[,] board = 
         {
             { 'U', 'L', ' ', ' ', '0', ' ', '1', ' ', '2', ' ', '3', ' ', '4', ' ', '5', ' ', '6', ' ', '7', ' ', ' ', 'U', 'R' },
             { ' ', ' ', ' ', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', ' ', ' ', ' ' },
@@ -20,13 +21,32 @@
             { 'D', 'L', ' ', ' ', '0', ' ', '1', ' ', '2', ' ', '3', ' ', '4', ' ', '5', ' ', '6', ' ', '7', ' ', ' ', 'D', 'R' },
         };
 
-        public static int[,] boardCorners = 
+        private static readonly int[,] boardCorners = 
         {
             { 2, 4 }, { 2, 18 }, { 9, 4 }, { 9, 18 }
         };
 
+
+        public static int[,] BoardCorners
+        {
+            get
+            {
+                return boardCorners;
+            }
+        }
+
+        public static char[,] Board
+        {
+            get
+            {
+                return board;
+            }
+        }
+
+        // methods
         public static void ShowBoard()
         {
+            // TODO: Fix a bug thats not showing the illegal move message
             //// After every figure move clear console
             //Console.Clear();
 

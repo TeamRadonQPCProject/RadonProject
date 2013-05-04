@@ -4,6 +4,18 @@
 
     public class PawnB : Pawn
     {
-        public static string[] validBPawnInputs = { "BDL", "BDR" };
+        public static readonly string[] validBPawnInputs = 
+        { 
+            "BDL", 
+            "BDR" 
+        };
+
+        public static string[] ValidBPawnInputs
+        {
+            get
+            {
+                return validBPawnInputs;
+            }
+        }
     }
 }

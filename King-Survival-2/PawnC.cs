@@ -4,6 +4,18 @@
 
     public class PawnC : Pawn
     {
-        public static string[] validCPawnInputs = { "CDL", "CDR" };
+        private static string[] validCPawnInputs = 
+        {
+            "CDL",
+            "CDR"
+        };
+
+        public static string[] ValidCPawnInputs
+        {
+            get
+            {
+                return validCPawnInputs;
+            }
+        }
     }
 }

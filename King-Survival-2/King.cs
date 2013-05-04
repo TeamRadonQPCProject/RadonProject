@@ -4,8 +4,65 @@
 
     public class King : Figure
     {
-        public static string[] validKingInputs = { "KUL", "KUR", "KDL", "KDR" };
-        public static int[] kingPosition = { 9, 10 };
-        public static bool[] kingExistingMoves = { true, true, true, true };
+        private static string[] validKingInputs = 
+        {                               
+            "KUL",                                  
+            "KUR",       
+            "KDL", 
+            "KDR" 
+        };
+
+        private static int[] kingPosition = 
+        { 
+            9, 
+            10 
+        };
+
+        private static bool[] kingExistingMoves = 
+        { 
+            true, 
+            true, 
+            true, 
+            true 
+        };
+
+        public static string[] ValidKingInputs
+        {
+            get
+            {
+                return validKingInputs;
+            }
+
+            set
+            {
+                validKingInputs = value;
+            }
+        }
+
+        public static int[] KingPosition
+        {
+            get
+            {
+                return kingPosition;
+            }
+
+            set
+            {
+                kingPosition = value;
+            }
+        }
+
+        public static bool[] KingExistingMoves
+        {
+            get
+            {
+                return kingExistingMoves;
+            }
+
+            set
+            {
+                kingExistingMoves = value;
+            }
+        }
     }
 }

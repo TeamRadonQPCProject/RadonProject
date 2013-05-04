@@ -4,6 +4,18 @@
 
     public class PawnD : Pawn
     {
-        public static string[] validDPawnInputs = { "DDL", "DDR" };
+        private static string[] validDPawnInputs = 
+        { 
+            "DDL", 
+            "DDR" 
+        };
+
+        public static string[] ValidDPawnInputs
+        {
+            get
+            {
+                return validDPawnInputs;
+            }
+        }
     }
 }
