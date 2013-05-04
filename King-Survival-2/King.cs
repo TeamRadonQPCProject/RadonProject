@@ -32,11 +32,6 @@
             {
                 return validKingInputs;
             }
-
-            set
-            {
-                validKingInputs = value;
-            }
         }
 
         public static int[] KingPosition
