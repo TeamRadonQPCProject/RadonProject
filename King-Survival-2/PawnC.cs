@@ -4,17 +4,17 @@
 
     public class PawnC : Pawn
     {
-        private static string[] validCPawnInputs = 
+        private string[] validCPawnInputs = 
         {
             "CDL",
             "CDR"
         };
 
-        public static string[] ValidCPawnInputs
+        public string[] ValidCPawnInputs
         {
             get
             {
-                return validCPawnInputs;
+                return this.validCPawnInputs;
             }
         }
     }

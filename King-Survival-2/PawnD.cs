@@ -4,17 +4,17 @@
 
     public class PawnD : Pawn
     {
-        private static string[] validDPawnInputs = 
+        private string[] validDPawnInputs = 
         { 
             "DDL", 
             "DDR" 
         };
 
-        public static string[] ValidDPawnInputs
+        public string[] ValidDPawnInputs
         {
             get
             {
-                return validDPawnInputs;
+                return this.validDPawnInputs;
             }
         }
     }

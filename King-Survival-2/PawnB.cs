@@ -4,17 +4,17 @@
 
     public class PawnB : Pawn
     {
-        public static readonly string[] validBPawnInputs = 
+        public readonly string[] validBPawnInputs = 
         { 
             "BDL", 
             "BDR" 
         };
 
-        public static string[] ValidBPawnInputs
+        public string[] ValidBPawnInputs
         {
             get
             {
-                return validBPawnInputs;
+                return this.validBPawnInputs;
             }
         }
     }

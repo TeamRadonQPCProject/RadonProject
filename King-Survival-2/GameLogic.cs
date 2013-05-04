@@ -4,83 +4,91 @@
 
     public class GameLogic
     {
+        // game objects
+        // TODO: Move them to different class
+        GameBoard KingSurvivalGameBoard = new GameBoard();
+        PawnA firstPawn = new PawnA();
+        PawnB secondPawn = new PawnB();
+        PawnC thirdPawn = new PawnC();
+        PawnD fourthPawn = new PawnD();
+
         // fileds
-        private static int movementsCounter = 0;
-        private static bool gameIsFinished = false;
-        
+        private int movementsCounter = 0;
+        private bool gameIsFinished = false;
+
         // properties
-        public static bool GameIsFinished
+        public bool GameIsFinished
         {
             get
             {
-                return gameIsFinished;
+                return this.gameIsFinished;
             }
 
             set
             {
-                gameIsFinished = value;
+                this.gameIsFinished = value;
             }
         }
 
-        public static int MovementsCounter
+        public int MovementsCounter
         {
             get
             {
-                return movementsCounter;
+                return this.movementsCounter;
             }
 
             set
             {
-                movementsCounter = value;
+                this.movementsCounter = value;
             }
         }
 
         // methods
-        public static void InteractWithUser(int moveCounter)
+        public void InteractWithUser()
         {
-            if (GameLogic.GameIsFinished)
+            if (this.GameIsFinished)
             {
                 Console.WriteLine("Game is finished!");
                 return;
             }
             else
             {
-                if (moveCounter % 2 == 0)
+                if (this.MovementsCounter % 2 == 0)
                 {
-                    GameBoard.ShowBoard();
+                    KingSurvivalGameBoard.ShowBoard();
                     ProcessKingSide();
                 }
                 else
                 {
-                    GameBoard.ShowBoard();
+                    KingSurvivalGameBoard.ShowBoard();
                     ProcessPawnSide();
                 }
             }
         }
 
-        static bool CheckPlayerInput(string checkedString)
+        public bool CheckPlayerInput(string checkedString)
         {
             char startLetter = checkedString[0];
             bool hasAnEqual = false;
-            if (GameLogic.MovementsCounter % 2 == 0) // King turn
+            if (this.MovementsCounter % 2 == 0) // King turn
             {
-                return ChechInput(checkedString, King.ValidKingInputs, ref hasAnEqual);
+                return this.ChechInput(checkedString, King.ValidKingInputs, ref hasAnEqual);
             }
             else // PawnsTurn
             {
                 switch (startLetter)
                 {
                     case 'A':
-                        return ChechInput(checkedString, PawnA.ValidAPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, firstPawn.ValidAPawnInputs, ref hasAnEqual);
 
                     case 'B':
-                        return ChechInput(checkedString, PawnB.validBPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, secondPawn.validBPawnInputs, ref hasAnEqual);
 
                     case 'C':
-                        return ChechInput(checkedString, PawnC.ValidCPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, thirdPawn.ValidCPawnInputs, ref hasAnEqual);
 
                     case 'D':
-                        return ChechInput(checkedString, PawnD.ValidDPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, fourthPawn.ValidDPawnInputs, ref hasAnEqual);
 
                     default:
                         Console.BackgroundColor = ConsoleColor.Red;
@@ -91,7 +99,7 @@
             }
         }
 
-        private static bool ChechInput(string checkedString, string[] currentFigureValidInput, ref bool hasAnEqual)
+        private bool ChechInput(string checkedString, string[] currentFigureValidInput, ref bool hasAnEqual)
         {
             int[] equal = new int[currentFigureValidInput.Length];
             for (int i = 0; i < currentFigureValidInput.Length; i++)
@@ -126,7 +134,7 @@
             return hasAnEqual;
         }
 
-        static bool CheckAndProcess(string checkedInput)
+        public bool CheckAndProcess(string checkedInput)
         {
             bool isCommandNameCorrect = CheckPlayerInput(checkedInput);
             if (isCommandNameCorrect)
@@ -185,7 +193,7 @@
             }
         }
 
-        private static void MoveKing(char firstDirection, char secondDirection)
+        private void MoveKing(char firstDirection, char secondDirection)
         {
             // ==KDR
             int[] oldCoordinates = new int[2];
@@ -200,7 +208,7 @@
             }
         }
 
-        private static bool MovePawn(string checkedInput, char figure)
+        private bool MovePawn(string checkedInput, char figure)
         {
             int pawnsPositionFirstCoord = (int)figure - (int)'A';
             if (checkedInput[2] == 'L')
@@ -236,7 +244,7 @@
             return true;
         }
 
-        static void ProcessKingSide()
+        public void ProcessKingSide()
         {
             bool isExecuted = false;
             while (!isExecuted)
@@ -259,10 +267,10 @@
                 }
             }
 
-            InteractWithUser(GameLogic.MovementsCounter);
+            InteractWithUser();
         }
 
-        static void ProcessPawnSide()
+        public void ProcessPawnSide()
         {
             bool isExecuted = false;
             while (!isExecuted)
@@ -286,20 +294,20 @@
                 }
             }
 
-            InteractWithUser(GameLogic.MovementsCounter);
+            InteractWithUser();
         }
 
-        static void CheckForKingExit(int currentKingXAxe)
+        public void CheckForKingExit(int currentKingXAxe)
         {
             if (currentKingXAxe == 2)
             {
                 Console.WriteLine("End!");
-                Console.WriteLine("King wins in {0} moves!", GameLogic.MovementsCounter / 2);
-                GameLogic.GameIsFinished = true;
+                Console.WriteLine("King wins in {0} moves!", this.MovementsCounter / 2);
+                this.GameIsFinished = true;
             }
         }
 
-        static int[] CheckNextPownPosition(int[] currentCoordinates, char checkDirection, char currentPawn)
+        public int[] CheckNextPownPosition(int[] currentCoordinates, char checkDirection, char currentPawn)
         {
             int[] displasmentDownLeft = { 1, -2 };
             int[] displasmentDownRight = { 1, 2 };
@@ -309,25 +317,25 @@
                 newCoords[0] = currentCoordinates[0] + displasmentDownLeft[0];
                 newCoords[1] = currentCoordinates[1] + displasmentDownLeft[1];
 
-                return CalcNextPawnPosition(newCoords, currentCoordinates, currentPawn, 0);
+                return this.CalcNextPawnPosition(newCoords, currentCoordinates, currentPawn, 0);
             }
             else
             {
                 newCoords[0] = currentCoordinates[0] + displasmentDownRight[0];
                 newCoords[1] = currentCoordinates[1] + displasmentDownRight[1];
 
-                return CalcNextPawnPosition(newCoords, currentCoordinates, currentPawn, 1);
+                return this.CalcNextPawnPosition(newCoords, currentCoordinates, currentPawn, 1);
             }
         }
 
-        private static int[] CalcNextPawnPosition(int[] newCoords, int[] currentCoordinates, char currentPawn, int pawnSecondCoord)
+        private int[] CalcNextPawnPosition(int[] newCoords, int[] currentCoordinates, char currentPawn, int pawnSecondCoord)
         {
-            if (GameBoard.CheckPositionInBoard(newCoords) && GameBoard.Board[newCoords[0], newCoords[1]] == ' ')
+            if (KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' ')
             {
-                char sign = GameBoard.Board[currentCoordinates[0], currentCoordinates[1]];
-                GameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                GameBoard.Board[newCoords[0], newCoords[1]] = sign;
-                GameLogic.MovementsCounter++;
+                char sign = KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]];
+                KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
+                KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] = sign;
+                this.MovementsCounter++;
                 switch (currentPawn)
                 {
                     case 'A':
@@ -388,9 +396,9 @@
 
                 if (allAreFalse)
                 {
-                    GameLogic.GameIsFinished = true;
+                    this.GameIsFinished = true;
                     Console.WriteLine("King wins!");
-                    GameLogic.GameIsFinished = true;
+                    this.GameIsFinished = true;
                     return null;
                 }
 
@@ -401,7 +409,7 @@
             }
         }
 
-        static int[] CheckNextKingPosition(int[] currentCoordinates, char firstDirection, char secondDirection)
+        public int[] CheckNextKingPosition(int[] currentCoordinates, char firstDirection, char secondDirection)
         {
             int[] displacementDownLeft = { 1, -2 };
             int[] displacementDownRight = { 1, 2 };
@@ -424,17 +432,17 @@
             }
         }
 
-        private static int[] CheckKingAvailableMove(int[] currentCoordinates, int[] displacementDirection)
+        private int[] CheckKingAvailableMove(int[] currentCoordinates, int[] displacementDirection)
         {
             int[] newCoords = new int[2];
             newCoords[0] = currentCoordinates[0] + displacementDirection[0];
             newCoords[1] = currentCoordinates[1] + displacementDirection[1];
-            if (GameBoard.CheckPositionInBoard(newCoords) && GameBoard.Board[newCoords[0], newCoords[1]] == ' ')
+            if (KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' ')
             {
-                char sign = GameBoard.Board[currentCoordinates[0], currentCoordinates[1]];
-                GameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                GameBoard.Board[newCoords[0], newCoords[1]] = sign;
-                GameLogic.MovementsCounter++;
+                char sign = KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]];
+                KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
+                KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] = sign;
+                this.MovementsCounter++;
 
                 for (int i = 0; i < 4; i++)
                 {
@@ -458,7 +466,7 @@
 
                 if (allAreFalse)
                 {
-                    GameLogic.GameIsFinished = true;
+                    this.GameIsFinished = true;
                     Console.WriteLine("King loses!");
                     return null;
                 }
