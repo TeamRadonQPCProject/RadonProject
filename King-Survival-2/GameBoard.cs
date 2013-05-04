@@ -27,8 +27,8 @@
 
         public static void ShowBoard()
         {
-            // After every figure move clear console
-            Console.Clear();
+            //// After every figure move clear console
+            //Console.Clear();
 
             // This will print empty line on console
             Console.WriteLine();
