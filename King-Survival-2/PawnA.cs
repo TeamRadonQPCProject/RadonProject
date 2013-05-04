@@ -4,18 +4,62 @@
 
     public class PawnA : Pawn
     {
-        private readonly string[] validAPawnInputs = 
+        // fields
+        private readonly string[] validPawnInputs = 
         { 
             "ADL", 
             "ADR" 
         };
 
-        public string[] ValidAPawnInputs
+        private static int[,] pawnsPosition = 
+        {
+            { 2, 4 }
+        };
+
+        private static bool[,] pawnExistingMoves = 
+        {
+            { true, true }
+        };
+
+        // properties
+        public override int[,] PawnsPosition
         {
             get
             {
-                return this.validAPawnInputs;
+                return pawnsPosition;
             }
+
+            set
+            {
+                pawnsPosition = value;
+            }
+        }
+
+        public static bool[,] PawnExistingMoves
+        {
+            get
+            {
+                return pawnExistingMoves;
+            }
+
+            set
+            {
+                pawnExistingMoves = value;
+            }
+        }
+
+        public override string[] ValidPawnInputs
+        {
+            get
+            {
+                return this.validPawnInputs;
+            }
+        }
+
+        // methods
+        public override bool MovePawn(string command)
+        {
+            throw new NotImplementedException();
         }
     }
 }

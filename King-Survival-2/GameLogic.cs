@@ -79,16 +79,16 @@
                 switch (startLetter)
                 {
                     case 'A':
-                        return ChechInput(checkedString, firstPawn.ValidAPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, firstPawn.ValidPawnInputs, ref hasAnEqual);
 
                     case 'B':
-                        return ChechInput(checkedString, secondPawn.validBPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, secondPawn.ValidPawnInputs, ref hasAnEqual);
 
                     case 'C':
-                        return ChechInput(checkedString, thirdPawn.ValidCPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, thirdPawn.ValidPawnInputs, ref hasAnEqual);
 
                     case 'D':
-                        return ChechInput(checkedString, fourthPawn.ValidDPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, fourthPawn.ValidPawnInputs, ref hasAnEqual);
 
                     default:
                         Console.BackgroundColor = ConsoleColor.Red;
@@ -214,30 +214,104 @@
             if (checkedInput[2] == 'L')
             {
                 int[] oldCoordinates = new int[2];
-                oldCoordinates[0] = Pawn.PawnsPosition[pawnsPositionFirstCoord, 0];
-                oldCoordinates[1] = Pawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+
+                // This is just temporarery. It will be moved to the Pawns Classes
+                if (figure == 'A')
+                {
+                    oldCoordinates[0] = firstPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
+                    oldCoordinates[1] = firstPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                }
+                else if (figure == 'B')
+                {
+                    oldCoordinates[0] = secondPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
+                    oldCoordinates[1] = secondPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                }
+                else if (figure == 'C')
+                {
+                    oldCoordinates[0] = thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
+                    oldCoordinates[1] = thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                }
+                else if (figure == 'D')
+                {
+                    oldCoordinates[0] = fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
+                    oldCoordinates[1] = fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                }
 
                 int[] coords = new int[2];
                 coords = CheckNextPownPosition(oldCoordinates, 'L', figure);
                 if (coords != null)
                 {
-                    Pawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
-                    Pawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                    if (figure == 'A')
+                    {
+                        firstPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
+                        firstPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                    }
+                    else if (figure == 'B')
+                    {
+                        secondPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
+                        secondPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                    }
+                    else if (figure == 'C')
+                    {
+                        thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
+                        thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                    }
+                    else if (figure == 'D')
+                    {
+                        fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
+                        fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                    }
                 }
             }
             else
             {
                 // =='R'
                 int[] oldCoordinates = new int[2];
-                oldCoordinates[0] = Pawn.PawnsPosition[pawnsPositionFirstCoord, 0];
-                oldCoordinates[1] = Pawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                if (figure == 'A')
+                {
+                    oldCoordinates[0] = firstPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
+                    oldCoordinates[1] = firstPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                }
+                else if (figure == 'B')
+                {
+                    oldCoordinates[0] = secondPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
+                    oldCoordinates[1] = secondPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                }
+                else if (figure == 'C')
+                {
+                    oldCoordinates[0] = thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
+                    oldCoordinates[1] = thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                }
+                else if (figure == 'D')
+                {
+                    oldCoordinates[0] = fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 0];
+                    oldCoordinates[1] = fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 1];
+                }
 
                 int[] coords = new int[2];
                 coords = CheckNextPownPosition(oldCoordinates, 'R', figure);
                 if (coords != null)
                 {
-                    Pawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
-                    Pawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                    if (figure == 'A')
+                    {
+                        firstPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
+                        firstPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                    }
+                    else if (figure == 'B')
+                    {
+                        secondPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
+                        secondPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                    }
+                    else if (figure == 'C')
+                    {
+                        thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
+                        thirdPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                    }
+                    else if (figure == 'D')
+                    {
+                        fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
+                        fourthPawn.PawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                    }
                 }
             }
 
@@ -253,7 +327,7 @@
                 Console.Write("Please enter king's turn: ");
                 Console.ResetColor();
                 string input = Console.ReadLine();
-                if (input != null)
+                if (!string.IsNullOrEmpty(input))
                 {
                     input = input.ToUpper();
                     isExecuted = CheckAndProcess(input);
