@@ -54,9 +54,9 @@
             Console.WriteLine();
 
             // Make board colorful
-            for (int row = 0; row < GameBoard.board.GetLength(0); row++)
+            for (int row = 0; row < GameBoard.Board.GetLength(0); row++)
             {
-                for (int col = 0; col < GameBoard.board.GetLength(1); col++)
+                for (int col = 0; col < GameBoard.Board.GetLength(1); col++)
                 {
                     int[] coordinates = { row, col };
                     bool isCellIn = GameBoard.CheckPositionInBoard(coordinates);
@@ -74,7 +74,7 @@
                             }
                             else if (col % 2 != 0)
                             {
-                                Console.Write(GameBoard.board[row, col]);
+                                Console.Write(GameBoard.Board[row, col]);
                             }
                         }
                         else if (col % 4 == 0)
@@ -87,12 +87,12 @@
                         }
                         else if (col % 2 != 0)
                         {
-                            Console.Write(GameBoard.board[row, col]);
+                            Console.Write(GameBoard.Board[row, col]);
                         }
                     }
                     else
                     {
-                        Console.Write(GameBoard.board[row, col]);
+                        Console.Write(GameBoard.Board[row, col]);
                     }
                 }
 
@@ -106,9 +106,9 @@
         public static bool CheckPositionInBoard(int[] positionCoodinates)
         {
             int positonRow = positionCoodinates[0];
-            bool isRowInBoard = (positonRow >= GameBoard.boardCorners[0, 0]) && (positonRow <= GameBoard.boardCorners[3, 0]);
+            bool isRowInBoard = (positonRow >= GameBoard.BoardCorners[0, 0]) && (positonRow <= GameBoard.BoardCorners[3, 0]);
             int positonCol = positionCoodinates[1];
-            bool isColInBoard = (positonCol >= GameBoard.boardCorners[0, 1]) && (positonCol <= GameBoard.boardCorners[3, 1]);
+            bool isColInBoard = (positonCol >= GameBoard.BoardCorners[0, 1]) && (positonCol <= GameBoard.BoardCorners[3, 1]);
             return isRowInBoard && isColInBoard;
         }
 
@@ -119,7 +119,7 @@
             Console.ForegroundColor = ConsoleColor.Black;
 
             // Print element to board
-            Console.Write(GameBoard.board[row, col]);
+            Console.Write(GameBoard.Board[row, col]);
             Console.ResetColor();
         }
 
@@ -130,7 +130,7 @@
             Console.ForegroundColor = ConsoleColor.Black;
 
             // Print element to board
-            Console.Write(GameBoard.board[row, col]);
+            Console.Write(GameBoard.Board[row, col]);
             Console.ResetColor();
         }
     }
