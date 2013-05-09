@@ -12,6 +12,7 @@
         PawnC thirdPawn = new PawnC();
         PawnD fourthPawn = new PawnD();
 
+
         // fileds
         private int movementsCounter = 0;
         private bool gameIsFinished = false;
