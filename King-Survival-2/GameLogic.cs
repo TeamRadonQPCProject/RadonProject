@@ -444,16 +444,16 @@
                 switch (currentPawn)
                 {
                     case 'A':
-                        firstPawn.FigureExistingMoves[0, pawnSecondCoord] = false;
+                        firstPawn.FigureExistingMoves[0, newCoords[2]] = false;
                         break;
                     case 'B':
-                        secondPawn.FigureExistingMoves[0, pawnSecondCoord] = false;
+                        secondPawn.FigureExistingMoves[0, newCoords[2]] = false;
                         break;
                     case 'C':
-                        thirdPawn.FigureExistingMoves[0, pawnSecondCoord] = false;
+                        thirdPawn.FigureExistingMoves[0, newCoords[2]] = false;
                         break;
                     case 'D':
-                        fourthPawn.FigureExistingMoves[0, pawnSecondCoord] = false;
+                        fourthPawn.FigureExistingMoves[0, newCoords[2]] = false;
                         break;
                     default:
                         Console.WriteLine("ERROR!");
