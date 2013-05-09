@@ -95,6 +95,7 @@
                         Console.WriteLine("Invalid command name!");
                         Console.ResetColor();
                         return false;
+                        //
                 }
             }
         }
