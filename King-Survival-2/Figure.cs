@@ -4,5 +4,14 @@
 
     public abstract class Figure
     {
+        // fileds
+        public abstract int[,] FigurePosition { get; set; }
+
+        public abstract bool MoveFigure(string command);
+
+        public abstract string[] ValidFigureInputs { get; }
+
+        // TODO: Move pawnExistingMoves and its propertie to the inherited classes
+        public abstract bool[,] FigureExistingMoves { get; set; }
     }
 }
