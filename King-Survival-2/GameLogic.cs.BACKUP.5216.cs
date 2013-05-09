@@ -443,16 +443,26 @@
                 switch (currentPawn)
                 {
                     case 'A':
-                        firstPawn.FigureExistingMoves[0, newCoords[2]] = false;
+                        Pawn.PawnExistingMoves[0, newCoords[2]] = false;
                         break;
                     case 'B':
-                        secondPawn.FigureExistingMoves[0, newCoords[2]] = false;
+                        Pawn.PawnExistingMoves[1, newCoords[2]] = false;
                         break;
                     case 'C':
-                        thirdPawn.FigureExistingMoves[0, newCoords[2]] = false;
+                        Pawn.PawnExistingMoves[2, newCoords[2]] = false;
                         break;
                     case 'D':
-                        fourthPawn.FigureExistingMoves[0, newCoords[2]] = false;
+                        Pawn.PawnExistingMoves[3, newCoords[2]] = false;
+                        firstPawn.FigureExistingMoves[0, pawnSecondCoord] = false;
+                        break;
+                    case 'B':
+                        secondPawn.FigureExistingMoves[0, pawnSecondCoord] = false;
+                        break;
+                    case 'C':
+                        thirdPawn.FigureExistingMoves[0, pawnSecondCoord] = false;
+                        break;
+                    case 'D':
+                        fourthPawn.FigureExistingMoves[0, pawnSecondCoord] = false;
                         break;
                     default:
                         Console.WriteLine("ERROR!");
@@ -512,7 +522,6 @@
 
         private int[] CheckKingAvailableMove(int[] currentCoordinates, int[] displacementDirection)
         {
-            HasExistingMove(currentCoordinates);
             int[] newCoords = new int[2];
             newCoords[0] = currentCoordinates[0] + displacementDirection[0];
             newCoords[1] = currentCoordinates[1] + displacementDirection[1];
@@ -533,6 +542,7 @@
             }
             else
             {
+                King.KingExistingMoves[0] = false;
                 bool allAreFalse = true;
                 for (int i = 0; i < 4; i++)
                 {
@@ -553,44 +563,6 @@
                 Console.WriteLine("You can't go in this direction! ");
                 Console.ResetColor();
                 return null;
-            }
-        }
-
-        // TODO: Move to King class
-        private void HasExistingMove(int[] currentCoords)
-        {
-            int[] newCoords = new int[2];
-            int[] displacementDownLeft = { 1, -2 };
-            int[] displacementDownRight = { 1, 2 };
-            int[] displacementUpLeft = { -1, -2 };
-            int[] displacementUpRight = { -1, 2 };
-
-            newCoords[0] = currentCoords[0] + displacementUpLeft[0];
-            newCoords[1] = currentCoords[1] + displacementUpLeft[1];
-            if (!(KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
-            {
-                King.KingExistingMoves[0] = false;
-            }
-
-            newCoords[0] = currentCoords[0] + displacementUpRight[0];
-            newCoords[1] = currentCoords[1] + displacementUpRight[1];
-            if (!(KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
-            {
-                King.KingExistingMoves[1] = false;
-            }
-
-            newCoords[0] = currentCoords[0] + displacementDownLeft[0];
-            newCoords[1] = currentCoords[1] + displacementDownLeft[1];
-            if (!(KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
-            {
-                King.KingExistingMoves[2] = false;
-            }
-
-            newCoords[0] = currentCoords[0] + displacementDownRight[0];
-            newCoords[1] = currentCoords[1] + displacementDownRight[1];
-            if (!(KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
-            {
-                King.KingExistingMoves[3] = false;
             }
         }
     }
