@@ -444,13 +444,13 @@
                         firstPawn.FigureExistingMoves[0, pawnSecondCoord] = false;
                         break;
                     case 'B':
-                        secondPawn.FigureExistingMoves[1, pawnSecondCoord] = false;
+                        secondPawn.FigureExistingMoves[0, pawnSecondCoord] = false;
                         break;
                     case 'C':
-                        thirdPawn.FigureExistingMoves[2, pawnSecondCoord] = false;
+                        thirdPawn.FigureExistingMoves[0, pawnSecondCoord] = false;
                         break;
                     case 'D':
-                        fourthPawn.FigureExistingMoves[3, pawnSecondCoord] = false;
+                        fourthPawn.FigureExistingMoves[0, pawnSecondCoord] = false;
                         break;
                     default:
                         Console.WriteLine("ERROR!");
