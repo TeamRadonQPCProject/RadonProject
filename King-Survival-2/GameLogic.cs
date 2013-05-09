@@ -237,8 +237,9 @@
                     oldCoordinates[1] = fourthPawn.PawnsPosition[0, 1];
                 }
 
-                int[] coords = new int[2];
+                int[] coords = new int[3];
                 coords = CheckNextPownPosition(oldCoordinates, 'L', figure);
+                this.CalcNextPawnPosition(coords, oldCoordinates, figure);
                 if (coords != null)
                 {
                     if (figure == 'A')
@@ -288,8 +289,9 @@
                     oldCoordinates[1] = fourthPawn.PawnsPosition[0, 1];
                 }
 
-                int[] coords = new int[2];
+                int[] coords = new int[3];
                 coords = CheckNextPownPosition(oldCoordinates, 'R', figure);
+                this.CalcNextPawnPosition(coords, oldCoordinates, figure);
                 if (coords != null)
                 {
                     if (figure == 'A')
@@ -385,24 +387,24 @@
         {
             int[] displasmentDownLeft = { 1, -2 };
             int[] displasmentDownRight = { 1, 2 };
-            int[] newCoords = new int[2];
+            int[] newCoords = new int[3];
             if (checkDirection == 'L')
             {
                 newCoords[0] = currentCoordinates[0] + displasmentDownLeft[0];
                 newCoords[1] = currentCoordinates[1] + displasmentDownLeft[1];
-
-                return this.CalcNextPawnPosition(newCoords, currentCoordinates, currentPawn, 0);
+                newCoords[2] = 0;
+                return newCoords;
             }
             else
             {
                 newCoords[0] = currentCoordinates[0] + displasmentDownRight[0];
                 newCoords[1] = currentCoordinates[1] + displasmentDownRight[1];
-
-                return this.CalcNextPawnPosition(newCoords, currentCoordinates, currentPawn, 1);
+                newCoords[2] = 0;
+                return newCoords;
             }
         }
 
-        private int[] CalcNextPawnPosition(int[] newCoords, int[] currentCoordinates, char currentPawn, int pawnSecondCoord)
+        private int[] CalcNextPawnPosition(int[] newCoords, int[] currentCoordinates, char currentPawn)
         {
             if (KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' ')
             {
@@ -441,16 +443,16 @@
                 switch (currentPawn)
                 {
                     case 'A':
-                        Pawn.PawnExistingMoves[0, pawnSecondCoord] = false;
+                        Pawn.PawnExistingMoves[0, newCoords[2]] = false;
                         break;
                     case 'B':
-                        Pawn.PawnExistingMoves[1, pawnSecondCoord] = false;
+                        Pawn.PawnExistingMoves[1, newCoords[2]] = false;
                         break;
                     case 'C':
-                        Pawn.PawnExistingMoves[2, pawnSecondCoord] = false;
+                        Pawn.PawnExistingMoves[2, newCoords[2]] = false;
                         break;
                     case 'D':
-                        Pawn.PawnExistingMoves[3, pawnSecondCoord] = false;
+                        Pawn.PawnExistingMoves[3, newCoords[2]] = false;
                         break;
                     default:
                         Console.WriteLine("ERROR!");
