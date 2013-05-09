@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class King : Figure
+    public class King
     {
         private static string[] validKingInputs = 
         {                               

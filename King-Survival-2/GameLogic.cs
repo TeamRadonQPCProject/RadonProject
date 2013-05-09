@@ -79,16 +79,16 @@
                 switch (startLetter)
                 {
                     case 'A':
-                        return ChechInput(checkedString, firstPawn.ValidPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, firstPawn.ValidFigureInputs, ref hasAnEqual);
 
                     case 'B':
-                        return ChechInput(checkedString, secondPawn.ValidPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, secondPawn.ValidFigureInputs, ref hasAnEqual);
 
                     case 'C':
-                        return ChechInput(checkedString, thirdPawn.ValidPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, thirdPawn.ValidFigureInputs, ref hasAnEqual);
 
                     case 'D':
-                        return ChechInput(checkedString, fourthPawn.ValidPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, fourthPawn.ValidFigureInputs, ref hasAnEqual);
 
                     default:
                         Console.BackgroundColor = ConsoleColor.Red;
@@ -218,23 +218,23 @@
                 // This is just temporarery. It will be moved to the Pawns Classes
                 if (figure == 'A')
                 {
-                    oldCoordinates[0] = firstPawn.PawnsPosition[0, 0];
-                    oldCoordinates[1] = firstPawn.PawnsPosition[0, 1];
+                    oldCoordinates[0] = firstPawn.FigurePosition[0, 0];
+                    oldCoordinates[1] = firstPawn.FigurePosition[0, 1];
                 }
                 else if (figure == 'B')
                 {
-                    oldCoordinates[0] = secondPawn.PawnsPosition[0, 0];
-                    oldCoordinates[1] = secondPawn.PawnsPosition[0, 1];
+                    oldCoordinates[0] = secondPawn.FigurePosition[0, 0];
+                    oldCoordinates[1] = secondPawn.FigurePosition[0, 1];
                 }
                 else if (figure == 'C')
                 {
-                    oldCoordinates[0] = thirdPawn.PawnsPosition[0, 0];
-                    oldCoordinates[1] = thirdPawn.PawnsPosition[0, 1];
+                    oldCoordinates[0] = thirdPawn.FigurePosition[0, 0];
+                    oldCoordinates[1] = thirdPawn.FigurePosition[0, 1];
                 }
                 else if (figure == 'D')
                 {
-                    oldCoordinates[0] = fourthPawn.PawnsPosition[0, 0];
-                    oldCoordinates[1] = fourthPawn.PawnsPosition[0, 1];
+                    oldCoordinates[0] = fourthPawn.FigurePosition[0, 0];
+                    oldCoordinates[1] = fourthPawn.FigurePosition[0, 1];
                 }
 
                 int[] coords = new int[2];
@@ -243,23 +243,23 @@
                 {
                     if (figure == 'A')
                     {
-                        firstPawn.PawnsPosition[0, 0] = coords[0];
-                        firstPawn.PawnsPosition[0, 1] = coords[1];
+                        firstPawn.FigurePosition[0, 0] = coords[0];
+                        firstPawn.FigurePosition[0, 1] = coords[1];
                     }
                     else if (figure == 'B')
                     {
-                        secondPawn.PawnsPosition[0, 0] = coords[0];
-                        secondPawn.PawnsPosition[0, 1] = coords[1];
+                        secondPawn.FigurePosition[0, 0] = coords[0];
+                        secondPawn.FigurePosition[0, 1] = coords[1];
                     }
                     else if (figure == 'C')
                     {
-                        thirdPawn.PawnsPosition[0, 0] = coords[0];
-                        thirdPawn.PawnsPosition[0, 1] = coords[1];
+                        thirdPawn.FigurePosition[0, 0] = coords[0];
+                        thirdPawn.FigurePosition[0, 1] = coords[1];
                     }
                     else if (figure == 'D')
                     {
-                        fourthPawn.PawnsPosition[0, 0] = coords[0];
-                        fourthPawn.PawnsPosition[0, 1] = coords[1];
+                        fourthPawn.FigurePosition[0, 0] = coords[0];
+                        fourthPawn.FigurePosition[0, 1] = coords[1];
                     }
                 }
             }
@@ -269,23 +269,23 @@
                 int[] oldCoordinates = new int[2];
                 if (figure == 'A')
                 {
-                    oldCoordinates[0] = firstPawn.PawnsPosition[0, 0];
-                    oldCoordinates[1] = firstPawn.PawnsPosition[0, 1];
+                    oldCoordinates[0] = firstPawn.FigurePosition[0, 0];
+                    oldCoordinates[1] = firstPawn.FigurePosition[0, 1];
                 }
                 else if (figure == 'B')
                 {
-                    oldCoordinates[0] = secondPawn.PawnsPosition[0, 0];
-                    oldCoordinates[1] = secondPawn.PawnsPosition[0, 1];
+                    oldCoordinates[0] = secondPawn.FigurePosition[0, 0];
+                    oldCoordinates[1] = secondPawn.FigurePosition[0, 1];
                 }
                 else if (figure == 'C')
                 {
-                    oldCoordinates[0] = thirdPawn.PawnsPosition[0, 0];
-                    oldCoordinates[1] = thirdPawn.PawnsPosition[0, 1];
+                    oldCoordinates[0] = thirdPawn.FigurePosition[0, 0];
+                    oldCoordinates[1] = thirdPawn.FigurePosition[0, 1];
                 }
                 else if (figure == 'D')
                 {
-                    oldCoordinates[0] = fourthPawn.PawnsPosition[0, 0];
-                    oldCoordinates[1] = fourthPawn.PawnsPosition[0, 1];
+                    oldCoordinates[0] = fourthPawn.FigurePosition[0, 0];
+                    oldCoordinates[1] = fourthPawn.FigurePosition[0, 1];
                 }
 
                 int[] coords = new int[2];
@@ -294,23 +294,23 @@
                 {
                     if (figure == 'A')
                     {
-                        firstPawn.PawnsPosition[0, 0] = coords[0];
-                        firstPawn.PawnsPosition[0, 1] = coords[1];
+                        firstPawn.FigurePosition[0, 0] = coords[0];
+                        firstPawn.FigurePosition[0, 1] = coords[1];
                     }
                     else if (figure == 'B')
                     {
-                        secondPawn.PawnsPosition[0, 0] = coords[0];
-                        secondPawn.PawnsPosition[0, 1] = coords[1];
+                        secondPawn.FigurePosition[0, 0] = coords[0];
+                        secondPawn.FigurePosition[0, 1] = coords[1];
                     }
                     else if (figure == 'C')
                     {
-                        thirdPawn.PawnsPosition[0, 0] = coords[0];
-                        thirdPawn.PawnsPosition[0, 1] = coords[1];
+                        thirdPawn.FigurePosition[0, 0] = coords[0];
+                        thirdPawn.FigurePosition[0, 1] = coords[1];
                     }
                     else if (figure == 'D')
                     {
-                        fourthPawn.PawnsPosition[0, 0] = coords[0];
-                        fourthPawn.PawnsPosition[0, 1] = coords[1];
+                        fourthPawn.FigurePosition[0, 0] = coords[0];
+                        fourthPawn.FigurePosition[0, 1] = coords[1];
                     }
                 }
             }
@@ -413,20 +413,20 @@
                 switch (currentPawn)
                 {
                     case 'A':
-                        Pawn.PawnExistingMoves[0, 0] = true;
-                        Pawn.PawnExistingMoves[0, 1] = true;
+                        firstPawn.FigureExistingMoves[0, 0] = true;
+                        firstPawn.FigureExistingMoves[0, 1] = true;
                         break;
                     case 'B':
-                        Pawn.PawnExistingMoves[1, 0] = true;
-                        Pawn.PawnExistingMoves[1, 1] = true;
+                        secondPawn.FigureExistingMoves[0, 0] = true;
+                        secondPawn.FigureExistingMoves[0, 1] = true;
                         break;
                     case 'C':
-                        Pawn.PawnExistingMoves[2, 0] = true;
-                        Pawn.PawnExistingMoves[2, 1] = true;
+                        thirdPawn.FigureExistingMoves[0, 0] = true;
+                        thirdPawn.FigureExistingMoves[0, 1] = true;
                         break;
                     case 'D':
-                        Pawn.PawnExistingMoves[3, 0] = true;
-                        Pawn.PawnExistingMoves[3, 1] = true;
+                        fourthPawn.FigureExistingMoves[0, 0] = true;
+                        fourthPawn.FigureExistingMoves[0, 1] = true;
                         break;
                     default:
                         Console.WriteLine("ERROR!");
@@ -441,27 +441,29 @@
                 switch (currentPawn)
                 {
                     case 'A':
-                        Pawn.PawnExistingMoves[0, pawnSecondCoord] = false;
+                        firstPawn.FigureExistingMoves[0, pawnSecondCoord] = false;
                         break;
                     case 'B':
-                        Pawn.PawnExistingMoves[1, pawnSecondCoord] = false;
+                        secondPawn.FigureExistingMoves[1, pawnSecondCoord] = false;
                         break;
                     case 'C':
-                        Pawn.PawnExistingMoves[2, pawnSecondCoord] = false;
+                        thirdPawn.FigureExistingMoves[2, pawnSecondCoord] = false;
                         break;
                     case 'D':
-                        Pawn.PawnExistingMoves[3, pawnSecondCoord] = false;
+                        fourthPawn.FigureExistingMoves[3, pawnSecondCoord] = false;
                         break;
                     default:
                         Console.WriteLine("ERROR!");
                         break;
                 }
 
-                for (int i = 0; i < 4; i++)
+                Figure[] allFigres = { firstPawn, secondPawn, thirdPawn, fourthPawn };
+
+                for (int i = 0; i < allFigres.Length; i++)
                 {
                     for (int j = 0; j < 2; j++)
                     {
-                        if (Pawn.PawnExistingMoves[i, j] == true)
+                        if (allFigres[i].FigureExistingMoves[0, j] == true)
                         {
                             allAreFalse = false;
                         }

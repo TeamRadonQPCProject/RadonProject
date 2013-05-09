@@ -2,62 +2,62 @@
 {
     using System;
 
-    public class PawnA : Pawn
+    public class PawnA : Figure
     {
         // fields
-        private readonly string[] validPawnInputs = 
+        private readonly string[] validFigureInputs = 
         { 
             "ADL", 
             "ADR" 
         };
 
-        private static int[,] pawnsPosition = 
+        private static int[,] figurePosition = 
         {
             { 2, 4 }
         };
 
-        private static bool[,] pawnExistingMoves = 
+        private static bool[,] figureExistingMoves = 
         {
             { true, true }
         };
 
         // properties
-        public override int[,] PawnsPosition
+        public override int[,] FigurePosition
         {
             get
             {
-                return pawnsPosition;
+                return figurePosition;
             }
 
             set
             {
-                pawnsPosition = value;
+                figurePosition = value;
             }
         }
 
-        public static bool[,] PawnExistingMoves
+        public override bool[,] FigureExistingMoves
         {
             get
             {
-                return pawnExistingMoves;
+                return figureExistingMoves;
             }
 
             set
             {
-                pawnExistingMoves = value;
+                figureExistingMoves = value;
             }
         }
 
-        public override string[] ValidPawnInputs
+        public override string[] ValidFigureInputs
         {
             get
             {
-                return this.validPawnInputs;
+                return this.validFigureInputs;
             }
         }
 
         // methods
-        public override bool MovePawn(string command)
+        public override bool MoveFigure(string command)
         {
             throw new NotImplementedException();
         }
