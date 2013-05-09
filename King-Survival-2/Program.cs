@@ -7,7 +7,8 @@
     {
         static void Main()
         {
-            GameLogic.InteractWithUser(GameLogic.MovementsCounter);
+            GameLogic gameTester = new GameLogic();
+            gameTester.InteractWithUser();
             Console.WriteLine("\nThank you for using this game!\n\n");
         }
     }

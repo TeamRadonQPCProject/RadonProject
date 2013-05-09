@@ -13,3 +13,8 @@ D:\GitHub\RadonProject\King-Survival-2\bin\Debug\ConsoleApplication1.pdb
 D:\GitHub\RadonProject\King-Survival-2\obj\Debug\KingSurvival.csprojResolveAssemblyReference.cache
 D:\GitHub\RadonProject\King-Survival-2\obj\Debug\ConsoleApplication1.exe
 D:\GitHub\RadonProject\King-Survival-2\obj\Debug\ConsoleApplication1.pdb
+C:\Users\Armagedon\Desktop\QPCProject\RadonProject\King-Survival-2\bin\Debug\ConsoleApplication1.exe
+C:\Users\Armagedon\Desktop\QPCProject\RadonProject\King-Survival-2\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Armagedon\Desktop\QPCProject\RadonProject\King-Survival-2\obj\Debug\KingSurvival.csprojResolveAssemblyReference.cache
+C:\Users\Armagedon\Desktop\QPCProject\RadonProject\King-Survival-2\obj\Debug\ConsoleApplication1.exe
+C:\Users\Armagedon\Desktop\QPCProject\RadonProject\King-Survival-2\obj\Debug\ConsoleApplication1.pdb

@@ -2,24 +2,36 @@
 {
     using System;
 
-    public class Pawn : Figure
+    public abstract class Pawn : Figure
     {
-        public static int[,] pawnsPosition = 
+        // fileds
+        public abstract int[,] PawnsPosition { get; set; }
+
+        public abstract bool MovePawn(string command);
+
+        public abstract string[] ValidPawnInputs { get; }
+
+        // TODO: Move pawnExistingMoves and its propertie to the inherited classes
+        private static bool[,] pawnExistingMoves = 
         {
-            { 2, 4 }, { 2, 8 }, { 2, 12 }, { 2, 16 }
+            { true, true }, 
+            { true, true }, 
+            { true, true }, 
+            { true, true }
         };
 
-        public static bool[,] pawnExistingMoves = 
+        // properties
+        public static bool[,] PawnExistingMoves
         {
-            { true, true }, { true, true }, { true, true }, { true, true }
-        };
+            get
+            {
+                return pawnExistingMoves;
+            }
 
-        private string[] validPawnInputs;
-
-        public string[] ValidPawnInputs
-        {
-            get { return this.validPawnInputs; }
-            set { this.validPawnInputs = value; }
+            set
+            {
+                pawnExistingMoves = value;
+            }
         }
     }
 }

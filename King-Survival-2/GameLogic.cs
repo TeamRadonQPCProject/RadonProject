@@ -2,56 +2,93 @@
 {
     using System;
 
-    class GameLogic
+    public class GameLogic
     {
-        public static int MovementsCounter = 0;
-        public static bool GameIsFinished = false;
+        // game objects
+        // TODO: Move them to different class
+        GameBoard KingSurvivalGameBoard = new GameBoard();
+        PawnA firstPawn = new PawnA();
+        PawnB secondPawn = new PawnB();
+        PawnC thirdPawn = new PawnC();
+        PawnD fourthPawn = new PawnD();
 
-        public static void InteractWithUser(int moveCounter)
+        // fileds
+        private int movementsCounter = 0;
+        private bool gameIsFinished = false;
+
+        // properties
+        public bool GameIsFinished
         {
-            if (GameLogic.GameIsFinished)
+            get
+            {
+                return this.gameIsFinished;
+            }
+
+            set
+            {
+                this.gameIsFinished = value;
+            }
+        }
+
+        public int MovementsCounter
+        {
+            get
+            {
+                return this.movementsCounter;
+            }
+
+            set
+            {
+                this.movementsCounter = value;
+            }
+        }
+
+        // methods
+        public void InteractWithUser()
+        {
+            if (this.GameIsFinished)
             {
                 Console.WriteLine("Game is finished!");
                 return;
             }
             else
             {
-                if (moveCounter % 2 == 0)
+                if (this.MovementsCounter % 2 == 0)
                 {
-                    GameBoard.ShowBoard();
+                    KingSurvivalGameBoard.ShowBoard();
                     ProcessKingSide();
                 }
                 else
                 {
-                    GameBoard.ShowBoard();
+                    KingSurvivalGameBoard.ShowBoard();
                     ProcessPawnSide();
                 }
             }
         }
 
-        static bool CheckPlayerInput(string checkedString)
+        public bool CheckPlayerInput(string checkedString)
         {
             char startLetter = checkedString[0];
             bool hasAnEqual = false;
-            if (GameLogic.MovementsCounter % 2 == 0) // King turn
+            if (this.MovementsCounter % 2 == 0) // King turn
             {
-                return ChechInput(checkedString, King.validKingInputs, ref hasAnEqual);
+                return this.ChechInput(checkedString, King.ValidKingInputs, ref hasAnEqual);
             }
             else // PawnsTurn
             {
                 switch (startLetter)
                 {
                     case 'A':
-                        return ChechInput(checkedString, PawnA.validAPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, firstPawn.ValidPawnInputs, ref hasAnEqual);
 
                     case 'B':
-                        return ChechInput(checkedString, PawnB.validBPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, secondPawn.ValidPawnInputs, ref hasAnEqual);
 
                     case 'C':
-                        return ChechInput(checkedString, PawnC.validCPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, thirdPawn.ValidPawnInputs, ref hasAnEqual);
 
                     case 'D':
-                        return ChechInput(checkedString, PawnD.validDPawnInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, fourthPawn.ValidPawnInputs, ref hasAnEqual);
 
                     default:
                         Console.BackgroundColor = ConsoleColor.Red;
@@ -62,7 +99,7 @@
             }
         }
 
-        private static bool ChechInput(string checkedString, string[] currentFigureValidInput, ref bool hasAnEqual)
+        private bool ChechInput(string checkedString, string[] currentFigureValidInput, ref bool hasAnEqual)
         {
             int[] equal = new int[currentFigureValidInput.Length];
             for (int i = 0; i < currentFigureValidInput.Length; i++)
@@ -97,7 +134,7 @@
             return hasAnEqual;
         }
 
-        static bool CheckAndProcess(string checkedInput)
+        public bool CheckAndProcess(string checkedInput)
         {
             bool isCommandNameCorrect = CheckPlayerInput(checkedInput);
             if (isCommandNameCorrect)
@@ -156,58 +193,132 @@
             }
         }
 
-        private static void MoveKing(char firstDirection, char secondDirection)
+        private void MoveKing(char firstDirection, char secondDirection)
         {
             // ==KDR
             int[] oldCoordinates = new int[2];
-            oldCoordinates[0] = King.kingPosition[0];
-            oldCoordinates[1] = King.kingPosition[1];
+            oldCoordinates[0] = King.KingPosition[0];
+            oldCoordinates[1] = King.KingPosition[1];
             int[] coords = new int[2];
             coords = CheckNextKingPosition(oldCoordinates, firstDirection, secondDirection);
             if (coords != null)
             {
-                King.kingPosition[0] = coords[0];
-                King.kingPosition[1] = coords[1];
+                King.KingPosition[0] = coords[0];
+                King.KingPosition[1] = coords[1];
             }
         }
 
-        private static bool MovePawn(string checkedInput, char figure)
+        private bool MovePawn(string checkedInput, char figure)
         {
             int pawnsPositionFirstCoord = (int)figure - (int)'A';
             if (checkedInput[2] == 'L')
             {
                 int[] oldCoordinates = new int[2];
-                oldCoordinates[0] = Pawn.pawnsPosition[pawnsPositionFirstCoord, 0];
-                oldCoordinates[1] = Pawn.pawnsPosition[pawnsPositionFirstCoord, 1];
+
+                // This is just temporarery. It will be moved to the Pawns Classes
+                if (figure == 'A')
+                {
+                    oldCoordinates[0] = firstPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = firstPawn.PawnsPosition[0, 1];
+                }
+                else if (figure == 'B')
+                {
+                    oldCoordinates[0] = secondPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = secondPawn.PawnsPosition[0, 1];
+                }
+                else if (figure == 'C')
+                {
+                    oldCoordinates[0] = thirdPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = thirdPawn.PawnsPosition[0, 1];
+                }
+                else if (figure == 'D')
+                {
+                    oldCoordinates[0] = fourthPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = fourthPawn.PawnsPosition[0, 1];
+                }
 
                 int[] coords = new int[2];
                 coords = CheckNextPownPosition(oldCoordinates, 'L', figure);
                 if (coords != null)
                 {
-                    Pawn.pawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
-                    Pawn.pawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                    if (figure == 'A')
+                    {
+                        firstPawn.PawnsPosition[0, 0] = coords[0];
+                        firstPawn.PawnsPosition[0, 1] = coords[1];
+                    }
+                    else if (figure == 'B')
+                    {
+                        secondPawn.PawnsPosition[0, 0] = coords[0];
+                        secondPawn.PawnsPosition[0, 1] = coords[1];
+                    }
+                    else if (figure == 'C')
+                    {
+                        thirdPawn.PawnsPosition[0, 0] = coords[0];
+                        thirdPawn.PawnsPosition[0, 1] = coords[1];
+                    }
+                    else if (figure == 'D')
+                    {
+                        fourthPawn.PawnsPosition[0, 0] = coords[0];
+                        fourthPawn.PawnsPosition[0, 1] = coords[1];
+                    }
                 }
             }
             else
             {
                 // =='R'
                 int[] oldCoordinates = new int[2];
-                oldCoordinates[0] = Pawn.pawnsPosition[pawnsPositionFirstCoord, 0];
-                oldCoordinates[1] = Pawn.pawnsPosition[pawnsPositionFirstCoord, 1];
+                if (figure == 'A')
+                {
+                    oldCoordinates[0] = firstPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = firstPawn.PawnsPosition[0, 1];
+                }
+                else if (figure == 'B')
+                {
+                    oldCoordinates[0] = secondPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = secondPawn.PawnsPosition[0, 1];
+                }
+                else if (figure == 'C')
+                {
+                    oldCoordinates[0] = thirdPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = thirdPawn.PawnsPosition[0, 1];
+                }
+                else if (figure == 'D')
+                {
+                    oldCoordinates[0] = fourthPawn.PawnsPosition[0, 0];
+                    oldCoordinates[1] = fourthPawn.PawnsPosition[0, 1];
+                }
 
                 int[] coords = new int[2];
                 coords = CheckNextPownPosition(oldCoordinates, 'R', figure);
                 if (coords != null)
                 {
-                    Pawn.pawnsPosition[pawnsPositionFirstCoord, 0] = coords[0];
-                    Pawn.pawnsPosition[pawnsPositionFirstCoord, 1] = coords[1];
+                    if (figure == 'A')
+                    {
+                        firstPawn.PawnsPosition[0, 0] = coords[0];
+                        firstPawn.PawnsPosition[0, 1] = coords[1];
+                    }
+                    else if (figure == 'B')
+                    {
+                        secondPawn.PawnsPosition[0, 0] = coords[0];
+                        secondPawn.PawnsPosition[0, 1] = coords[1];
+                    }
+                    else if (figure == 'C')
+                    {
+                        thirdPawn.PawnsPosition[0, 0] = coords[0];
+                        thirdPawn.PawnsPosition[0, 1] = coords[1];
+                    }
+                    else if (figure == 'D')
+                    {
+                        fourthPawn.PawnsPosition[0, 0] = coords[0];
+                        fourthPawn.PawnsPosition[0, 1] = coords[1];
+                    }
                 }
             }
 
             return true;
         }
 
-        static void ProcessKingSide()
+        public void ProcessKingSide()
         {
             bool isExecuted = false;
             while (!isExecuted)
@@ -216,24 +327,24 @@
                 Console.Write("Please enter king's turn: ");
                 Console.ResetColor();
                 string input = Console.ReadLine();
-                if (input != null)
-                {
-                    input = input.ToUpper();
-                    isExecuted = CheckAndProcess(input);
-                }
-                else
+                if (string.IsNullOrEmpty(input))
                 {
                     isExecuted = false;
                     Console.BackgroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Please enter something!");
                     Console.ResetColor();
                 }
+                else
+                {
+                    input = input.ToUpper();
+                    isExecuted = CheckAndProcess(input); 
+                }
             }
 
-            InteractWithUser(GameLogic.MovementsCounter);
+            InteractWithUser();
         }
 
-        static void ProcessPawnSide()
+        public void ProcessPawnSide()
         {
             bool isExecuted = false;
             while (!isExecuted)
@@ -243,34 +354,34 @@
                 Console.ResetColor();
                 string input = Console.ReadLine();
 
-                if (input != null)
-                {
-                    input = input.ToUpper();
-                    isExecuted = CheckAndProcess(input);
-                }
-                else
+                if (string.IsNullOrEmpty(input))
                 {
                     isExecuted = false;
                     Console.BackgroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Please enter something!");
                     Console.ResetColor();
                 }
+                else
+                {
+                    input = input.ToUpper();
+                    isExecuted = CheckAndProcess(input);
+                }
             }
 
-            InteractWithUser(GameLogic.MovementsCounter);
+            InteractWithUser();
         }
 
-        static void CheckForKingExit(int currentKingXAxe)
+        public void CheckForKingExit(int currentKingXAxe)
         {
             if (currentKingXAxe == 2)
             {
                 Console.WriteLine("End!");
-                Console.WriteLine("King wins in {0} moves!", GameLogic.MovementsCounter / 2);
-                GameLogic.GameIsFinished = true;
+                Console.WriteLine("King wins in {0} moves!", this.MovementsCounter / 2);
+                this.GameIsFinished = true;
             }
         }
 
-        static int[] CheckNextPownPosition(int[] currentCoordinates, char checkDirection, char currentPawn)
+        public int[] CheckNextPownPosition(int[] currentCoordinates, char checkDirection, char currentPawn)
         {
             int[] displasmentDownLeft = { 1, -2 };
             int[] displasmentDownRight = { 1, 2 };
@@ -280,42 +391,42 @@
                 newCoords[0] = currentCoordinates[0] + displasmentDownLeft[0];
                 newCoords[1] = currentCoordinates[1] + displasmentDownLeft[1];
 
-                return CalcNextPawnPosition(newCoords, currentCoordinates, currentPawn, 0);
+                return this.CalcNextPawnPosition(newCoords, currentCoordinates, currentPawn, 0);
             }
             else
             {
                 newCoords[0] = currentCoordinates[0] + displasmentDownRight[0];
                 newCoords[1] = currentCoordinates[1] + displasmentDownRight[1];
 
-                return CalcNextPawnPosition(newCoords, currentCoordinates, currentPawn, 1);
+                return this.CalcNextPawnPosition(newCoords, currentCoordinates, currentPawn, 1);
             }
         }
 
-        private static int[] CalcNextPawnPosition(int[] newCoords, int[] currentCoordinates, char currentPawn, int pawnSecondCoord)
+        private int[] CalcNextPawnPosition(int[] newCoords, int[] currentCoordinates, char currentPawn, int pawnSecondCoord)
         {
-            if (GameBoard.CheckPositionInBoard(newCoords) && GameBoard.board[newCoords[0], newCoords[1]] == ' ')
+            if (KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' ')
             {
-                char sign = GameBoard.board[currentCoordinates[0], currentCoordinates[1]];
-                GameBoard.board[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                GameBoard.board[newCoords[0], newCoords[1]] = sign;
-                GameLogic.MovementsCounter++;
+                char sign = KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]];
+                KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
+                KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] = sign;
+                this.MovementsCounter++;
                 switch (currentPawn)
                 {
                     case 'A':
-                        Pawn.pawnExistingMoves[0, 0] = true;
-                        Pawn.pawnExistingMoves[0, 1] = true;
+                        Pawn.PawnExistingMoves[0, 0] = true;
+                        Pawn.PawnExistingMoves[0, 1] = true;
                         break;
                     case 'B':
-                        Pawn.pawnExistingMoves[1, 0] = true;
-                        Pawn.pawnExistingMoves[1, 1] = true;
+                        Pawn.PawnExistingMoves[1, 0] = true;
+                        Pawn.PawnExistingMoves[1, 1] = true;
                         break;
                     case 'C':
-                        Pawn.pawnExistingMoves[2, 0] = true;
-                        Pawn.pawnExistingMoves[2, 1] = true;
+                        Pawn.PawnExistingMoves[2, 0] = true;
+                        Pawn.PawnExistingMoves[2, 1] = true;
                         break;
                     case 'D':
-                        Pawn.pawnExistingMoves[3, 0] = true;
-                        Pawn.pawnExistingMoves[3, 1] = true;
+                        Pawn.PawnExistingMoves[3, 0] = true;
+                        Pawn.PawnExistingMoves[3, 1] = true;
                         break;
                     default:
                         Console.WriteLine("ERROR!");
@@ -330,16 +441,16 @@
                 switch (currentPawn)
                 {
                     case 'A':
-                        Pawn.pawnExistingMoves[0, pawnSecondCoord] = false;
+                        Pawn.PawnExistingMoves[0, pawnSecondCoord] = false;
                         break;
                     case 'B':
-                        Pawn.pawnExistingMoves[1, pawnSecondCoord] = false;
+                        Pawn.PawnExistingMoves[1, pawnSecondCoord] = false;
                         break;
                     case 'C':
-                        Pawn.pawnExistingMoves[2, pawnSecondCoord] = false;
+                        Pawn.PawnExistingMoves[2, pawnSecondCoord] = false;
                         break;
                     case 'D':
-                        Pawn.pawnExistingMoves[3, pawnSecondCoord] = false;
+                        Pawn.PawnExistingMoves[3, pawnSecondCoord] = false;
                         break;
                     default:
                         Console.WriteLine("ERROR!");
@@ -350,7 +461,7 @@
                 {
                     for (int j = 0; j < 2; j++)
                     {
-                        if (Pawn.pawnExistingMoves[i, j] == true)
+                        if (Pawn.PawnExistingMoves[i, j] == true)
                         {
                             allAreFalse = false;
                         }
@@ -359,9 +470,9 @@
 
                 if (allAreFalse)
                 {
-                    GameLogic.GameIsFinished = true;
+                    this.GameIsFinished = true;
                     Console.WriteLine("King wins!");
-                    GameLogic.GameIsFinished = true;
+                    this.GameIsFinished = true;
                     return null;
                 }
 
@@ -372,7 +483,7 @@
             }
         }
 
-        static int[] CheckNextKingPosition(int[] currentCoordinates, char firstDirection, char secondDirection)
+        public int[] CheckNextKingPosition(int[] currentCoordinates, char firstDirection, char secondDirection)
         {
             int[] displacementDownLeft = { 1, -2 };
             int[] displacementDownRight = { 1, 2 };
@@ -395,21 +506,21 @@
             }
         }
 
-        private static int[] CheckKingAvailableMove(int[] currentCoordinates, int[] displacementDirection)
+        private int[] CheckKingAvailableMove(int[] currentCoordinates, int[] displacementDirection)
         {
             int[] newCoords = new int[2];
             newCoords[0] = currentCoordinates[0] + displacementDirection[0];
             newCoords[1] = currentCoordinates[1] + displacementDirection[1];
-            if (GameBoard.CheckPositionInBoard(newCoords) && GameBoard.board[newCoords[0], newCoords[1]] == ' ')
+            if (KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' ')
             {
-                char sign = GameBoard.board[currentCoordinates[0], currentCoordinates[1]];
-                GameBoard.board[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                GameBoard.board[newCoords[0], newCoords[1]] = sign;
-                GameLogic.MovementsCounter++;
+                char sign = KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]];
+                KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
+                KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] = sign;
+                this.MovementsCounter++;
 
                 for (int i = 0; i < 4; i++)
                 {
-                    King.kingExistingMoves[i] = true;
+                    King.KingExistingMoves[i] = true;
                 }
 
                 CheckForKingExit(newCoords[0]);
@@ -417,11 +528,11 @@
             }
             else
             {
-                King.kingExistingMoves[0] = false;
+                King.KingExistingMoves[0] = false;
                 bool allAreFalse = true;
                 for (int i = 0; i < 4; i++)
                 {
-                    if (King.kingExistingMoves[i] == true)
+                    if (King.KingExistingMoves[i] == true)
                     {
                         allAreFalse = false;
                     }
@@ -429,7 +540,7 @@
 
                 if (allAreFalse)
                 {
-                    GameLogic.GameIsFinished = true;
+                    this.GameIsFinished = true;
                     Console.WriteLine("King loses!");
                     return null;
                 }
