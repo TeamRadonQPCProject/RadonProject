@@ -8,6 +8,7 @@
         static void Main()
         {
             GameLogic gameTester = new GameLogic();
+            gameTester.Init();
             gameTester.InteractWithUser();
             Console.WriteLine("\nThank you for using this game!\n\n");
         }

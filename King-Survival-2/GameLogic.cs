@@ -1,17 +1,19 @@
 ﻿namespace KingSurvival
 {
     using System;
+    using System.Collections.Generic;
 
     public class GameLogic
     {
         // game objects
         // TODO: Move them to different class
-        GameBoard KingSurvivalGameBoard = new GameBoard();
-        PawnA firstPawn = new PawnA();
-        PawnB secondPawn = new PawnB();
-        PawnC thirdPawn = new PawnC();
-        PawnD fourthPawn = new PawnD();
-        King theKing = new King();
+        private GameBoard KingSurvivalGameBoard = new GameBoard();
+        private PawnA firstPawn = new PawnA();
+        private PawnB secondPawn = new PawnB();
+        private PawnC thirdPawn = new PawnC();
+        private PawnD fourthPawn = new PawnD();
+        private King theKing = new King();
+        private List<Figure> allPawns = new List<Figure>();
 
 
         // fileds
@@ -46,8 +48,17 @@
         }
 
         // methods
+        public void Init() 
+        {
+            allPawns.Add(firstPawn);
+            allPawns.Add(secondPawn);
+            allPawns.Add(thirdPawn);
+            allPawns.Add(fourthPawn);
+        }
+
         public void InteractWithUser()
         {
+
             if (this.GameIsFinished)
             {
                 Console.WriteLine("Game is finished!");
@@ -220,29 +231,21 @@
             char figure = checkedInput[0];
             int[] coords = new int[3];
 
-            if (figure == 'A')
+            for (int i = 0; i < allPawns.Count; i++)
             {
-                coords = firstPawn.MoveFigure(checkedInput);
-                this.CalcNextPawnPosition(coords, firstPawn.FigurePosition, figure);
-            }
-            else if (figure == 'B')
-            {
-                coords = secondPawn.MoveFigure(checkedInput);
-                this.CalcNextPawnPosition(coords, secondPawn.FigurePosition, figure);
-            }
-            else if (figure == 'C')
-            {
-                coords = thirdPawn.MoveFigure(checkedInput);
-                this.CalcNextPawnPosition(coords, thirdPawn.FigurePosition, figure);
-            }
-            else if (figure == 'D')
-            {
-                coords = fourthPawn.MoveFigure(checkedInput);
-                this.CalcNextPawnPosition(coords, fourthPawn.FigurePosition, figure);
+                if (allPawns[i].FigureSign == figure)
+                {
+                    coords = allPawns[i].MoveFigure(checkedInput);
+                    this.CalcNextPawnPosition(coords, allPawns[i].FigurePosition, figure);
+
+                    allPawns[i].FigurePosition[0] = coords[0];
+                    allPawns[i].FigurePosition[1] = coords[1];
+                }
             }
 
             if (coords != null)
             {
+
                 if (figure == 'A')
                 {
                     firstPawn.FigurePosition[0] = coords[0];
