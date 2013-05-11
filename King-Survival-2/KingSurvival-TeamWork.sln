@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KingSurvival", "KingSurviva
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KingSurvival.Tests", "..\KingSurvival.Tests\KingSurvival.Tests.csproj", "{D404AA06-0AA5-4CCD-A5A1-DCE0D2FAED55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KingSurvival.GameTest", "..\KingSurvival.GameTest\KingSurvival.GameTest.csproj", "{5E1885D4-B9AB-47BF-B54C-104B84D0C20A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{D404AA06-0AA5-4CCD-A5A1-DCE0D2FAED55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D404AA06-0AA5-4CCD-A5A1-DCE0D2FAED55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D404AA06-0AA5-4CCD-A5A1-DCE0D2FAED55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E1885D4-B9AB-47BF-B54C-104B84D0C20A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E1885D4-B9AB-47BF-B54C-104B84D0C20A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E1885D4-B9AB-47BF-B54C-104B84D0C20A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E1885D4-B9AB-47BF-B54C-104B84D0C20A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
