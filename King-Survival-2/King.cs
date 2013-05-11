@@ -2,9 +2,11 @@
 {
     using System;
 
-    public class King
+    public class King : Figure
     {
-        private static string[] validKingInputs = 
+        private char figureSign = 'K';
+
+        private string[] validFigureInputs = 
         {                               
             "KUL",                                  
             "KUR",       
@@ -12,13 +14,13 @@
             "KDR" 
         };
 
-        private static int[] kingPosition = 
+        private int[] figurePosition = 
         { 
             9, 
             10 
         };
 
-        private static bool[] kingExistingMoves = 
+        private bool[] figureExistingMoves = 
         { 
             true, 
             true, 
@@ -26,38 +28,51 @@
             true 
         };
 
-        public static string[] ValidKingInputs
+        public override char FigureSign
         {
             get
             {
-                return validKingInputs;
+                return this.figureSign;
             }
         }
 
-        public static int[] KingPosition
+        public override string[] ValidFigureInputs
         {
             get
             {
-                return kingPosition;
+                return validFigureInputs;
+            }
+        }
+
+        public override int[] FigurePosition
+        {
+            get
+            {
+                return figurePosition;
             }
 
             set
             {
-                kingPosition = value;
+                figurePosition = value;
             }
         }
 
-        public static bool[] KingExistingMoves
+        public override bool[] FigureExistingMoves
         {
             get
             {
-                return kingExistingMoves;
+                return figureExistingMoves;
             }
 
             set
             {
-                kingExistingMoves = value;
+                figureExistingMoves = value;
             }
+        }
+
+        public override int[] MoveFigure(string command)
+        {
+            throw new NotImplementedException();
         }
     }
 }
