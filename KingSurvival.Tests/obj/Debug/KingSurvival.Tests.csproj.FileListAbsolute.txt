@@ -13,3 +13,8 @@ C:\Users\Armagedon\Desktop\QPCProject\RadonProject\KingSurvival.Tests\bin\Debug\
 C:\Users\Armagedon\Desktop\QPCProject\RadonProject\KingSurvival.Tests\obj\Debug\KingSurvival.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Armagedon\Desktop\QPCProject\RadonProject\KingSurvival.Tests\obj\Debug\KingSurvival.Tests.dll
 C:\Users\Armagedon\Desktop\QPCProject\RadonProject\KingSurvival.Tests\obj\Debug\KingSurvival.Tests.pdb
+C:\Users\Teodor\Desktop\C# Projects\RadonProject\KingSurvival.Tests\bin\Debug\KingSurvival.Tests.dll
+C:\Users\Teodor\Desktop\C# Projects\RadonProject\KingSurvival.Tests\bin\Debug\KingSurvival.Tests.pdb
+C:\Users\Teodor\Desktop\C# Projects\RadonProject\KingSurvival.Tests\obj\Debug\KingSurvival.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Teodor\Desktop\C# Projects\RadonProject\KingSurvival.Tests\obj\Debug\KingSurvival.Tests.dll
+C:\Users\Teodor\Desktop\C# Projects\RadonProject\KingSurvival.Tests\obj\Debug\KingSurvival.Tests.pdb
