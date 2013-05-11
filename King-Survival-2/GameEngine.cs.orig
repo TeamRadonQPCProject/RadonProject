@@ -44,8 +44,6 @@
         }
 
         // methods
-
-        /* COMMAND PROCESS */
         public void InteractWithUser()
         {
 
@@ -221,7 +219,50 @@
             }
         }
 
-        /* KING LOGIC */
+        private void MoveKing(char firstDirection, char secondDirection)
+        {
+            int[] oldCoordinates = new int[2];
+
+            oldCoordinates[0] = theKing.FigurePosition[0];
+            oldCoordinates[1] = theKing.FigurePosition[1];
+
+            int[] newCoords = new int[2];
+            newCoords = CheckNextKingPosition(oldCoordinates, firstDirection, secondDirection);
+
+            if (newCoords != null)
+            {
+                theKing.FigurePosition[0] = newCoords[0];
+                theKing.FigurePosition[1] = newCoords[1];
+            }
+        }
+
+        private bool MovePawn(string checkedInput)
+        {
+            char figure = checkedInput[0];
+            int[] coords = new int[3];
+
+            for (int i = 0; i < allPawns.Count; i++)
+            {
+                if (allPawns[i].FigureSign == figure)
+                {
+                    coords = allPawns[i].MoveFigure(checkedInput);
+                    this.CalcNextPawnPosition(coords, allPawns[i].FigurePosition, figure);
+
+                    allPawns[i].FigurePosition[0] = coords[0];
+                    allPawns[i].FigurePosition[1] = coords[1];
+
+                    if (coords != null)
+                    {
+                        allPawns[i].FigurePosition[0] = coords[0];
+                        allPawns[i].FigurePosition[1] = coords[1];
+                    }
+
+                    break;
+                }
+            }
+
+            return true;
+        }
 
         public void ProcessKingSide()
         {
@@ -249,125 +290,6 @@
 
             InteractWithUser();
         }
-
-        private void MoveKing(char firstDirection, char secondDirection)
-        {
-            int[] oldCoordinates = new int[2];
-
-            oldCoordinates[0] = theKing.FigurePosition[0];
-            oldCoordinates[1] = theKing.FigurePosition[1];
-
-            int[] newCoords = new int[2];
-            newCoords = CheckNextKingPosition(oldCoordinates, firstDirection, secondDirection);
-
-            if (newCoords != null)
-            {
-                theKing.FigurePosition[0] = newCoords[0];
-                theKing.FigurePosition[1] = newCoords[1];
-            }
-        }
-
-        public void CheckForKingExit(int currentKingXAxe)
-        {
-            if (currentKingXAxe == 2)
-            {
-                Console.WriteLine("End!");
-                Console.WriteLine("King wins in {0} moves!", this.MovementsCounter / 2);
-                this.GameIsFinished = true;
-            }
-        }
-
-        public int[] CheckNextKingPosition(int[] currentCoordinates, char firstDirection, char secondDirection)
-        {
-            int[] displacementDownLeft = { 1, -2 };
-            int[] displacementDownRight = { 1, 2 };
-            int[] displacementUpLeft = { -1, -2 };
-            int[] displacementUpRight = { -1, 2 };
-
-            string direction = firstDirection.ToString() + secondDirection.ToString();
-            switch (direction)
-            {
-                case "UL":
-                    return CheckKingAvailableMove(currentCoordinates, displacementUpLeft);
-                case "UR":
-                    return CheckKingAvailableMove(currentCoordinates, displacementUpRight);
-                case "DL":
-                    return CheckKingAvailableMove(currentCoordinates, displacementDownLeft);
-                case "DR":
-                    return CheckKingAvailableMove(currentCoordinates, displacementDownRight);
-                default:
-                    return null;
-            }
-        }
-
-        private int[] CheckKingAvailableMove(int[] currentCoordinates, int[] displacementDirection)
-        {
-            //HasExistingMove(currentCoordinates);
-            int[] newCoords = new int[2];
-            newCoords[0] = currentCoordinates[0] + displacementDirection[0];
-            newCoords[1] = currentCoordinates[1] + displacementDirection[1];
-            if (KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' ')
-            {
-                char sign = KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]];
-                KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] = sign;
-                this.MovementsCounter++;
-
-                for (int i = 0; i < 4; i++)
-                {
-                    theKing.FigureExistingMoves[i] = true;
-                }
-
-                CheckForKingExit(newCoords[0]);
-                return newCoords;
-            }
-            else
-            {
-                Console.BackgroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine("You can't go in this direction! ");
-                Console.ResetColor();
-                return null;
-            }
-        }
-
-        private void HasKingExistingMove(int[] currentCoords)
-        {
-            int[] newCoords = new int[2];
-            int[,] displacements = 
-            {
-                { 1, -2 },
-                { 1, 2 },
-                { -1, -2 },
-                { -1, 2 },
-            };
-
-            for (int i = 0; i < displacements.GetLength(0); i++)
-            {
-                newCoords[0] = currentCoords[0] + displacements[i, 0];
-                newCoords[1] = currentCoords[1] + displacements[i, 1];
-                if (!(KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
-                {
-                    theKing.FigureExistingMoves[i] = false;
-                }
-            }
-
-            bool allAreFalse = true;
-            for (int i = 0; i < 4; i++)
-            {
-                if (theKing.FigureExistingMoves[i] == true)
-                {
-                    allAreFalse = false;
-                }
-            }
-
-            if (allAreFalse)
-            {
-                this.GameIsFinished = true;
-                Console.WriteLine("King loses!");
-            }
-        }
-
-        /* PAWN LOGIC */
 
         public void ProcessPawnSide()
         {
@@ -397,32 +319,14 @@
             InteractWithUser();
         }
 
-        private bool MovePawn(string checkedInput)
+        public void CheckForKingExit(int currentKingXAxe)
         {
-            char figure = checkedInput[0];
-            int[] coords = new int[3];
-
-            for (int i = 0; i < allPawns.Count; i++)
+            if (currentKingXAxe == 2)
             {
-                if (allPawns[i].FigureSign == figure)
-                {
-                    coords = allPawns[i].MoveFigure(checkedInput);
-                    this.CalcNextPawnPosition(coords, allPawns[i].FigurePosition, figure);
-
-                    allPawns[i].FigurePosition[0] = coords[0];
-                    allPawns[i].FigurePosition[1] = coords[1];
-
-                    if (coords != null)
-                    {
-                        allPawns[i].FigurePosition[0] = coords[0];
-                        allPawns[i].FigurePosition[1] = coords[1];
-                    }
-
-                    break;
-                }
+                Console.WriteLine("End!");
+                Console.WriteLine("King wins in {0} moves!", this.MovementsCounter / 2);
+                this.GameIsFinished = true;
             }
-
-            return true;
         }
 
         private int[] CalcNextPawnPosition(int[] newCoords, int[] currentCoordinates, char currentPawn)
@@ -508,19 +412,109 @@
             }
         }
 
+        public int[] CheckNextKingPosition(int[] currentCoordinates, char firstDirection, char secondDirection)
+        {
+            int[] displacementDownLeft = { 1, -2 };
+            int[] displacementDownRight = { 1, 2 };
+            int[] displacementUpLeft = { -1, -2 };
+            int[] displacementUpRight = { -1, 2 };
+
+            string direction = firstDirection.ToString() + secondDirection.ToString();
+            switch (direction)
+            {
+                case "UL":
+                    return CheckKingAvailableMove(currentCoordinates, displacementUpLeft);
+                case "UR":
+                    return CheckKingAvailableMove(currentCoordinates, displacementUpRight);
+                case "DL":
+                    return CheckKingAvailableMove(currentCoordinates, displacementDownLeft);
+                case "DR":
+                    return CheckKingAvailableMove(currentCoordinates, displacementDownRight);
+                default:
+                    return null;
+            }
+        }
+
+        private int[] CheckKingAvailableMove(int[] currentCoordinates, int[] displacementDirection)
+        {
+            //HasExistingMove(currentCoordinates);
+            int[] newCoords = new int[2];
+            newCoords[0] = currentCoordinates[0] + displacementDirection[0];
+            newCoords[1] = currentCoordinates[1] + displacementDirection[1];
+            if (KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' ')
+            {
+                char sign = KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]];
+                KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
+                KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] = sign;
+                this.MovementsCounter++;
+
+                for (int i = 0; i < 4; i++)
+                {
+                    theKing.FigureExistingMoves[i] = true;
+                }
+
+                CheckForKingExit(newCoords[0]);
+                return newCoords;
+            }
+            else
+            {
+                Console.BackgroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("You can't go in this direction! ");
+                Console.ResetColor();
+                return null;
+            }
+        }
+
         // TODO: Move to King class
+        private void HasKingExistingMove(int[] currentCoords)
+        {
+            int[] newCoords = new int[2];
+            int[,] displacements = 
+            {
+                { 1, -2 },
+                { 1, 2 },
+                { -1, -2 },
+                { -1, 2 },
+            };
+
+            for (int i = 0; i < displacements.GetLength(0); i++)
+            {
+                newCoords[0] = currentCoords[0] + displacements[i, 0];
+                newCoords[1] = currentCoords[1] + displacements[i, 1];
+                if (!(KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
+                {
+                    theKing.FigureExistingMoves[i] = false;
+                }
+            }
+
+            bool allAreFalse = true;
+            for (int i = 0; i < 4; i++)
+            {
+                if (theKing.FigureExistingMoves[i] == true)
+                {
+                    allAreFalse = false;
+                }
+            }
+
+            if (allAreFalse)
+            {
+                this.GameIsFinished = true;
+                Console.WriteLine("King loses!");
+            }
+        }
 
         private int indexKing = 0;
         public virtual string ReadKingInput()
         {
-            string[] sampleInput = new string[] {
-            "kur",
-            "kur",
-            "kul",
-            "kdr",
-            "kdr",
-            "kdr"
-            };
+<<<<<<< HEAD:King-Survival-2/GameLogic.cs
+            //string[] sampleInput = new string[] {
+            //"kur",
+            //"kur",
+            //"kul",
+            //"kdr",
+            //"kdr",
+            //"kdr"
+            //};
 
             // Test all pawns down
             //string[] sampleInput = new string[] {
@@ -569,6 +563,18 @@
             //    return sampleInput[indexKing++];
             //}
             
+=======
+            string[] sampleInput = new string[] {
+            "kur",
+            "kur",
+            "kul",
+            "kdr",
+            "kdr",
+            "kdr"
+            };
+
+            return sampleInput[indexKing++];
+>>>>>>> bfbf182c81003eeb07faf8a7b480fe21e4f9e0a7:King-Survival-2/GameEngine.cs
             string kingInput = Console.ReadLine();
             return kingInput;
         }
@@ -576,14 +582,15 @@
         private int indexPawn = 0;
         public virtual string ReadPawnInput()
         {
-            string[] sampleInput = new string[] {
-            "cdr",
-            "cdr",
-            "cdl",
-            "cdr",
-            "cdr",
-            "cdl"
-            };
+<<<<<<< HEAD:King-Survival-2/GameLogic.cs
+            //string[] sampleInput = new string[] {
+            //"cdr",
+            //"cdr",
+            //"cdl",
+            //"cdr",
+            //"cdr",
+            //"cdl"
+            //};
 
             // Test all pawns down
             //string[] sampleInput = new string[] {
@@ -629,8 +636,23 @@
             //    Console.WriteLine(sampleInput[indexPawn]);
             //    return sampleInput[indexPawn++];
             //}
+
             string pawnInput = Console.ReadLine();
             return pawnInput;
+=======
+            string[] sampleInput = new string[] {
+            "cdr",
+            "cdr",
+            "cdl",
+            "cdr",
+            "cdr",
+            "cdl"
+            };
+
+            return sampleInput[indexPawn++];
+            //string pawnInput = Console.ReadLine();
+            //return pawnInput;
+>>>>>>> bfbf182c81003eeb07faf8a7b480fe21e4f9e0a7:King-Survival-2/GameEngine.cs
         }
     }
 }
