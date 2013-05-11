@@ -3,22 +3,18 @@
     using System;
     using System.Collections.Generic;
 
-    public class GameLogic
+    public class GameEngine
     {
-        // game objects
-        // TODO: Move them to different class
-        private GameBoard KingSurvivalGameBoard = new GameBoard();
-        private PawnA firstPawn = new PawnA();
-        private PawnB secondPawn = new PawnB();
-        private PawnC thirdPawn = new PawnC();
-        private PawnD fourthPawn = new PawnD();
-        private King theKing = new King();
-        private List<Figure> allPawns = new List<Figure>();
-
-
         // fileds
         private int movementsCounter = 0;
         private bool gameIsFinished = false;
+        private GameBoard KingSurvivalGameBoard;
+        private PawnA firstPawn;
+        private PawnB secondPawn;
+        private PawnC thirdPawn;
+        private PawnD fourthPawn;
+        private King theKing;
+        private List<Figure> allPawns = new List<Figure>();
 
         // properties
         public bool GameIsFinished
@@ -48,14 +44,6 @@
         }
 
         // methods
-        public void Init() 
-        {
-            allPawns.Add(firstPawn);
-            allPawns.Add(secondPawn);
-            allPawns.Add(thirdPawn);
-            allPawns.Add(fourthPawn);
-        }
-
         public void InteractWithUser()
         {
 
@@ -68,39 +56,59 @@
             {
                 if (this.MovementsCounter % 2 == 0)
                 {
-                    KingSurvivalGameBoard.ShowBoard();
-                    ProcessKingSide();
+                    this.ShowCurrentBoard();
+                    this.ProcessKingSide();
                 }
                 else
                 {
-                    KingSurvivalGameBoard.ShowBoard();
-                    ProcessPawnSide();
+                    this.ShowCurrentBoard();
+                    this.ProcessPawnSide();
                 }
             }
         }
 
-        public bool CheckPlayerInput(string checkedString)
+        public void StartGame()
         {
-            char startLetter = checkedString[0];
+            firstPawn = new PawnA();
+            secondPawn = new PawnB();
+            thirdPawn = new PawnC();
+            fourthPawn = new PawnD();
+            KingSurvivalGameBoard = new GameBoard();
+            theKing = new King();
+
+            allPawns.Add(firstPawn);
+            allPawns.Add(secondPawn);
+            allPawns.Add(thirdPawn);
+            allPawns.Add(fourthPawn);
+        }
+
+        public void ShowCurrentBoard()
+        {
+            KingSurvivalGameBoard.ShowBoard();
+        }
+
+        public bool CheckPlayerInput(string stringToCheck)
+        {
+            char startLetter = stringToCheck[0];
             if (this.MovementsCounter % 2 == 0) // King turn
             {
-                return this.ChechInput(checkedString, theKing.ValidFigureInputs);
+                return this.ChechInput(stringToCheck, theKing.ValidFigureInputs);
             }
             else // PawnsTurn
             {
                 switch (startLetter)
                 {
                     case 'A':
-                        return ChechInput(checkedString, firstPawn.ValidFigureInputs);
+                        return ChechInput(stringToCheck, firstPawn.ValidFigureInputs);
 
                     case 'B':
-                        return ChechInput(checkedString, secondPawn.ValidFigureInputs);
+                        return ChechInput(stringToCheck, secondPawn.ValidFigureInputs);
 
                     case 'C':
-                        return ChechInput(checkedString, thirdPawn.ValidFigureInputs);
+                        return ChechInput(stringToCheck, thirdPawn.ValidFigureInputs);
 
                     case 'D':
-                        return ChechInput(checkedString, fourthPawn.ValidFigureInputs);
+                        return ChechInput(stringToCheck, fourthPawn.ValidFigureInputs);
 
                     default:
                         Console.BackgroundColor = ConsoleColor.Red;
@@ -114,7 +122,9 @@
         public bool ChechInput(string checkedString, string[] currentFigureValidInput)
         {
             bool hasAnEqual = false;
+
             int[] validInputs = new int[currentFigureValidInput.Length];
+
             for (int i = 0; i < currentFigureValidInput.Length; i++)
             {
                 string figureValidInputsToCheck = currentFigureValidInput[i];
@@ -150,7 +160,7 @@
             return hasAnEqual;
         }
 
-        public bool CheckAndProcess(string checkedInput)
+        public bool ProcessCommand(string checkedInput)
         {
             bool isCommandNameCorrect = CheckPlayerInput(checkedInput);
 
@@ -240,31 +250,14 @@
 
                     allPawns[i].FigurePosition[0] = coords[0];
                     allPawns[i].FigurePosition[1] = coords[1];
-                }
-            }
 
-            if (coords != null)
-            {
+                    if (coords != null)
+                    {
+                        allPawns[i].FigurePosition[0] = coords[0];
+                        allPawns[i].FigurePosition[1] = coords[1];
+                    }
 
-                if (figure == 'A')
-                {
-                    firstPawn.FigurePosition[0] = coords[0];
-                    firstPawn.FigurePosition[1] = coords[1];
-                }
-                else if (figure == 'B')
-                {
-                    secondPawn.FigurePosition[0] = coords[0];
-                    secondPawn.FigurePosition[1] = coords[1];
-                }
-                else if (figure == 'C')
-                {
-                    thirdPawn.FigurePosition[0] = coords[0];
-                    thirdPawn.FigurePosition[1] = coords[1];
-                }
-                else if (figure == 'D')
-                {
-                    fourthPawn.FigurePosition[0] = coords[0];
-                    fourthPawn.FigurePosition[1] = coords[1];
+                    break;
                 }
             }
 
@@ -291,7 +284,7 @@
                 else
                 {
                     input = input.ToUpper();
-                    isExecuted = CheckAndProcess(input);
+                    isExecuted = ProcessCommand(input);
                 }
             }
 
@@ -318,7 +311,7 @@
                 else
                 {
                     input = input.ToUpper();
-                    isExecuted = CheckAndProcess(input);
+                    isExecuted = ProcessCommand(input);
                 }
             }
 
@@ -476,37 +469,22 @@
         private void HasKingExistingMove(int[] currentCoords)
         {
             int[] newCoords = new int[2];
-            int[] displacementDownLeft = { 1, -2 };
-            int[] displacementDownRight = { 1, 2 };
-            int[] displacementUpLeft = { -1, -2 };
-            int[] displacementUpRight = { -1, 2 };
-
-            newCoords[0] = currentCoords[0] + displacementUpLeft[0];
-            newCoords[1] = currentCoords[1] + displacementUpLeft[1];
-            if (!(KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
+            int[,] displacements = 
             {
-                theKing.FigureExistingMoves[0] = false;
-            }
+                { 1, -2 },
+                { 1, 2 },
+                { -1, -2 },
+                { -1, 2 },
+            };
 
-            newCoords[0] = currentCoords[0] + displacementUpRight[0];
-            newCoords[1] = currentCoords[1] + displacementUpRight[1];
-            if (!(KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
+            for (int i = 0; i < displacements.GetLength(0); i++)
             {
-                theKing.FigureExistingMoves[1] = false;
-            }
-
-            newCoords[0] = currentCoords[0] + displacementDownLeft[0];
-            newCoords[1] = currentCoords[1] + displacementDownLeft[1];
-            if (!(KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
-            {
-                theKing.FigureExistingMoves[2] = false;
-            }
-
-            newCoords[0] = currentCoords[0] + displacementDownRight[0];
-            newCoords[1] = currentCoords[1] + displacementDownRight[1];
-            if (!(KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
-            {
-                theKing.FigureExistingMoves[3] = false;
+                newCoords[0] = currentCoords[0] + displacements[i, 0];
+                newCoords[1] = currentCoords[1] + displacements[i, 1];
+                if (!(KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
+                {
+                    theKing.FigureExistingMoves[i] = false;
+                }
             }
 
             bool allAreFalse = true;
@@ -528,14 +506,14 @@
         private int indexKing = 0;
         public virtual string ReadKingInput()
         {
-            //string[] sampleInput = new string[] {
-            //"kur",
-            //"kur",
-            //"kul",
-            //"kdr",
-            //"kdr",
-            //"kdr"
-            //};
+            string[] sampleInput = new string[] {
+            "kur",
+            "kur",
+            "kul",
+            "kdr",
+            "kdr",
+            "kdr"
+            };
 
             // Test all pawns down
             //string[] sampleInput = new string[] {
@@ -591,14 +569,14 @@
         private int indexPawn = 0;
         public virtual string ReadPawnInput()
         {
-            //string[] sampleInput = new string[] {
-            //"cdr",
-            //"cdr",
-            //"cdl",
-            //"cdr",
-            //"cdr",
-            //"cdl"
-            //};
+            string[] sampleInput = new string[] {
+            "cdr",
+            "cdr",
+            "cdl",
+            "cdr",
+            "cdr",
+            "cdl"
+            };
 
             // Test all pawns down
             //string[] sampleInput = new string[] {
@@ -645,8 +623,6 @@
             //    return sampleInput[indexPawn++];
             //}
 
-            string pawnInput = Console.ReadLine();
-            return pawnInput;
         }
     }
 }

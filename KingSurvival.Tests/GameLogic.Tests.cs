@@ -4,14 +4,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace KingSurvival.Tests
 {
     [TestClass]
-    public class TestCheckAndProcess : GameLogic
+    public class TestCheckAndProcess : GameEngine
     {
         [TestMethod]
         public void CheckInput_PawnAInputsDownLeftTest()
         {
             string input = "ADL";
             string[] validInputs = { "ADL", "ADR" };
-            GameLogic gameLogicTest = new GameLogic();
+            GameEngine gameLogicTest = new GameEngine();
             Assert.IsTrue(gameLogicTest.ChechInput(input, validInputs));
         }
 
@@ -20,7 +20,7 @@ namespace KingSurvival.Tests
         {
             string input = "ADLg";
             string[] validInputs = { "ADL", "ADR" };
-            GameLogic gameLogicTest = new GameLogic();
+            GameEngine gameLogicTest = new GameEngine();
             Assert.IsFalse(gameLogicTest.ChechInput(input, validInputs));
         }
 
@@ -57,7 +57,7 @@ namespace KingSurvival.Tests
         [TestMethod]
         public void GameLogic_CheckCollisionDetection()
         {
-            GameLogic gameTester = new GameLogic();
+            GameEngine gameTester = new GameEngine();
             gameTester.InteractWithUser();
             string expectedOutput = @"UL  0 1 2 3 4 5 6 7  UR
    _________________

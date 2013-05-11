@@ -44,12 +44,13 @@
   <ItemGroup>
     <Compile Include="GameBoard.cs" />
     <Compile Include="Figure.cs" />
-    <Compile Include="GameLogic.cs" />
+    <Compile Include="GameEngine.cs" />
     <Compile Include="King.cs" />
     <Compile Include="PawnA.cs" />
     <Compile Include="PawnB.cs" />
     <Compile Include="PawnC.cs" />
     <Compile Include="PawnD.cs" />
+    <Compile Include="PlayerInteractor.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
