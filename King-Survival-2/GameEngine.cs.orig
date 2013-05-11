@@ -506,14 +506,15 @@
         private int indexKing = 0;
         public virtual string ReadKingInput()
         {
-            string[] sampleInput = new string[] {
-            "kur",
-            "kur",
-            "kul",
-            "kdr",
-            "kdr",
-            "kdr"
-            };
+<<<<<<< HEAD:King-Survival-2/GameLogic.cs
+            //string[] sampleInput = new string[] {
+            //"kur",
+            //"kur",
+            //"kul",
+            //"kdr",
+            //"kdr",
+            //"kdr"
+            //};
 
             // Test all pawns down
             //string[] sampleInput = new string[] {
@@ -562,6 +563,18 @@
             //    return sampleInput[indexKing++];
             //}
             
+=======
+            string[] sampleInput = new string[] {
+            "kur",
+            "kur",
+            "kul",
+            "kdr",
+            "kdr",
+            "kdr"
+            };
+
+            return sampleInput[indexKing++];
+>>>>>>> bfbf182c81003eeb07faf8a7b480fe21e4f9e0a7:King-Survival-2/GameEngine.cs
             string kingInput = Console.ReadLine();
             return kingInput;
         }
@@ -569,14 +582,15 @@
         private int indexPawn = 0;
         public virtual string ReadPawnInput()
         {
-            string[] sampleInput = new string[] {
-            "cdr",
-            "cdr",
-            "cdl",
-            "cdr",
-            "cdr",
-            "cdl"
-            };
+<<<<<<< HEAD:King-Survival-2/GameLogic.cs
+            //string[] sampleInput = new string[] {
+            //"cdr",
+            //"cdr",
+            //"cdl",
+            //"cdr",
+            //"cdr",
+            //"cdl"
+            //};
 
             // Test all pawns down
             //string[] sampleInput = new string[] {
@@ -622,8 +636,23 @@
             //    Console.WriteLine(sampleInput[indexPawn]);
             //    return sampleInput[indexPawn++];
             //}
+
             string pawnInput = Console.ReadLine();
             return pawnInput;
+=======
+            string[] sampleInput = new string[] {
+            "cdr",
+            "cdr",
+            "cdl",
+            "cdr",
+            "cdr",
+            "cdl"
+            };
+
+            return sampleInput[indexPawn++];
+            //string pawnInput = Console.ReadLine();
+            //return pawnInput;
+>>>>>>> bfbf182c81003eeb07faf8a7b480fe21e4f9e0a7:King-Survival-2/GameEngine.cs
         }
     }
 }
