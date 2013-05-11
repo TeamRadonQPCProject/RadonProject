@@ -535,21 +535,21 @@
             }
             else
             {
-                bool allAreFalse = true;
-                for (int i = 0; i < 4; i++)
-                {
-                    if (King.KingExistingMoves[i] == true)
-                    {
-                        allAreFalse = false;
-                    }
-                }
+                //bool allAreFalse = true;
+                //for (int i = 0; i < 4; i++)
+                //{
+                //    if (King.KingExistingMoves[i] == true)
+                //    {
+                //        allAreFalse = false;
+                //    }
+                //}
 
-                if (allAreFalse)
-                {
-                    this.GameIsFinished = true;
-                    Console.WriteLine("King loses!");
-                    return null;
-                }
+                //if (allAreFalse)
+                //{
+                //    this.GameIsFinished = true;
+                //    Console.WriteLine("King loses!");
+                //    return null;
+                //}
 
                 Console.BackgroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("You can't go in this direction! ");
@@ -593,6 +593,22 @@
             if (!(KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
             {
                 King.KingExistingMoves[3] = false;
+            }
+
+            bool allAreFalse = true;
+            for (int i = 0; i < 4; i++)
+            {
+                if (King.KingExistingMoves[i] == true)
+                {
+                    allAreFalse = false;
+                }
+            }
+
+            if (allAreFalse)
+            {
+                this.GameIsFinished = true;
+                Console.WriteLine("King loses!");
+                // return null;
             }
         }
     }
