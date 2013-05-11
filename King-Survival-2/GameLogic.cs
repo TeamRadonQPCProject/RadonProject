@@ -602,16 +602,38 @@
             }
         }
 
-        private string ReadKingInput()
+        private int indexKing = 0;
+        public virtual string ReadKingInput()
         {
-            string kingInput = Console.ReadLine();
-            return kingInput;
+            string[] sampleInput = new string[] {
+            "kur",
+            "kur",
+            "kul",
+            "kdr",
+            "kdr",
+            "kdr"
+            };
+
+            return sampleInput[indexKing++];
+            //string kingInput = Console.ReadLine();
+            //return kingInput;
         }
 
-        private string ReadPawnInput()
+        private int indexPawn = 0;
+        public virtual string ReadPawnInput()
         {
-            string pawnInput = Console.ReadLine();
-            return pawnInput;
+            string[] sampleInput = new string[] {
+            "cdr",
+            "cdr",
+            "cdl",
+            "cdr",
+            "cdr",
+            "cdl"
+            };
+
+            return sampleInput[indexPawn++];
+            //string pawnInput = Console.ReadLine();
+            //return pawnInput;
         }
     }
 }
