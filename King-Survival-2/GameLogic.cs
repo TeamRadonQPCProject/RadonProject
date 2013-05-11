@@ -372,6 +372,7 @@
                 }
             }
 
+            HasKingExistingMove(King.KingPosition);
             InteractWithUser();
         }
 
@@ -514,7 +515,7 @@
 
         private int[] CheckKingAvailableMove(int[] currentCoordinates, int[] displacementDirection)
         {
-            HasExistingMove(currentCoordinates);
+            //HasExistingMove(currentCoordinates);
             int[] newCoords = new int[2];
             newCoords[0] = currentCoordinates[0] + displacementDirection[0];
             newCoords[1] = currentCoordinates[1] + displacementDirection[1];
@@ -535,22 +536,6 @@
             }
             else
             {
-                //bool allAreFalse = true;
-                //for (int i = 0; i < 4; i++)
-                //{
-                //    if (King.KingExistingMoves[i] == true)
-                //    {
-                //        allAreFalse = false;
-                //    }
-                //}
-
-                //if (allAreFalse)
-                //{
-                //    this.GameIsFinished = true;
-                //    Console.WriteLine("King loses!");
-                //    return null;
-                //}
-
                 Console.BackgroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("You can't go in this direction! ");
                 Console.ResetColor();
@@ -559,7 +544,7 @@
         }
 
         // TODO: Move to King class
-        private void HasExistingMove(int[] currentCoords)
+        private void HasKingExistingMove(int[] currentCoords)
         {
             int[] newCoords = new int[2];
             int[] displacementDownLeft = { 1, -2 };
@@ -608,7 +593,6 @@
             {
                 this.GameIsFinished = true;
                 Console.WriteLine("King loses!");
-                // return null;
             }
         }
     }
