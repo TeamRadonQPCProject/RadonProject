@@ -149,16 +149,16 @@
                 switch (startLetter)
                 {
                     case 'A':
-                        return MovePawn(checkedInput, 'A');
+                        return MovePawn(checkedInput);
 
                     case 'B':
-                        return MovePawn(checkedInput, 'B');
+                        return MovePawn(checkedInput);
 
                     case 'C':
-                        return MovePawn(checkedInput, 'C');
+                        return MovePawn(checkedInput);
 
                     case 'D':
-                        return MovePawn(checkedInput, 'D');
+                        return MovePawn(checkedInput);
 
                     case 'K':
                         if (checkedInput[1] == 'U')
@@ -215,113 +215,53 @@
             }
         }
 
-        private bool MovePawn(string checkedInput, char figure)
+        private bool MovePawn(string checkedInput)
         {
-            if (checkedInput[2] == 'L')
+            char figure = checkedInput[0];
+            int[] coords = new int[3];
+
+            if (figure == 'A')
             {
-                int[] oldCoordinates = new int[2];
-
-                // This is just temporarery. It will be moved to the Pawns Classes
-                if (figure == 'A')
-                {
-                    oldCoordinates[0] = firstPawn.FigurePosition[0];
-                    oldCoordinates[1] = firstPawn.FigurePosition[1];
-                }
-                else if (figure == 'B')
-                {
-                    oldCoordinates[0] = secondPawn.FigurePosition[0];
-                    oldCoordinates[1] = secondPawn.FigurePosition[1];
-                }
-                else if (figure == 'C')
-                {
-                    oldCoordinates[0] = thirdPawn.FigurePosition[0];
-                    oldCoordinates[1] = thirdPawn.FigurePosition[1];
-                }
-                else if (figure == 'D')
-                {
-                    oldCoordinates[0] = fourthPawn.FigurePosition[0];
-                    oldCoordinates[1] = fourthPawn.FigurePosition[1];
-                }
-
-                int[] coords = new int[3];
-                coords = CheckNextPownPosition(oldCoordinates, 'L', figure);
-
-                this.CalcNextPawnPosition(coords, oldCoordinates, figure);
-
-                if (coords != null)
-                {
-                    if (figure == 'A')
-                    {
-                        firstPawn.FigurePosition[0] = coords[0];
-                        firstPawn.FigurePosition[1] = coords[1];
-                    }
-                    else if (figure == 'B')
-                    {
-                        secondPawn.FigurePosition[0] = coords[0];
-                        secondPawn.FigurePosition[1] = coords[1];
-                    }
-                    else if (figure == 'C')
-                    {
-                        thirdPawn.FigurePosition[0] = coords[0];
-                        thirdPawn.FigurePosition[1] = coords[1];
-                    }
-                    else if (figure == 'D')
-                    {
-                        fourthPawn.FigurePosition[0] = coords[0];
-                        fourthPawn.FigurePosition[1] = coords[1];
-                    }
-                }
+                coords = firstPawn.MoveFigure(checkedInput);
+                this.CalcNextPawnPosition(coords, firstPawn.FigurePosition, figure);
             }
-            else
+            else if (figure == 'B')
             {
-                // =='R'
-                int[] oldCoordinates = new int[2];
+                coords = secondPawn.MoveFigure(checkedInput);
+                this.CalcNextPawnPosition(coords, secondPawn.FigurePosition, figure);
+            }
+            else if (figure == 'C')
+            {
+                coords = thirdPawn.MoveFigure(checkedInput);
+                this.CalcNextPawnPosition(coords, thirdPawn.FigurePosition, figure);
+            }
+            else if (figure == 'D')
+            {
+                coords = fourthPawn.MoveFigure(checkedInput);
+                this.CalcNextPawnPosition(coords, fourthPawn.FigurePosition, figure);
+            }
+
+            if (coords != null)
+            {
                 if (figure == 'A')
                 {
-                    oldCoordinates[0] = firstPawn.FigurePosition[0];
-                    oldCoordinates[1] = firstPawn.FigurePosition[1];
+                    firstPawn.FigurePosition[0] = coords[0];
+                    firstPawn.FigurePosition[1] = coords[1];
                 }
                 else if (figure == 'B')
                 {
-                    oldCoordinates[0] = secondPawn.FigurePosition[0];
-                    oldCoordinates[1] = secondPawn.FigurePosition[1];
+                    secondPawn.FigurePosition[0] = coords[0];
+                    secondPawn.FigurePosition[1] = coords[1];
                 }
                 else if (figure == 'C')
                 {
-                    oldCoordinates[0] = thirdPawn.FigurePosition[0];
-                    oldCoordinates[1] = thirdPawn.FigurePosition[1];
+                    thirdPawn.FigurePosition[0] = coords[0];
+                    thirdPawn.FigurePosition[1] = coords[1];
                 }
                 else if (figure == 'D')
                 {
-                    oldCoordinates[0] = fourthPawn.FigurePosition[0];
-                    oldCoordinates[1] = fourthPawn.FigurePosition[1];
-                }
-
-                int[] coords = new int[3];
-                coords = CheckNextPownPosition(oldCoordinates, 'R', figure);
-                this.CalcNextPawnPosition(coords, oldCoordinates, figure);
-                if (coords != null)
-                {
-                    if (figure == 'A')
-                    {
-                        firstPawn.FigurePosition[0] = coords[0];
-                        firstPawn.FigurePosition[1] = coords[1];
-                    }
-                    else if (figure == 'B')
-                    {
-                        secondPawn.FigurePosition[0] = coords[0];
-                        secondPawn.FigurePosition[1] = coords[1];
-                    }
-                    else if (figure == 'C')
-                    {
-                        thirdPawn.FigurePosition[0] = coords[0];
-                        thirdPawn.FigurePosition[1] = coords[1];
-                    }
-                    else if (figure == 'D')
-                    {
-                        fourthPawn.FigurePosition[0] = coords[0];
-                        fourthPawn.FigurePosition[1] = coords[1];
-                    }
+                    fourthPawn.FigurePosition[0] = coords[0];
+                    fourthPawn.FigurePosition[1] = coords[1];
                 }
             }
 
@@ -390,27 +330,6 @@
                 Console.WriteLine("End!");
                 Console.WriteLine("King wins in {0} moves!", this.MovementsCounter / 2);
                 this.GameIsFinished = true;
-            }
-        }
-
-        public int[] CheckNextPownPosition(int[] currentCoordinates, char checkDirection, char currentPawn)
-        {
-            int[] displasmentDownLeft = { 1, -2 };
-            int[] displasmentDownRight = { 1, 2 };
-            int[] newCoords = new int[3];
-            if (checkDirection == 'L')
-            {
-                newCoords[0] = currentCoordinates[0] + displasmentDownLeft[0];
-                newCoords[1] = currentCoordinates[1] + displasmentDownLeft[1];
-                newCoords[2] = 0;
-                return newCoords;
-            }
-            else
-            {
-                newCoords[0] = currentCoordinates[0] + displasmentDownRight[0];
-                newCoords[1] = currentCoordinates[1] + displasmentDownRight[1];
-                newCoords[2] = 0;
-                return newCoords;
             }
         }
 

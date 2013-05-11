@@ -9,7 +9,7 @@
 
         public abstract int[] FigurePosition { get; set; }
 
-        public abstract bool MoveFigure(string command);
+        public abstract int[] MoveFigure(string command);
 
         public abstract string[] ValidFigureInputs { get; }
 

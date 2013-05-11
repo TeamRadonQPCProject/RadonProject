@@ -70,7 +70,7 @@
             }
         }
 
-        public override bool MoveFigure(string command)
+        public override int[] MoveFigure(string command)
         {
             throw new NotImplementedException();
         }
