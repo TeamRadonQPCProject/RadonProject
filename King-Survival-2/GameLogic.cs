@@ -525,35 +525,35 @@
         private int indexKing = 0;
         public virtual string ReadKingInput()
         {
-            string[] sampleInput = new string[] {
-            "kur",
-            "kur",
-            "kul",
-            "kdr",
-            "kdr",
-            "kdr"
-            };
+            //string[] sampleInput = new string[] {
+            //"kur",
+            //"kur",
+            //"kul",
+            //"kdr",
+            //"kdr",
+            //"kdr"
+            //};
 
-            return sampleInput[indexKing++];
-            //string kingInput = Console.ReadLine();
-            //return kingInput;
+            //return sampleInput[indexKing++];
+            string kingInput = Console.ReadLine();
+            return kingInput;
         }
 
         private int indexPawn = 0;
         public virtual string ReadPawnInput()
         {
-            string[] sampleInput = new string[] {
-            "cdr",
-            "cdr",
-            "cdl",
-            "cdr",
-            "cdr",
-            "cdl"
-            };
+            //string[] sampleInput = new string[] {
+            //"cdr",
+            //"cdr",
+            //"cdl",
+            //"cdr",
+            //"cdr",
+            //"cdl"
+            //};
 
-            return sampleInput[indexPawn++];
-            //string pawnInput = Console.ReadLine();
-            //return pawnInput;
+            //return sampleInput[indexPawn++];
+            string pawnInput = Console.ReadLine();
+            return pawnInput;
         }
     }
 }
