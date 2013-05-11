@@ -330,7 +330,7 @@
                 Console.BackgroundColor = ConsoleColor.DarkGreen;
                 Console.Write("Please enter king's turn: ");
                 Console.ResetColor();
-                string input = Console.ReadLine();
+                string input = ReadKingInput();
 
                 if (string.IsNullOrEmpty(input))
                 {
@@ -357,7 +357,7 @@
                 Console.BackgroundColor = ConsoleColor.Blue;
                 Console.Write("Please enter pawn's turn: ");
                 Console.ResetColor();
-                string input = Console.ReadLine();
+                string input = ReadPawnInput();
 
                 if (string.IsNullOrEmpty(input))
                 {
@@ -595,6 +595,18 @@
                 this.GameIsFinished = true;
                 Console.WriteLine("King loses!");
             }
+        }
+
+        private string ReadKingInput()
+        {
+            string kingInput = Console.ReadLine();
+            return kingInput;
+        }
+
+        private string ReadPawnInput()
+        {
+            string pawnInput = Console.ReadLine();
+            return pawnInput;
         }
     }
 }
