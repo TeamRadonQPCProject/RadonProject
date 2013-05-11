@@ -13,14 +13,14 @@
             "BDR" 
         };
 
-        private int[,] figurePosition = 
+        private int[] figurePosition = 
         {
-            { 2, 8 }
+             2, 8 
         };
 
-        private bool[,] figureExistingMoves = 
+        private bool[] figureExistingMoves = 
         {
-            { true, true }
+             true, true 
         };
 
         public override char FigureSign
@@ -32,7 +32,7 @@
         }
 
         // properties
-        public override int[,] FigurePosition
+        public override int[] FigurePosition
         {
             get
             {
@@ -44,7 +44,7 @@
             }
         }
 
-        public override bool[,] FigureExistingMoves
+        public override bool[] FigureExistingMoves
         {
             get
             {

@@ -13,14 +13,14 @@
             "ADR" 
         };
 
-        private static int[,] figurePosition = 
+        private static int[] figurePosition = 
         {
-            { 2, 4 }
+             2, 4 
         };
 
-        private static bool[,] figureExistingMoves = 
+        private static bool[] figureExistingMoves = 
         {
-            { true, true }
+            true, true 
         };
 
         public override char FigureSign
@@ -32,7 +32,7 @@
         }
 
         // properties
-        public override int[,] FigurePosition
+        public override int[] FigurePosition
         {
             get
             {
@@ -45,7 +45,7 @@
             }
         }
 
-        public override bool[,] FigureExistingMoves
+        public override bool[] FigureExistingMoves
         {
             get
             {
