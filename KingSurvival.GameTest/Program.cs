@@ -1,4 +1,4 @@
-﻿namespace KingSurvivalGame
+﻿namespace KingSurvivalGameTest
 {
     using System;
     using KingSurvival;
