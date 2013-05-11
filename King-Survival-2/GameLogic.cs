@@ -537,7 +537,53 @@
             //"kdr"
             //};
 
-            //return sampleInput[indexKing++];
+            // Test all pawns down
+            //string[] sampleInput = new string[] {
+            //"kur",
+            //"kul",
+            //"kur",
+            //"kul",
+            //"kur",
+            //"kul",
+            //"kur",
+            //"kul",
+            //"kur",
+            //"kur",
+            //"kur",
+            //"kdr",
+            //"kdr",
+            //"kdr",
+            //"kul",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kul",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kdr",
+            //"kdl"
+            //};
+
+            //if (indexPawn <= sampleInput.Length)
+            //{
+            //    Console.WriteLine(indexKing);
+            //    Console.WriteLine(sampleInput[indexKing]);
+            //    return sampleInput[indexKing++];
+            //}
+            
             string kingInput = Console.ReadLine();
             return kingInput;
         }
@@ -554,7 +600,51 @@
             //"cdl"
             //};
 
-            //return sampleInput[indexPawn++];
+            // Test all pawns down
+            //string[] sampleInput = new string[] {
+            //"adr",
+            //"adl",
+            //"adr",
+            //"adl",
+            //"adr",
+            //"adl",
+            //"adr",
+            //"adl",
+            //"bdr",
+            //"bdl",
+            //"bdr",
+            //"bdl",
+            //"bdr",
+            //"bdl",
+            //"bdr",
+            //"bdl",
+            //"cdr",
+            //"cdl",
+            //"cdr",
+            //"cdl",
+            //"cdr",
+            //"cdl",
+            //"cdr",
+            //"ddr",
+            //"ddl",
+            //"ddr",
+            //"ddl",
+            //"ddr",
+            //"ddl",
+            //"ddr",
+            //"ddl",
+            //"ddl",
+            //"ddr",
+            //"ddl"
+            //};
+
+            //if (indexKing < sampleInput.Length)
+            //{
+            //    Console.WriteLine(indexPawn);
+            //    Console.WriteLine(sampleInput[indexPawn]);
+            //    return sampleInput[indexPawn++];
+            //}
+
             string pawnInput = Console.ReadLine();
             return pawnInput;
         }

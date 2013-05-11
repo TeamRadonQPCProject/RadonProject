@@ -20,3 +20,5 @@ C:\Users\Teodor\Desktop\C# Projects\RadonProject\KingSurvival.Tests\obj\Debug\Ki
 C:\Users\Teodor\Desktop\C# Projects\RadonProject\KingSurvival.Tests\obj\Debug\KingSurvival.Tests.pdb
 C:\Users\Teodor\Desktop\C# Projects\RadonProject\KingSurvival.Tests\bin\Debug\ConsoleApplication1.exe
 C:\Users\Teodor\Desktop\C# Projects\RadonProject\KingSurvival.Tests\bin\Debug\ConsoleApplication1.pdb
+D:\GitHub\RadonProject\KingSurvival.Tests\bin\Debug\ConsoleApplication1.exe
+D:\GitHub\RadonProject\KingSurvival.Tests\bin\Debug\ConsoleApplication1.pdb
