@@ -267,16 +267,6 @@
             }
         }
 
-        public void CheckForKingExit(int currentKingXAxe)
-        {
-            if (currentKingXAxe == 2)
-            {
-                Console.WriteLine("End!");
-                Console.WriteLine("King wins in {0} moves!", this.MovementsCounter / 2);
-                this.GameIsFinished = true;
-            }
-        }
-
         public int[] CheckNextKingPosition(int[] currentCoordinates, char firstDirection, char secondDirection)
         {
             int[] displacementDownLeft = { 1, -2 };
@@ -364,6 +354,16 @@
             {
                 this.GameIsFinished = true;
                 Console.WriteLine("King loses!");
+            }
+        }
+
+        public void CheckForKingExit(int currentKingXAxe)
+        {
+            if (currentKingXAxe == 2)
+            {
+                Console.WriteLine("End!");
+                Console.WriteLine("King wins in {0} moves!", this.MovementsCounter / 2);
+                this.GameIsFinished = true;
             }
         }
 

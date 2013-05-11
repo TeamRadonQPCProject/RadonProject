@@ -3,7 +3,7 @@
   <Class Name="KingSurvival.Figure" Collapsed="true">
     <Position X="8.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAACAABAAACAAAAQAAA=</HashCode>
       <FileName>Figure.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -14,52 +14,45 @@
       <FileName>GameBoard.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="KingSurvival.GameLogic" Collapsed="true">
-    <Position X="17.5" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AABSAAABAAAAAAAAFAAEAIAAACgCAAAACAQAABAAAAA=</HashCode>
-      <FileName>GameLogic.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="KingSurvival.King" Collapsed="true">
     <Position X="13.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAIAAAAAgAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <HashCode>AQAAQAEAAAACAAAAAACAAAAAAAACAABAAACAAAAQAAA=</HashCode>
       <FileName>King.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KingSurvival.Pawn" Collapsed="true">
     <Position X="7.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
       <FileName>Pawn.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KingSurvival.PawnA" Collapsed="true">
     <Position X="6.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <HashCode>AQAAQAEAAAACAAAAAACAAAAAAAACAABAAACAAAAAAAA=</HashCode>
       <FileName>PawnA.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KingSurvival.PawnB" Collapsed="true">
     <Position X="8.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <HashCode>AQAAQAEAAAACAAAAAACAAAAAAAACAABAAACAAAAAAAA=</HashCode>
       <FileName>PawnB.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KingSurvival.PawnC" Collapsed="true">
     <Position X="11" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <HashCode>AQAAQAEAAAACAAAAAACAAAAAAAACAABAAACAAAAAAAA=</HashCode>
       <FileName>PawnC.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KingSurvival.PawnD" Collapsed="true">
     <Position X="4.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <HashCode>AQAAQAEAAAACAAAAAACAAAAAAAACAABAAACAAAAAAAA=</HashCode>
       <FileName>PawnD.cs</FileName>
     </TypeIdentifier>
   </Class>
