@@ -7,9 +7,8 @@
     {
         static void Main()
         {
-            GameLogic gameTester = new GameLogic();
-            gameTester.Init();
-            gameTester.InteractWithUser();
+            PlayerInteractor myGame = new PlayerInteractor();
+            myGame.StartGame();
             Console.WriteLine("\nThank you for using this game!\n\n");
         }
     }
