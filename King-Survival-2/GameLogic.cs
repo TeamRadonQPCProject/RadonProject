@@ -70,57 +70,56 @@
         public bool CheckPlayerInput(string checkedString)
         {
             char startLetter = checkedString[0];
-            bool hasAnEqual = false;
             if (this.MovementsCounter % 2 == 0) // King turn
             {
-                return this.ChechInput(checkedString, King.ValidKingInputs, ref hasAnEqual);
+                return this.ChechInput(checkedString, King.ValidKingInputs);
             }
             else // PawnsTurn
             {
                 switch (startLetter)
                 {
                     case 'A':
-                        return ChechInput(checkedString, firstPawn.ValidFigureInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, firstPawn.ValidFigureInputs);
 
                     case 'B':
-                        return ChechInput(checkedString, secondPawn.ValidFigureInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, secondPawn.ValidFigureInputs);
 
                     case 'C':
-                        return ChechInput(checkedString, thirdPawn.ValidFigureInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, thirdPawn.ValidFigureInputs);
 
                     case 'D':
-                        return ChechInput(checkedString, fourthPawn.ValidFigureInputs, ref hasAnEqual);
+                        return ChechInput(checkedString, fourthPawn.ValidFigureInputs);
 
                     default:
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.WriteLine("Invalid command name!");
                         Console.ResetColor();
                         return false;
-                        //
                 }
             }
         }
 
-        private bool ChechInput(string checkedString, string[] currentFigureValidInput, ref bool hasAnEqual)
+        private bool ChechInput(string checkedString, string[] currentFigureValidInput)
         {
-            int[] equal = new int[currentFigureValidInput.Length];
+            bool hasAnEqual = false;
+            int[] validInputs = new int[currentFigureValidInput.Length];
             for (int i = 0; i < currentFigureValidInput.Length; i++)
             {
                 string reference = currentFigureValidInput[i];
                 int result = checkedString.CompareTo(reference);
                 if (result != 0)
                 {
-                    equal[i] = 0;
+                    validInputs[i] = 0;
                 }
                 else
                 {
-                    equal[i] = 1;
+                    validInputs[i] = 1;
                 }
             }
 
             for (int i = 0; i < currentFigureValidInput.Length; i++)
             {
-                if (equal[i] == 1)
+                if (validInputs[i] == 1)
                 {
                     hasAnEqual = true;
                 }
@@ -212,7 +211,6 @@
 
         private bool MovePawn(string checkedInput, char figure)
         {
-            int pawnsPositionFirstCoord = (int)figure - (int)'A';
             if (checkedInput[2] == 'L')
             {
                 int[] oldCoordinates = new int[2];
@@ -241,7 +239,9 @@
 
                 int[] coords = new int[3];
                 coords = CheckNextPownPosition(oldCoordinates, 'L', figure);
+
                 this.CalcNextPawnPosition(coords, oldCoordinates, figure);
+
                 if (coords != null)
                 {
                     if (figure == 'A')
@@ -331,6 +331,7 @@
                 Console.Write("Please enter king's turn: ");
                 Console.ResetColor();
                 string input = Console.ReadLine();
+
                 if (string.IsNullOrEmpty(input))
                 {
                     isExecuted = false;
