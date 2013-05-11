@@ -5,6 +5,8 @@
     public class PawnA : Figure
     {
         // fields
+        private char figureSign = 'A';
+
         private readonly string[] validFigureInputs = 
         { 
             "ADL", 
@@ -20,6 +22,14 @@
         {
             { true, true }
         };
+
+        public override char FigureSign
+        {
+            get
+            {
+                return this.figureSign;
+            }
+        }
 
         // properties
         public override int[,] FigurePosition

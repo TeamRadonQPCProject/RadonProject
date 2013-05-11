@@ -4,6 +4,8 @@
 
     public class PawnC : Figure
     {
+        private char figureSign = 'C';
+
         private string[] validFigureInputs = 
         {
             "CDL",
@@ -19,6 +21,14 @@
         {
             { true, true }
         };
+
+        public override char FigureSign
+        {
+            get
+            {
+                return this.figureSign;
+            }
+        }
 
         // properties
         public override int[,] FigurePosition

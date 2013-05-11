@@ -5,6 +5,8 @@
     public class PawnB : Figure
     {
         // fields
+        private char figureSign = 'B';
+
         private readonly string[] validFigureInputs = 
         { 
             "BDL", 
@@ -20,6 +22,14 @@
         {
             { true, true }
         };
+
+        public override char FigureSign
+        {
+            get
+            {
+                return this.figureSign;
+            }
+        }
 
         // properties
         public override int[,] FigurePosition

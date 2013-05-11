@@ -99,14 +99,15 @@
             }
         }
 
-        private bool ChechInput(string checkedString, string[] currentFigureValidInput)
+        public bool ChechInput(string checkedString, string[] currentFigureValidInput)
         {
             bool hasAnEqual = false;
             int[] validInputs = new int[currentFigureValidInput.Length];
             for (int i = 0; i < currentFigureValidInput.Length; i++)
             {
-                string reference = currentFigureValidInput[i];
-                int result = checkedString.CompareTo(reference);
+                string figureValidInputsToCheck = currentFigureValidInput[i];
+                int result = checkedString.CompareTo(figureValidInputsToCheck);
+
                 if (result != 0)
                 {
                     validInputs[i] = 0;
@@ -122,9 +123,11 @@
                 if (validInputs[i] == 1)
                 {
                     hasAnEqual = true;
+                    break;
                 }
             }
 
+            // write on console if There is no Valid input
             if (!hasAnEqual)
             {
                 Console.BackgroundColor = ConsoleColor.Red;
@@ -138,6 +141,7 @@
         public bool CheckAndProcess(string checkedInput)
         {
             bool isCommandNameCorrect = CheckPlayerInput(checkedInput);
+
             if (isCommandNameCorrect)
             {
                 char startLetter = checkedInput[0];
@@ -184,8 +188,7 @@
                         }
 
                     default:
-                        Console.WriteLine("Sorry, there are some errors, but I can't tell you anything! You broked my program!");
-                        return false;
+                        throw new ArgumentException("Input command start was invalid!");
                 }
             }
             else
@@ -196,16 +199,18 @@
 
         private void MoveKing(char firstDirection, char secondDirection)
         {
-            // ==KDR
             int[] oldCoordinates = new int[2];
+
             oldCoordinates[0] = King.KingPosition[0];
             oldCoordinates[1] = King.KingPosition[1];
-            int[] coords = new int[2];
-            coords = CheckNextKingPosition(oldCoordinates, firstDirection, secondDirection);
-            if (coords != null)
+
+            int[] newCoords = new int[2];
+            newCoords = CheckNextKingPosition(oldCoordinates, firstDirection, secondDirection);
+
+            if (newCoords != null)
             {
-                King.KingPosition[0] = coords[0];
-                King.KingPosition[1] = coords[1];
+                King.KingPosition[0] = newCoords[0];
+                King.KingPosition[1] = newCoords[1];
             }
         }
 

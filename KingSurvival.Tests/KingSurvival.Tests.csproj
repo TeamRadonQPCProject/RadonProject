@@ -50,8 +50,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="TestCheckAndProcess.cs" />
+    <Compile Include="GameLogic.Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\King-Survival-2\KingSurvival.csproj">
+      <Project>{842daf0e-7b19-48ce-8066-4639cc1f6fb0}</Project>
+      <Name>KingSurvival</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
