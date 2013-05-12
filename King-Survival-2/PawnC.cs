@@ -4,7 +4,7 @@
 
     public class PawnC : Pawn
     {
-        private char figureSign = 'C';
+        private readonly char figureSign = 'C';
 
         private string[] validFigureInputs = 
         {

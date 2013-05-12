@@ -5,7 +5,7 @@
     public class GameBoard
     {
         // consts
-        private int[,] BoardCorners = 
+        private readonly int[,] BoardCorners = 
         {
             { 2, 4 }, 
             { 2, 18 }, 
@@ -14,7 +14,7 @@
         };
 
         // fileds
-        private char[,] board = 
+        private readonly char[,] board = 
         {
             { 'U', 'L', ' ', ' ', '0', ' ', '1', ' ', '2', ' ', '3', ' ', '4', ' ', '5', ' ', '6', ' ', '7', ' ', ' ', 'U', 'R' },
             { ' ', ' ', ' ', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', ' ', ' ', ' ' },
@@ -98,9 +98,9 @@
             Console.WriteLine();
         }
 
-        public bool CheckPositionInBoard(int[] positionCoodinates)
+        public bool CheckPositionInBoard(int[] positionCoordinates)
         {
-            int positonRow = positionCoodinates[0];
+            int positonRow = positionCoordinates[0];
 
             bool isRowInBoard = 
                 (positonRow >= BoardCorners[0, 0]) && 
