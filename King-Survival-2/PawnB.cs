@@ -5,7 +5,7 @@
     public class PawnB : Pawn
     {
         // fields
-        private char figureSign = 'B';
+        private readonly char figureSign = 'B';
 
         private readonly string[] validFigureInputs = 
         { 

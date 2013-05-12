@@ -4,7 +4,7 @@
 
     public class PlayerInteractor
     {
-        private GameEngine myTestEngine = new GameEngine();
+        private readonly GameEngine myTestEngine = new GameEngine();
 
         public void StartGame()
         {

@@ -199,7 +199,7 @@
             }
         }
 
-        /* KING LOGIC */
+        /* KING LOGIC - moved to class King*/
 
         /* PAWN LOGIC */
 
@@ -233,7 +233,8 @@
                 this.GameIsFinished = true;
                 Console.WriteLine("King loses!");
             }
-            
+
+            HasPawnExistingMove();
             InteractWithUser();
         }
 
@@ -296,7 +297,6 @@
             }
             else
             {
-                bool allAreFalse = true;
                 switch (currentPawn)
                 {
                     case 'A':
@@ -316,39 +316,57 @@
                         break;
                 }
 
-                Figure[] allFigres = { firstPawn, secondPawn, thirdPawn, fourthPawn };
-
-                for (int i = 0; i < allFigres.Length; i++)
-                {
-                    for (int j = 0; j < 2; j++)
-                    {
-                        if (allFigres[i].FigureExistingMoves[j] == true)
-                        {
-                            allAreFalse = false;
-                        }
-                    }
-                }
-
-                if (allAreFalse)
-                {
-                    Console.WriteLine("King wins!");
-                    this.GameIsFinished = true;
-                    return null;
-                }
-
                 Console.BackgroundColor = ConsoleColor.DarkYellow;
+                
                 Console.WriteLine("You can't go in this direction! ");
                 Console.ResetColor();
                 return null;
             }
         }
+  
+        private void HasPawnExistingMove()
+        {
+            bool allAreFalse = true;
+            Figure[] allFigres = { firstPawn, secondPawn, thirdPawn, fourthPawn };
+            int[,] displasment = { {1, -2},
+                                 {1, 2} };
+            int[] newCoords = new int[2];
+            for (int i = 0; i < allFigres.Length; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    newCoords[0] = allFigres[i].FigurePosition[0] + displasment[j, 0];
+                    newCoords[1] = allFigres[i].FigurePosition[1] + displasment[j, 1];
+                    if (!(kingSurvivalGameBoard.CheckPositionInBoard(newCoords) && kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
+                    {
+                        allFigres[i].FigureExistingMoves[j] = false;
+                    }
+                }
+            }
 
-        // TODO: Move to King class
+            for (int i = 0; i < allFigres.Length; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    if (allFigres[i].FigureExistingMoves[j] == true)
+                    {
+                        allAreFalse = false;
+                        break;
+                    }
+                }
+            }
+
+            if (allAreFalse)
+            {
+                Console.WriteLine("King wins!");
+                this.GameIsFinished = true;
+            }
+        }
 
         private int indexPawn = 0;
-
         public virtual string ReadPawnInput()
         {
+            // Pawns win, king is in down right corner
             //string[] sampleInput = new string[] {
             //"cdr",
             //"cdr",
@@ -358,6 +376,7 @@
             //"cdl"
             //};
 
+            //King win
             //string[] sampleInput = new string[]
             //{
             //    "ddl",
@@ -378,7 +397,6 @@
             //"adr",
             //"adl",
             //"adr",
-            //"adl",
             //"bdr",
             //"bdl",
             //"bdr",
@@ -386,7 +404,6 @@
             //"bdr",
             //"bdl",
             //"bdr",
-            //"bdl",
             //"cdr",
             //"cdl",
             //"cdr",
@@ -401,10 +418,6 @@
             //"ddr",
             //"ddl",
             //"ddr",
-            //"ddl",
-            //"ddl",
-            //"ddr",
-            //"ddl"
             //};
 
             //if (indexPawn < sampleInput.Length)

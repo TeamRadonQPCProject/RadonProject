@@ -295,24 +295,22 @@
             // Test all pawns down
             //string[] sampleInput = new string[] {
             //"kur",
-            //"kul",
             //"kur",
-            //"kul",
+            //"kdl",
             //"kur",
-            //"kul",
+            //"kdl",
             //"kur",
-            //"kul",
+            //"kdl",
             //"kur",
+            //"kdl",
             //"kur",
+            //"kdl",
             //"kur",
-            //"kdr",
-            //"kdr",
-            //"kdr",
+            //"kdl",
+            //"kur",
+            //"kdl",
             //"kul",
             //"kul",
-            //"kdr",
-            //"kul",
-            //"kdr",
             //"kul",
             //"kdr",
             //"kul",
@@ -322,14 +320,8 @@
             //"kul",
             //"kdr",
             //"kul",
-            //"kul",
-            //"kul",
             //"kdr",
-            //"kul",
-            //"kdr",
-            //"kul",
-            //"kdr",
-            //"kdl"
+            //"kul"
             //};
 
             //if (indexKing < sampleInput.Length)
