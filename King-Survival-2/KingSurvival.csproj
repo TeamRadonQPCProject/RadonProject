@@ -49,6 +49,7 @@
     <Compile Include="Figure.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="King.cs" />
+    <Compile Include="Pawn.cs" />
     <Compile Include="PawnA.cs" />
     <Compile Include="PawnB.cs" />
     <Compile Include="PawnC.cs" />
