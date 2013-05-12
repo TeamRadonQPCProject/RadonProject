@@ -95,11 +95,11 @@
             Console.WriteLine();
         }
 
-        public bool CheckPositionInBoard(int[] positionCoodinates)
+        public bool CheckPositionInBoard(int[] positionCoordinates)
         {
-            int positonRow = positionCoodinates[0];
+            int positonRow = positionCoordinates[0];
             bool isRowInBoard = (positonRow >= BoardCorners[0, 0]) && (positonRow <= BoardCorners[3, 0]);
-            int positonCol = positionCoodinates[1];
+            int positonCol = positionCoordinates[1];
             bool isColInBoard = (positonCol >= BoardCorners[0, 1]) && (positonCol <= BoardCorners[3, 1]);
             return isRowInBoard && isColInBoard;
         }

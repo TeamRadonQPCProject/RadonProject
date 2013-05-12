@@ -302,7 +302,6 @@
 
         private int[] CheckKingAvailableMove(int[] currentCoordinates, int[] displacementDirection)
         {
-            //HasExistingMove(currentCoordinates);
             int[] newCoords = new int[2];
             newCoords[0] = currentCoordinates[0] + displacementDirection[0];
             newCoords[1] = currentCoordinates[1] + displacementDirection[1];
@@ -407,12 +406,8 @@
                 if (allPawns[i].FigureSign == figure)
                 {
                     coords = allPawns[i].MoveFigure(checkedInput);
-                    this.CalcNextPawnPosition(coords, allPawns[i].FigurePosition, figure);
 
-                    allPawns[i].FigurePosition[0] = coords[0];
-                    allPawns[i].FigurePosition[1] = coords[1];
-
-                    if (coords != null)
+                    if (this.CalcNextPawnPosition(coords, allPawns[i].FigurePosition, figure) != null)
                     {
                         allPawns[i].FigurePosition[0] = coords[0];
                         allPawns[i].FigurePosition[1] = coords[1];
@@ -495,7 +490,6 @@
 
                 if (allAreFalse)
                 {
-                    this.GameIsFinished = true;
                     Console.WriteLine("King wins!");
                     this.GameIsFinished = true;
                     return null;
