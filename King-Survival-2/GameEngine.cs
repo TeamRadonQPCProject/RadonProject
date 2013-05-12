@@ -8,13 +8,13 @@
         // fileds
         private int movementsCounter = 0;
         private bool gameIsFinished = false;
-        private GameBoard KingSurvivalGameBoard;
+        private GameBoard kingSurvivalGameBoard;
         private PawnA firstPawn;
         private PawnB secondPawn;
         private PawnC thirdPawn;
         private PawnD fourthPawn;
         private King theKing;
-        private List<Figure> allPawns = new List<Figure>();
+        private readonly List<Figure> allPawns = new List<Figure>();
 
         // properties
         public bool GameIsFinished
@@ -75,7 +75,7 @@
             secondPawn = new PawnB();
             thirdPawn = new PawnC();
             fourthPawn = new PawnD();
-            KingSurvivalGameBoard = new GameBoard();
+            kingSurvivalGameBoard = new GameBoard();
             theKing = new King();
 
             allPawns.Add(firstPawn);
@@ -86,7 +86,7 @@
 
         public void ShowCurrentBoard()
         {
-            KingSurvivalGameBoard.ShowBoard();
+            kingSurvivalGameBoard.ShowBoard();
         }
 
         public bool CheckPlayerInput(string stringToCheck)
@@ -183,34 +183,6 @@
                     case 'D':
                         return MovePawn(checkedInput);
 
-                    case 'K':
-                        if (checkedInput[1] == 'U')
-                        {
-                            if (checkedInput[2] == 'L')
-                            {
-                                MoveKing('U', 'L');
-                            }
-                            else
-                            {
-                                MoveKing('U', 'R');
-                            }
-
-                            return true;
-                        }
-                        else
-                        {
-                            if (checkedInput[2] == 'L')
-                            {
-                                MoveKing('D', 'L');
-                            }
-                            else
-                            {
-                                MoveKing('D', 'R');
-                            }
-
-                            return true;
-                        }
-
                     default:
                         throw new ArgumentException("Input command start was invalid!");
                 }
@@ -243,11 +215,50 @@
                 else
                 {
                     input = input.ToUpper();
-                    isExecuted = ProcessCommand(input);
+                    isExecuted = ProcessKingCommand(input);
                 }
             }
 
             InteractWithUser();
+        }
+
+        private bool ProcessKingCommand(string checkedInput)
+        {
+            bool isCommandNameCorrect = CheckPlayerInput(checkedInput);
+
+            if (isCommandNameCorrect)
+            {
+                if (checkedInput[1] == 'U')
+                {
+                    if (checkedInput[2] == 'L')
+                    {
+                        MoveKing('U', 'L');
+                    }
+                    else
+                    {
+                        MoveKing('U', 'R');
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    if (checkedInput[2] == 'L')
+                    {
+                        MoveKing('D', 'L');
+                    }
+                    else
+                    {
+                        MoveKing('D', 'R');
+                    }
+
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private void MoveKing(char firstDirection, char secondDirection)
@@ -295,11 +306,11 @@
             int[] newCoords = new int[2];
             newCoords[0] = currentCoordinates[0] + displacementDirection[0];
             newCoords[1] = currentCoordinates[1] + displacementDirection[1];
-            if (KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' ')
+            if (kingSurvivalGameBoard.CheckPositionInBoard(newCoords) && kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' ')
             {
-                char sign = KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]];
-                KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] = sign;
+                char sign = kingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]];
+                kingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
+                kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] = sign;
                 this.MovementsCounter++;
 
                 for (int i = 0; i < 4; i++)
@@ -334,7 +345,7 @@
             {
                 newCoords[0] = currentCoords[0] + displacements[i, 0];
                 newCoords[1] = currentCoords[1] + displacements[i, 1];
-                if (!(KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
+                if (!(kingSurvivalGameBoard.CheckPositionInBoard(newCoords) && kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
                 {
                     theKing.FigureExistingMoves[i] = false;
                 }
@@ -422,11 +433,11 @@
 
         private int[] CalcNextPawnPosition(int[] newCoords, int[] currentCoordinates, char currentPawn)
         {
-            if (KingSurvivalGameBoard.CheckPositionInBoard(newCoords) && KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' ')
+            if (kingSurvivalGameBoard.CheckPositionInBoard(newCoords) && kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' ')
             {
-                char sign = KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]];
-                KingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                KingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] = sign;
+                char sign = kingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]];
+                kingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
+                kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] = sign;
                 this.MovementsCounter++;
                 switch (currentPawn)
                 {
@@ -556,12 +567,12 @@
             //"kdl"
             //};
 
-            //if (indexPawn <= sampleInput.Length)
-            //{
-            //    Console.WriteLine(indexKing);
-            //    Console.WriteLine(sampleInput[indexKing]);
-            //    return sampleInput[indexKing++];
-            //}
+            if (indexKing <= sampleInput.Length)
+            {
+                //Console.WriteLine(indexKing);
+                Console.WriteLine(sampleInput[indexKing]);
+                return sampleInput[indexKing++];
+            }
             
             string kingInput = Console.ReadLine();
             return kingInput;
@@ -617,12 +628,12 @@
             //"ddl"
             //};
 
-            //if (indexKing < sampleInput.Length)
-            //{
-            //    Console.WriteLine(indexPawn);
-            //    Console.WriteLine(sampleInput[indexPawn]);
-            //    return sampleInput[indexPawn++];
-            //}
+            if (indexPawn < sampleInput.Length)
+            {
+                //Console.WriteLine(indexPawn);
+                Console.WriteLine(sampleInput[indexPawn]);
+                return sampleInput[indexPawn++];
+            }
             string pawnInput = Console.ReadLine();
             return pawnInput;
         }

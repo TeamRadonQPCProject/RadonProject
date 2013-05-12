@@ -4,9 +4,9 @@
 
     public class King : Figure
     {
-        private char figureSign = 'K';
+        private readonly char figureSign = 'K';
 
-        private string[] validFigureInputs = 
+        private readonly string[] validFigureInputs = 
         {                               
             "KUL",                                  
             "KUR",       
