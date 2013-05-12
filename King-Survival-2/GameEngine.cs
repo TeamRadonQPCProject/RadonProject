@@ -400,22 +400,19 @@
         private bool MovePawn(string checkedInput)
         {
             char figure = checkedInput[0];
-            int[] coords = new int[3];
+            int[] newCoords = new int[3];
 
             for (int i = 0; i < allPawns.Count; i++)
             {
                 if (allPawns[i].FigureSign == figure)
                 {
-                    coords = allPawns[i].MoveFigure(checkedInput);
-                    this.CalcNextPawnPosition(coords, allPawns[i].FigurePosition, figure);
+                    newCoords = allPawns[i].MoveFigure(checkedInput);
 
-                    allPawns[i].FigurePosition[0] = coords[0];
-                    allPawns[i].FigurePosition[1] = coords[1];
-
-                    if (coords != null)
+                    // TODO: FIX THIS
+                    if (this.CalcNextPawnPosition(newCoords, allPawns[i].FigurePosition, figure) != null)
                     {
-                        allPawns[i].FigurePosition[0] = coords[0];
-                        allPawns[i].FigurePosition[1] = coords[1];
+                        allPawns[i].FigurePosition[0] = newCoords[0];
+                        allPawns[i].FigurePosition[1] = newCoords[1];
                     }
 
                     break;
@@ -489,6 +486,7 @@
                         if (allFigres[i].FigureExistingMoves[j] == true)
                         {
                             allAreFalse = false;
+                            break;
                         }
                     }
                 }
@@ -562,12 +560,12 @@
             //"kdl"
             //};
 
-            //if (indexPawn <= sampleInput.Length)
-            //{
-            //    Console.WriteLine(indexKing);
-            //    Console.WriteLine(sampleInput[indexKing]);
-            //    return sampleInput[indexKing++];
-            //}
+            if (indexPawn <= sampleInput.Length)
+            {
+                Console.WriteLine(indexKing);
+                Console.WriteLine(sampleInput[indexKing]);
+                return sampleInput[indexKing++];
+            }
             
             string kingInput = Console.ReadLine();
             return kingInput;
@@ -623,12 +621,12 @@
             //"ddl"
             //};
 
-            //if (indexKing < sampleInput.Length)
-            //{
-            //    Console.WriteLine(indexPawn);
-            //    Console.WriteLine(sampleInput[indexPawn]);
-            //    return sampleInput[indexPawn++];
-            //}
+            if (indexKing < sampleInput.Length)
+            {
+                Console.WriteLine(indexPawn);
+                Console.WriteLine(sampleInput[indexPawn]);
+                return sampleInput[indexPawn++];
+            }
             string pawnInput = Console.ReadLine();
             return pawnInput;
         }

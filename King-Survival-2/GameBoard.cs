@@ -7,7 +7,10 @@
         // consts
         private int[,] BoardCorners = 
         {
-            { 2, 4 }, { 2, 18 }, { 9, 4 }, { 9, 18 }
+            { 2, 4 }, 
+            { 2, 18 }, 
+            { 9, 4 }, 
+            { 9, 18 }
         };
 
         // fileds
@@ -98,9 +101,17 @@
         public bool CheckPositionInBoard(int[] positionCoodinates)
         {
             int positonRow = positionCoodinates[0];
-            bool isRowInBoard = (positonRow >= BoardCorners[0, 0]) && (positonRow <= BoardCorners[3, 0]);
+
+            bool isRowInBoard = 
+                (positonRow >= BoardCorners[0, 0]) && 
+                (positonRow <= BoardCorners[3, 0]);
+
             int positonCol = positionCoodinates[1];
-            bool isColInBoard = (positonCol >= BoardCorners[0, 1]) && (positonCol <= BoardCorners[3, 1]);
+
+            bool isColInBoard = 
+                (positonCol >= BoardCorners[0, 1]) && 
+                (positonCol <= BoardCorners[3, 1]);
+
             return isRowInBoard && isColInBoard;
         }
 
