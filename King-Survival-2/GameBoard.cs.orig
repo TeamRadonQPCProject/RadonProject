@@ -100,18 +100,25 @@
 
         public bool CheckPositionInBoard(int[] positionCoordinates)
         {
-            int positonRow = positionCoordinates[0];
+<<<<<<< HEAD
+            int positonRow = positionCoodinates[0];
 
             bool isRowInBoard = 
                 (positonRow >= BoardCorners[0, 0]) && 
                 (positonRow <= BoardCorners[3, 0]);
 
-            int positonCol = positionCoordinates[1];
+            int positonCol = positionCoodinates[1];
 
             bool isColInBoard = 
                 (positonCol >= BoardCorners[0, 1]) && 
                 (positonCol <= BoardCorners[3, 1]);
 
+=======
+            int positonRow = positionCoordinates[0];
+            bool isRowInBoard = (positonRow >= BoardCorners[0, 0]) && (positonRow <= BoardCorners[3, 0]);
+            int positonCol = positionCoordinates[1];
+            bool isColInBoard = (positonCol >= BoardCorners[0, 1]) && (positonCol <= BoardCorners[3, 1]);
+>>>>>>> e799737fa36a13db846ebb85ead52983c35f8be2
             return isRowInBoard && isColInBoard;
         }
 
