@@ -234,7 +234,7 @@
                 Console.WriteLine("King loses!");
             }
 
-            HasPawnExistingMove();
+            HasPawnsExistingMove();
             InteractWithUser();
         }
 
@@ -324,7 +324,7 @@
             }
         }
   
-        private void HasPawnExistingMove()
+        private void HasPawnsExistingMove()
         {
             bool allAreFalse = true;
             Figure[] allFigres = { firstPawn, secondPawn, thirdPawn, fourthPawn };
