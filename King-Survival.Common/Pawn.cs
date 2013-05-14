@@ -17,7 +17,7 @@ namespace KingSurvival
         /// </summary>
         /// <param name="command">Takes a valid pawn command.</param>
         /// <returns>Returns the new valid pawn position.</returns>
-        public override int[] GetNewFigureCoords(string command)
+        public override int[] GetFigureNewCoords(string command)
         {
             int[] displasmentDownLeft = { 1, -2 };
             int[] displasmentDownRight = { 1, 2 };

@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace KingSurvival.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class GameBoardTest
     {
         [TestMethod]
         public void GameBoard_TestCheckPositionNegativeNumbers()

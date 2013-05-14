@@ -3,6 +3,7 @@
 //     All rights reserved © Telerik Academy 2012-2013
 // </copyright>
 //-----------------------------------------------------------------------
+
 namespace KingSurvival
 {
     using System;
@@ -145,36 +146,6 @@ namespace KingSurvival
             this.kingSurvivalGameBoard.ShowBoard();
         }
 
-        /// <summary>
-        /// Checks if the game input is correct.
-        /// </summary>
-        /// <param name="stringToCheck">Takes a game command.</param>
-        /// <returns>Returns a <see cref="System.Boolean"/>.</returns>
-        public bool CheckPlayerInput(string stringToCheck)
-        {
-            char startLetter = stringToCheck[0];
-            switch (startLetter)
-            {
-                case 'A':
-                    return this.ChechInput(stringToCheck, this.firstPawn.ValidFigureInputs);
-
-                case 'B':
-                    return this.ChechInput(stringToCheck, this.secondPawn.ValidFigureInputs);
-
-                case 'C':
-                    return this.ChechInput(stringToCheck, this.thirdPawn.ValidFigureInputs);
-
-                case 'D':
-                    return this.ChechInput(stringToCheck, this.fourthPawn.ValidFigureInputs);
-
-                default:
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid command name!");
-                    Console.ResetColor();
-                    return false;
-            }
-        }
-
         public bool ChechInput(string checkedString, string[] currentFigureValidInput)
         {
             bool hasAnEqual = false;
@@ -216,37 +187,6 @@ namespace KingSurvival
             return hasAnEqual;
         }
 
-        public bool ProcessCommand(string checkedInput)
-        {
-            bool isCommandNameCorrect = this.CheckPlayerInput(checkedInput);
-
-            if (isCommandNameCorrect)
-            {
-                char startLetter = checkedInput[0];
-                switch (startLetter)
-                {
-                    case 'A':
-                        return this.MovePawn(checkedInput);
-
-                    case 'B':
-                        return this.MovePawn(checkedInput);
-
-                    case 'C':
-                        return this.MovePawn(checkedInput);
-
-                    case 'D':
-                        return this.MovePawn(checkedInput);
-
-                    default:
-                        throw new ArgumentException("Input command start was invalid!");
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         /* KING LOGIC - moved to class King*/
 
         public void ProcessKingSide()
@@ -285,23 +225,30 @@ namespace KingSurvival
                 { -1, 2 },
             };
 
-            for (int i = 0; i < displacements.GetLength(0); i++)
+            bool allAreFalse = true;
+            try
             {
-                newCoords[0] = currentCoords[0] + displacements[i, 0];
-                newCoords[1] = currentCoords[1] + displacements[i, 1];
-                if (!(this.kingSurvivalGameBoard.CheckPositionInBoard(newCoords) && this.kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
+                for (int i = 0; i < displacements.GetLength(0); i++)
                 {
-                    this.theKing.FigureExistingMoves[i] = false;
+                    newCoords[0] = currentCoords[0] + displacements[i, 0];
+                    newCoords[1] = currentCoords[1] + displacements[i, 1];
+                    if (!(this.kingSurvivalGameBoard.CheckPositionInBoard(newCoords) && this.kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
+                    {
+                        this.theKing.FigureExistingMoves[i] = false;
+                    }
+                }
+
+                for (int i = 0; i < 4; i++)
+                {
+                    if (this.theKing.FigureExistingMoves[i] == true)
+                    {
+                        allAreFalse = false;
+                    }
                 }
             }
-
-            bool allAreFalse = true;
-            for (int i = 0; i < 4; i++)
+            catch (IndexOutOfRangeException iore)
             {
-                if (this.theKing.FigureExistingMoves[i] == true)
-                {
-                    allAreFalse = false;
-                }
+                throw new IndexOutOfRangeException("King availible moves are only four and you try to access nonexisting value. \n{0}", iore);
             }
 
             if (allAreFalse)
@@ -435,74 +382,79 @@ namespace KingSurvival
             this.kingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
             this.kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] = sign;
 
-            for (int i = 0; i < 4; i++)
+            try
             {
-                this.theKing.FigureExistingMoves[i] = true;
+                for (int i = 0; i < 4; i++)
+                {
+                    this.theKing.FigureExistingMoves[i] = true;
+                }
+            }
+            catch (IndexOutOfRangeException iore)
+            {
+                throw new IndexOutOfRangeException("King availible moves are only four and you try to access nonexisting value. \n{0}", iore);
             }
 
             return newCoords;
         }
 
+        //private int indexKing = 0;
+
         public virtual string ReadKingInput()
         {
-            ////string[] sampleInput = new string[] {
-            ////"kur",
-            ////"kur",
-            ////"kul",
-            ////"kdr",
-            ////"kdr",
-            ////"kdr"
-            ////};
-
-            ////string[] sampleInput = new string[] {
-            ////"kur",
-            ////"kur",
-            ////"kur",
-            ////"kur",
-            ////"kul",
-            ////"kul",
-            ////"kur"
-            ////};
-
+            //string[] sampleInput = new string[] {
+            //"kur",
+            //"kur",
+            //"kul",
+            //"kdr",
+            //"kdr",
+            //"kdr"
+            //};
+            //string[] sampleInput = new string[] {
+            //"kur",
+            //"kur",
+            //"kur",
+            //"kur",
+            //"kul",
+            //"kul",
+            //"kur"
+            //};
             //// Test all pawns down
-            ////string[] sampleInput = new string[] {
-            ////"kur",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kul",
-            ////"kul",
-            ////"kul",
-            ////"kdr",
-            ////"kul",
-            ////"kdr",
-            ////"kul",
-            ////"kdr",
-            ////"kul",
-            ////"kdr",
-            ////"kul",
-            ////"kdr",
-            ////"kul"
-            ////};
-
-            ////if (indexKing < sampleInput.Length)
-            ////{
-            ////    //Console.WriteLine(indexKing);
-            ////    Console.WriteLine(sampleInput[indexKing]);
-            ////    return sampleInput[indexKing++];
-            ////}
-
+            //string[] sampleInput = new string[] {
+            //"kur",
+            //"kur",
+            //"kdl",
+            //"kur",
+            //"kdl",
+            //"kur",
+            //"kdl",
+            //"kur",
+            //"kdl",
+            //"kur",
+            //"kdl",
+            //"kur",
+            //"kdl",
+            //"kur",
+            //"kdl",
+            //"kul",
+            //"kul",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kdr",
+            //"kul"
+            //};
+            //if (indexKing < sampleInput.Length)
+            //{
+            //    //Console.WriteLine(indexKing);
+            //    Console.WriteLine(sampleInput[indexKing]);
+            //    return sampleInput[indexKing++];
+            //}
             string kingInput = Console.ReadLine();
             return kingInput;
         }
@@ -529,7 +481,7 @@ namespace KingSurvival
                 else
                 {
                     input = input.ToUpper();
-                    isExecuted = this.ProcessCommand(input);
+                    isExecuted = this.ProcessPawnCommand(input);
                 }
             }
 
@@ -544,6 +496,67 @@ namespace KingSurvival
             this.InteractWithUser();
         }
 
+        public bool ProcessPawnCommand(string checkedInput)
+        {
+            bool isCommandNameCorrect = this.CheckPawnPlayerInput(checkedInput);
+
+            if (isCommandNameCorrect)
+            {
+                char startLetter = checkedInput[0];
+                switch (startLetter)
+                {
+                    case 'A':
+                        return this.MovePawn(checkedInput);
+
+                    case 'B':
+                        return this.MovePawn(checkedInput);
+
+                    case 'C':
+                        return this.MovePawn(checkedInput);
+
+                    case 'D':
+                        return this.MovePawn(checkedInput);
+
+                    default:
+                        throw new ArgumentException("Input command start was invalid symbol!");
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Checks if the player input for pawn is correct.
+        /// </summary>
+        /// <param name="stringToCheck">Takes a game command.</param>
+        /// <returns>Returns a <see cref="System.Boolean"/>.</returns>
+        public bool CheckPawnPlayerInput(string stringToCheck)
+        {
+            char startLetter = stringToCheck[0];
+            switch (startLetter)
+            {
+                case 'A':
+                    return this.ChechInput(stringToCheck, this.firstPawn.ValidFigureInputs);
+
+                case 'B':
+                    return this.ChechInput(stringToCheck, this.secondPawn.ValidFigureInputs);
+
+                case 'C':
+                    return this.ChechInput(stringToCheck, this.thirdPawn.ValidFigureInputs);
+
+                case 'D':
+                    return this.ChechInput(stringToCheck, this.fourthPawn.ValidFigureInputs);
+
+                default:
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid command name!");
+                    Console.ResetColor();
+                    return false;
+            }
+        }
+
         private bool MovePawn(string checkedInput)
         {
             char figure = checkedInput[0];
@@ -553,12 +566,16 @@ namespace KingSurvival
             {
                 if (this.allPawns[i].FigureSign == figure)
                 {
-                    coords = this.allPawns[i].GetNewFigureCoords(checkedInput);
+                    coords = this.allPawns[i].GetFigureNewCoords(checkedInput);
 
                     if (this.CalcNextPawnPosition(coords, this.allPawns[i].FigurePosition, figure) != null)
                     {
                         this.allPawns[i].FigurePosition[0] = coords[0];
                         this.allPawns[i].FigurePosition[1] = coords[1];
+                    }
+                    else
+                    {
+                        this.ProcessPawnSide();
                     }
 
                     break;
@@ -596,7 +613,6 @@ namespace KingSurvival
                         break;
                     default:
                         throw new ArgumentException("The currunet pawn type was invalid!");
-                        break;
                 }
 
                 return newCoords;
@@ -619,7 +635,6 @@ namespace KingSurvival
                         break;
                     default:
                         throw new ArgumentException("The currunet pawn type was invalid!");
-                        break;
                 }
 
                 Console.BackgroundColor = ConsoleColor.DarkYellow;
@@ -634,37 +649,43 @@ namespace KingSurvival
         {
             bool allAreFalse = true;
             int[,] displasment = 
-            { 
+            {
                 { 1, -2 },
-                { 1, 2 }        
+                { 1, 2 }
             };
 
-            int[] newCoords = new int[2];
-            for (int i = 0; i < this.allPawns.Count; i++)
+            try
             {
-                for (int j = 0; j < 2; j++)
+                int[] newCoords = new int[2];
+                for (int i = 0; i < this.allPawns.Count; i++)
                 {
-                    newCoords[0] = this.allPawns[i].FigurePosition[0] + displasment[j, 0];
-                    newCoords[1] = this.allPawns[i].FigurePosition[1] + displasment[j, 1];
-                    if (!(this.kingSurvivalGameBoard.CheckPositionInBoard(newCoords) && this.kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
+                    for (int j = 0; j < 2; j++)
                     {
-                        this.allPawns[i].FigureExistingMoves[j] = false;
+                        newCoords[0] = this.allPawns[i].FigurePosition[0] + displasment[j, 0];
+                        newCoords[1] = this.allPawns[i].FigurePosition[1] + displasment[j, 1];
+                        if (!(this.kingSurvivalGameBoard.CheckPositionInBoard(newCoords) && this.kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
+                        {
+                            this.allPawns[i].FigureExistingMoves[j] = false;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < this.allPawns.Count; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (this.allPawns[i].FigureExistingMoves[j] == true)
+                        {
+                            allAreFalse = false;
+                            break;
+                        }
                     }
                 }
             }
-
-            for (int i = 0; i < this.allPawns.Count; i++)
+            catch (IndexOutOfRangeException iore)
             {
-                for (int j = 0; j < 2; j++)
-                {
-                    if (this.allPawns[i].FigureExistingMoves[j] == true)
-                    {
-                        allAreFalse = false;
-                        break;
-                    }
-                }
+                throw new IndexOutOfRangeException("Pawn availible moves are only two and you try to access nonexisting value. \n{0}", iore);
             }
-
             if (allAreFalse)
             {
                 Console.WriteLine("King wins!");
@@ -672,69 +693,67 @@ namespace KingSurvival
             }
         }
 
+        //private int indexPawn = 0;
+
         public virtual string ReadPawnInput()
         {
-            //// Pawns win, king is in down right corner
-            ////string[] sampleInput = new string[] {
-            ////"cdr",
-            ////"cdr",
-            ////"cdl",
-            ////"cdr",
-            ////"cdr",
-            ////"cdl"
-            ////};
-
+            //Pawns win, king is in down right corner
+            //string[] sampleInput = new string[] {
+            //"cdr",
+            //"cdr",
+            //"cdl",
+            //"cdr",
+            //"cdr",
+            //"cdl"
+            //};
             ////King win
-            ////string[] sampleInput = new string[]
-            ////{
-            ////    "ddl",
-            ////    "ddl",
-            ////    "ddl",
-            ////    "ddl",
-            ////    "ddl",
-            ////    "ddl",
-            ////    "ddr"
-            ////};
-
+            //string[] sampleInput = new string[]
+            //{
+            //    "ddl",
+            //    "ddl",
+            //    "ddl",
+            //    "ddl",
+            //    "ddl",
+            //    "ddl",
+            //    "ddr"
+            //};
             //// Test all pawns down
-            ////string[] sampleInput = new string[] {
-            ////"adr",
-            ////"adl",
-            ////"adr",
-            ////"adl",
-            ////"adr",
-            ////"adl",
-            ////"adr",
-            ////"bdr",
-            ////"bdl",
-            ////"bdr",
-            ////"bdl",
-            ////"bdr",
-            ////"bdl",
-            ////"bdr",
-            ////"cdr",
-            ////"cdl",
-            ////"cdr",
-            ////"cdl",
-            ////"cdr",
-            ////"cdl",
-            ////"cdr",
-            ////"ddr",
-            ////"ddl",
-            ////"ddr",
-            ////"ddl",
-            ////"ddr",
-            ////"ddl",
-            ////"ddr",
-            ////};
-
-            ////if (indexPawn < sampleInput.Length)
-            ////{
-            ////    //Console.WriteLine(indexPawn);
-            ////    Console.WriteLine(sampleInput[indexPawn]);
-            ////    return sampleInput[indexPawn++];
-            ////}
-
+            //string[] sampleInput = new string[] {
+            //"adr",
+            //"adl",
+            //"adr",
+            //"adl",
+            //"adr",
+            //"adl",
+            //"adr",
+            //"bdr",
+            //"bdl",
+            //"bdr",
+            //"bdl",
+            //"bdr",
+            //"bdl",
+            //"bdr",
+            //"cdr",
+            //"cdl",
+            //"cdr",
+            //"cdl",
+            //"cdr",
+            //"cdl",
+            //"cdr",
+            //"ddr",
+            //"ddl",
+            //"ddr",
+            //"ddl",
+            //"ddr",
+            //"ddl",
+            //"ddr",
+            //};
+            //if (indexPawn < sampleInput.Length)
+            //{
+            //    //Console.WriteLine(indexPawn);
+            //    Console.WriteLine(sampleInput[indexPawn]);
+            //    return sampleInput[indexPawn++];
+            //}
             string pawnInput = Console.ReadLine();
             return pawnInput;
         }

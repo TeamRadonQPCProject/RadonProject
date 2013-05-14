@@ -72,6 +72,12 @@ namespace KingSurvival
                     throw new ArgumentNullException("PawnB postion must not be null or empty!");
                 }
 
+                // Check is figure position in board.
+                if ((value[0] < 4 || value[0] > 18) && (value[1] < 2 || value[1] > 9))
+                {
+                    throw new ArgumentException("You try to set king position out of board.");
+                }
+
                 this.figurePosition = value;
             }
         }

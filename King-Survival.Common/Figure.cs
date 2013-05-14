@@ -41,6 +41,6 @@ namespace KingSurvival
         /// </summary>
         /// <param name="command">A valid game figure command.</param>
         /// <returns>Returns the new coordinates of the figure.</returns>
-        public abstract int[] GetNewFigureCoords(string command);
+        public abstract int[] GetFigureNewCoords(string command);
     }
 }
