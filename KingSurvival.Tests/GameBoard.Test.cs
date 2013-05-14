@@ -17,7 +17,9 @@ namespace KingSurvival.Tests
         [TestMethod]
         public void GameBoard_TestCheckPostionOutOfBoard()
         {
-            
+            GameBoard gameBoard = new GameBoard();
+
+            Assert.IsFalse(gameBoard.CheckPositionInBoard(new int[] { 2000, 2000 }));
         }
     }
 }
