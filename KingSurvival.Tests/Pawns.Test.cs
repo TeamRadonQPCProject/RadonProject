@@ -4,7 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class PawnATest
+    public class PawnsTest
     {
         [TestMethod]
         public void PawnA_TestPawnStartPosition()

@@ -52,7 +52,7 @@
   <ItemGroup>
     <Compile Include="GameLogic.Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PawnA.Test.cs" />
+    <Compile Include="Pawns.Test.cs" />
     <Compile Include="GameBoard.Test.cs" />
   </ItemGroup>
   <ItemGroup>
