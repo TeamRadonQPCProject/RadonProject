@@ -25,7 +25,7 @@ namespace KingSurvival
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
             myTestEngine.StartGame();
-            myTestEngine.InteractWithUser();
+            myTestEngine.StartNextTurn();
         }
     }
 }

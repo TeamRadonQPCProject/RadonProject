@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleWriter.cs" />
     <Compile Include="GameBoard.cs" />
     <Compile Include="Figure.cs" />
     <Compile Include="GameEngine.cs" />
