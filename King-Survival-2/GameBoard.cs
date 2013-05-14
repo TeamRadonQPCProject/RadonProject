@@ -1,11 +1,21 @@
-﻿namespace KingSurvival
+﻿//-----------------------------------------------------------------------
+// <copyright file="GameBoard.cs" company="TelerikAcademy">
+//     All rights reserved © Telerik Academy 2012-2013
+// </copyright>
+//-----------------------------------------------------------------------
+namespace KingSurvival
 {
     using System;
 
+    /// <summary>
+    /// A class for Kings Survival game board.
+    /// </summary>
     public class GameBoard
     {
-        // consts
-        private readonly int[,] BoardCorners = 
+        /// <summary>
+        /// The game boards corners.
+        /// </summary>
+        private readonly int[,] boardCorners = 
         {
             { 2, 4 }, 
             { 2, 18 }, 
@@ -13,7 +23,9 @@
             { 9, 18 }
         };
 
-        // fileds
+        /// <summary>
+        /// The game boards contents.
+        /// </summary>
         private readonly char[,] board = 
         {
             { 'U', 'L', ' ', ' ', '0', ' ', '1', ' ', '2', ' ', '3', ' ', '4', ' ', '5', ' ', '6', ' ', '7', ' ', ' ', 'U', 'R' },
@@ -30,6 +42,10 @@
             { 'D', 'L', ' ', ' ', '0', ' ', '1', ' ', '2', ' ', '3', ' ', '4', ' ', '5', ' ', '6', ' ', '7', ' ', ' ', 'D', 'R' },
         };
 
+        /// <summary>
+        /// Gets the game board contents.
+        /// </summary>
+        /// <value>The game board contents.</value>
         public char[,] Board
         {
             get
@@ -38,12 +54,14 @@
             }
         }
 
-        // methods
+        /// <summary>
+        /// Draws the game board on the console.
+        /// </summary>
         public void ShowBoard()
         {
-            // TODO: Fix a bug thats not showing the illegal move message
-            //// After every figure move clear console
-            //Console.Clear();
+            //// TODO: Fix a bug thats not showing the illegal move message
+            ////// After every figure move clear console
+            ////Console.Clear();
 
             // This will print empty line on console
             Console.WriteLine();
@@ -98,23 +116,33 @@
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Checks if a given position is within the game board.
+        /// </summary>
+        /// <param name="positionCoordinates">Takes a valid set of coordinates.</param>
+        /// <returns>Returns a <see cref="System.Boolean"/> variable if the position is in the board or if its not.</returns>
         public bool CheckPositionInBoard(int[] positionCoordinates)
         {
             int positonRow = positionCoordinates[0];
 
-            bool isRowInBoard = 
-                (positonRow >= BoardCorners[0, 0]) && 
-                (positonRow <= BoardCorners[3, 0]);
+            bool isRowInBoard =
+                (positonRow >= this.boardCorners[0, 0]) &&
+                (positonRow <= this.boardCorners[3, 0]);
 
             int positonCol = positionCoordinates[1];
 
-            bool isColInBoard = 
-                (positonCol >= BoardCorners[0, 1]) && 
-                (positonCol <= BoardCorners[3, 1]);
+            bool isColInBoard =
+                (positonCol >= this.boardCorners[0, 1]) &&
+                (positonCol <= this.boardCorners[3, 1]);
 
             return isRowInBoard && isColInBoard;
         }
 
+        /// <summary>
+        /// A helper method the prints blue squares with black font on the <see cref="System.Console"/>.
+        /// </summary>
+        /// <param name="row">Takes a valid game board row coordinate.</param>
+        /// <param name="col">Takes a valid game board column coordinate.</param>
         private void PrintBlueSquareWithBlackFont(int row, int col)
         {
             // Set colors on console
@@ -126,6 +154,11 @@
             Console.ResetColor();
         }
 
+        /// <summary>
+        /// A helper method the prints green squares with black font on the <see cref="System.Console"/>.
+        /// </summary>
+        /// <param name="row">Takes a valid game board row coordinate.</param>
+        /// <param name="col">Takes a valid game board column coordinate.</param>
         private void PrintGreenSquareWithBlackFont(int row, int col)
         {
             // Set colors on console
