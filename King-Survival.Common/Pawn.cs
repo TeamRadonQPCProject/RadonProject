@@ -43,7 +43,7 @@ namespace KingSurvival
         /// <param name="figurePosition">Sets the figures position in the world.</param>
         public Pawn(char figureSign, string[] validFigureInputs, int[] figurePosition)
         {
-            this.FigureSign = figureSign;
+            this.figureSign = figureSign;
             this.ValidFigureInputs = validFigureInputs;
             this.FigurePosition = figurePosition;
         }
@@ -57,11 +57,6 @@ namespace KingSurvival
             get
             {
                 return this.figureSign;
-            }
-
-            set
-            {
-                this.figureSign = value;
             }
         }
 
@@ -106,6 +101,11 @@ namespace KingSurvival
 
             set
             {
+                if (value == null || value.Length == 0)
+                {
+                    throw new ArgumentNullException("The Pawn's existing moves are mandatory!");
+                }
+
                 this.figureExistingMoves = value;
             }
         }
@@ -123,6 +123,11 @@ namespace KingSurvival
 
             set
             {
+                if (value == null || value.Length == 0)
+                {
+                    throw new ArgumentNullException("The valid Pawn inputs are mandatory!");
+                }
+
                 this.validFigureInputs = value;
             }
         }
