@@ -58,6 +58,17 @@ namespace KingSurvival
 
             set
             {
+                if (value == null || value.Length == 0)
+                {
+                    throw new ArgumentNullException("King postion must not be null or empty!");
+                }
+
+                // Check is figure position in board.
+                if ((value[0] < 4 || value[0] > 18) && (value[1] < 2 || value[1] > 9))
+                {
+                    throw new ArgumentException("You try to set king position out of board.");
+                }
+
                 figurePosition = value;
             }
         }

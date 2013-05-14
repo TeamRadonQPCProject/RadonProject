@@ -3,6 +3,7 @@
 //     All rights reserved © Telerik Academy 2012-2013
 // </copyright>
 //-----------------------------------------------------------------------
+
 namespace KingSurvival
 {
     using System;
@@ -224,23 +225,30 @@ namespace KingSurvival
                 { -1, 2 },
             };
 
-            for (int i = 0; i < displacements.GetLength(0); i++)
+            bool allAreFalse = true;
+            try
             {
-                newCoords[0] = currentCoords[0] + displacements[i, 0];
-                newCoords[1] = currentCoords[1] + displacements[i, 1];
-                if (!(this.kingSurvivalGameBoard.CheckPositionInBoard(newCoords) && this.kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
+                for (int i = 0; i < displacements.GetLength(0); i++)
                 {
-                    this.theKing.FigureExistingMoves[i] = false;
+                    newCoords[0] = currentCoords[0] + displacements[i, 0];
+                    newCoords[1] = currentCoords[1] + displacements[i, 1];
+                    if (!(this.kingSurvivalGameBoard.CheckPositionInBoard(newCoords) && this.kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
+                    {
+                        this.theKing.FigureExistingMoves[i] = false;
+                    }
+                }
+
+                for (int i = 0; i < 4; i++)
+                {
+                    if (this.theKing.FigureExistingMoves[i] == true)
+                    {
+                        allAreFalse = false;
+                    }
                 }
             }
-
-            bool allAreFalse = true;
-            for (int i = 0; i < 4; i++)
+            catch (IndexOutOfRangeException iore)
             {
-                if (this.theKing.FigureExistingMoves[i] == true)
-                {
-                    allAreFalse = false;
-                }
+                throw new IndexOutOfRangeException("King availible moves are only four and you try to access nonexisting value. \n{0}", iore);
             }
 
             if (allAreFalse)
@@ -374,74 +382,79 @@ namespace KingSurvival
             this.kingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
             this.kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] = sign;
 
-            for (int i = 0; i < 4; i++)
+            try
             {
-                this.theKing.FigureExistingMoves[i] = true;
+                for (int i = 0; i < 4; i++)
+                {
+                    this.theKing.FigureExistingMoves[i] = true;
+                }
+            }
+            catch (IndexOutOfRangeException iore)
+            {
+                throw new IndexOutOfRangeException("King availible moves are only four and you try to access nonexisting value. \n{0}", iore);
             }
 
             return newCoords;
         }
 
+        //private int indexKing = 0;
+
         public virtual string ReadKingInput()
         {
-            ////string[] sampleInput = new string[] {
-            ////"kur",
-            ////"kur",
-            ////"kul",
-            ////"kdr",
-            ////"kdr",
-            ////"kdr"
-            ////};
-
-            ////string[] sampleInput = new string[] {
-            ////"kur",
-            ////"kur",
-            ////"kur",
-            ////"kur",
-            ////"kul",
-            ////"kul",
-            ////"kur"
-            ////};
-
+            //string[] sampleInput = new string[] {
+            //"kur",
+            //"kur",
+            //"kul",
+            //"kdr",
+            //"kdr",
+            //"kdr"
+            //};
+            //string[] sampleInput = new string[] {
+            //"kur",
+            //"kur",
+            //"kur",
+            //"kur",
+            //"kul",
+            //"kul",
+            //"kur"
+            //};
             //// Test all pawns down
-            ////string[] sampleInput = new string[] {
-            ////"kur",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kul",
-            ////"kul",
-            ////"kul",
-            ////"kdr",
-            ////"kul",
-            ////"kdr",
-            ////"kul",
-            ////"kdr",
-            ////"kul",
-            ////"kdr",
-            ////"kul",
-            ////"kdr",
-            ////"kul"
-            ////};
-
-            ////if (indexKing < sampleInput.Length)
-            ////{
-            ////    //Console.WriteLine(indexKing);
-            ////    Console.WriteLine(sampleInput[indexKing]);
-            ////    return sampleInput[indexKing++];
-            ////}
-
+            //string[] sampleInput = new string[] {
+            //"kur",
+            //"kur",
+            //"kdl",
+            //"kur",
+            //"kdl",
+            //"kur",
+            //"kdl",
+            //"kur",
+            //"kdl",
+            //"kur",
+            //"kdl",
+            //"kur",
+            //"kdl",
+            //"kur",
+            //"kdl",
+            //"kul",
+            //"kul",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kdr",
+            //"kul",
+            //"kdr",
+            //"kul"
+            //};
+            //if (indexKing < sampleInput.Length)
+            //{
+            //    //Console.WriteLine(indexKing);
+            //    Console.WriteLine(sampleInput[indexKing]);
+            //    return sampleInput[indexKing++];
+            //}
             string kingInput = Console.ReadLine();
             return kingInput;
         }
@@ -600,7 +613,6 @@ namespace KingSurvival
                         break;
                     default:
                         throw new ArgumentException("The currunet pawn type was invalid!");
-                        break;
                 }
 
                 return newCoords;
@@ -623,7 +635,6 @@ namespace KingSurvival
                         break;
                     default:
                         throw new ArgumentException("The currunet pawn type was invalid!");
-                        break;
                 }
 
                 Console.BackgroundColor = ConsoleColor.DarkYellow;
@@ -638,37 +649,43 @@ namespace KingSurvival
         {
             bool allAreFalse = true;
             int[,] displasment = 
-            { 
+            {
                 { 1, -2 },
-                { 1, 2 }        
+                { 1, 2 }
             };
 
-            int[] newCoords = new int[2];
-            for (int i = 0; i < this.allPawns.Count; i++)
+            try
             {
-                for (int j = 0; j < 2; j++)
+                int[] newCoords = new int[2];
+                for (int i = 0; i < this.allPawns.Count; i++)
                 {
-                    newCoords[0] = this.allPawns[i].FigurePosition[0] + displasment[j, 0];
-                    newCoords[1] = this.allPawns[i].FigurePosition[1] + displasment[j, 1];
-                    if (!(this.kingSurvivalGameBoard.CheckPositionInBoard(newCoords) && this.kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
+                    for (int j = 0; j < 2; j++)
                     {
-                        this.allPawns[i].FigureExistingMoves[j] = false;
+                        newCoords[0] = this.allPawns[i].FigurePosition[0] + displasment[j, 0];
+                        newCoords[1] = this.allPawns[i].FigurePosition[1] + displasment[j, 1];
+                        if (!(this.kingSurvivalGameBoard.CheckPositionInBoard(newCoords) && this.kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' '))
+                        {
+                            this.allPawns[i].FigureExistingMoves[j] = false;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < this.allPawns.Count; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (this.allPawns[i].FigureExistingMoves[j] == true)
+                        {
+                            allAreFalse = false;
+                            break;
+                        }
                     }
                 }
             }
-
-            for (int i = 0; i < this.allPawns.Count; i++)
+            catch (IndexOutOfRangeException iore)
             {
-                for (int j = 0; j < 2; j++)
-                {
-                    if (this.allPawns[i].FigureExistingMoves[j] == true)
-                    {
-                        allAreFalse = false;
-                        break;
-                    }
-                }
+                throw new IndexOutOfRangeException("Pawn availible moves are only two and you try to access nonexisting value. \n{0}", iore);
             }
-
             if (allAreFalse)
             {
                 Console.WriteLine("King wins!");
@@ -676,69 +693,67 @@ namespace KingSurvival
             }
         }
 
+        //private int indexPawn = 0;
+
         public virtual string ReadPawnInput()
         {
-            //// Pawns win, king is in down right corner
-            ////string[] sampleInput = new string[] {
-            ////"cdr",
-            ////"cdr",
-            ////"cdl",
-            ////"cdr",
-            ////"cdr",
-            ////"cdl"
-            ////};
-
+            //Pawns win, king is in down right corner
+            //string[] sampleInput = new string[] {
+            //"cdr",
+            //"cdr",
+            //"cdl",
+            //"cdr",
+            //"cdr",
+            //"cdl"
+            //};
             ////King win
-            ////string[] sampleInput = new string[]
-            ////{
-            ////    "ddl",
-            ////    "ddl",
-            ////    "ddl",
-            ////    "ddl",
-            ////    "ddl",
-            ////    "ddl",
-            ////    "ddr"
-            ////};
-
+            //string[] sampleInput = new string[]
+            //{
+            //    "ddl",
+            //    "ddl",
+            //    "ddl",
+            //    "ddl",
+            //    "ddl",
+            //    "ddl",
+            //    "ddr"
+            //};
             //// Test all pawns down
-            ////string[] sampleInput = new string[] {
-            ////"adr",
-            ////"adl",
-            ////"adr",
-            ////"adl",
-            ////"adr",
-            ////"adl",
-            ////"adr",
-            ////"bdr",
-            ////"bdl",
-            ////"bdr",
-            ////"bdl",
-            ////"bdr",
-            ////"bdl",
-            ////"bdr",
-            ////"cdr",
-            ////"cdl",
-            ////"cdr",
-            ////"cdl",
-            ////"cdr",
-            ////"cdl",
-            ////"cdr",
-            ////"ddr",
-            ////"ddl",
-            ////"ddr",
-            ////"ddl",
-            ////"ddr",
-            ////"ddl",
-            ////"ddr",
-            ////};
-
-            ////if (indexPawn < sampleInput.Length)
-            ////{
-            ////    //Console.WriteLine(indexPawn);
-            ////    Console.WriteLine(sampleInput[indexPawn]);
-            ////    return sampleInput[indexPawn++];
-            ////}
-
+            //string[] sampleInput = new string[] {
+            //"adr",
+            //"adl",
+            //"adr",
+            //"adl",
+            //"adr",
+            //"adl",
+            //"adr",
+            //"bdr",
+            //"bdl",
+            //"bdr",
+            //"bdl",
+            //"bdr",
+            //"bdl",
+            //"bdr",
+            //"cdr",
+            //"cdl",
+            //"cdr",
+            //"cdl",
+            //"cdr",
+            //"cdl",
+            //"cdr",
+            //"ddr",
+            //"ddl",
+            //"ddr",
+            //"ddl",
+            //"ddr",
+            //"ddl",
+            //"ddr",
+            //};
+            //if (indexPawn < sampleInput.Length)
+            //{
+            //    //Console.WriteLine(indexPawn);
+            //    Console.WriteLine(sampleInput[indexPawn]);
+            //    return sampleInput[indexPawn++];
+            //}
             string pawnInput = Console.ReadLine();
             return pawnInput;
         }
