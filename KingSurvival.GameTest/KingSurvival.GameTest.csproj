@@ -48,9 +48,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\King-Survival-2\KingSurvival.csproj">
+    <ProjectReference Include="..\King-Survival.Common\KingSurvival.Common.csproj">
       <Project>{842daf0e-7b19-48ce-8066-4639cc1f6fb0}</Project>
-      <Name>KingSurvival</Name>
+      <Name>KingSurvival.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

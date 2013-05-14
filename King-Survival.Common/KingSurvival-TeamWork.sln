@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KingSurvival", "KingSurvival.csproj", "{842DAF0E-7B19-48CE-8066-4639CC1F6FB0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KingSurvival.Common", "KingSurvival.Common.csproj", "{842DAF0E-7B19-48CE-8066-4639CC1F6FB0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KingSurvival.Tests", "..\KingSurvival.Tests\KingSurvival.Tests.csproj", "{D404AA06-0AA5-4CCD-A5A1-DCE0D2FAED55}"
 EndProject
