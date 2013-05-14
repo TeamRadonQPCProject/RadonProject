@@ -145,36 +145,6 @@ namespace KingSurvival
             this.kingSurvivalGameBoard.ShowBoard();
         }
 
-        /// <summary>
-        /// Checks if the game input is correct.
-        /// </summary>
-        /// <param name="stringToCheck">Takes a game command.</param>
-        /// <returns>Returns a <see cref="System.Boolean"/>.</returns>
-        public bool CheckPlayerInput(string stringToCheck)
-        {
-            char startLetter = stringToCheck[0];
-            switch (startLetter)
-            {
-                case 'A':
-                    return this.ChechInput(stringToCheck, this.firstPawn.ValidFigureInputs);
-
-                case 'B':
-                    return this.ChechInput(stringToCheck, this.secondPawn.ValidFigureInputs);
-
-                case 'C':
-                    return this.ChechInput(stringToCheck, this.thirdPawn.ValidFigureInputs);
-
-                case 'D':
-                    return this.ChechInput(stringToCheck, this.fourthPawn.ValidFigureInputs);
-
-                default:
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid command name!");
-                    Console.ResetColor();
-                    return false;
-            }
-        }
-
         public bool ChechInput(string checkedString, string[] currentFigureValidInput)
         {
             bool hasAnEqual = false;
@@ -214,37 +184,6 @@ namespace KingSurvival
             }
 
             return hasAnEqual;
-        }
-
-        public bool ProcessCommand(string checkedInput)
-        {
-            bool isCommandNameCorrect = this.CheckPlayerInput(checkedInput);
-
-            if (isCommandNameCorrect)
-            {
-                char startLetter = checkedInput[0];
-                switch (startLetter)
-                {
-                    case 'A':
-                        return this.MovePawn(checkedInput);
-
-                    case 'B':
-                        return this.MovePawn(checkedInput);
-
-                    case 'C':
-                        return this.MovePawn(checkedInput);
-
-                    case 'D':
-                        return this.MovePawn(checkedInput);
-
-                    default:
-                        throw new ArgumentException("Input command start was invalid!");
-                }
-            }
-            else
-            {
-                return false;
-            }
         }
 
         /* KING LOGIC - moved to class King*/
@@ -529,7 +468,7 @@ namespace KingSurvival
                 else
                 {
                     input = input.ToUpper();
-                    isExecuted = this.ProcessCommand(input);
+                    isExecuted = this.ProcessPawnCommand(input);
                 }
             }
 
@@ -542,6 +481,67 @@ namespace KingSurvival
 
             this.HasPawnsExistingMove();
             this.InteractWithUser();
+        }
+
+        public bool ProcessPawnCommand(string checkedInput)
+        {
+            bool isCommandNameCorrect = this.CheckPawnPlayerInput(checkedInput);
+
+            if (isCommandNameCorrect)
+            {
+                char startLetter = checkedInput[0];
+                switch (startLetter)
+                {
+                    case 'A':
+                        return this.MovePawn(checkedInput);
+
+                    case 'B':
+                        return this.MovePawn(checkedInput);
+
+                    case 'C':
+                        return this.MovePawn(checkedInput);
+
+                    case 'D':
+                        return this.MovePawn(checkedInput);
+
+                    default:
+                        throw new ArgumentException("Input command start was invalid symbol!");
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Checks if the player input for pawn is correct.
+        /// </summary>
+        /// <param name="stringToCheck">Takes a game command.</param>
+        /// <returns>Returns a <see cref="System.Boolean"/>.</returns>
+        public bool CheckPawnPlayerInput(string stringToCheck)
+        {
+            char startLetter = stringToCheck[0];
+            switch (startLetter)
+            {
+                case 'A':
+                    return this.ChechInput(stringToCheck, this.firstPawn.ValidFigureInputs);
+
+                case 'B':
+                    return this.ChechInput(stringToCheck, this.secondPawn.ValidFigureInputs);
+
+                case 'C':
+                    return this.ChechInput(stringToCheck, this.thirdPawn.ValidFigureInputs);
+
+                case 'D':
+                    return this.ChechInput(stringToCheck, this.fourthPawn.ValidFigureInputs);
+
+                default:
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid command name!");
+                    Console.ResetColor();
+                    return false;
+            }
         }
 
         private bool MovePawn(string checkedInput)
