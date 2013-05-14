@@ -553,12 +553,16 @@ namespace KingSurvival
             {
                 if (this.allPawns[i].FigureSign == figure)
                 {
-                    coords = this.allPawns[i].GetNewFigureCoords(checkedInput);
+                    coords = this.allPawns[i].GetFigureNewCoords(checkedInput);
 
                     if (this.CalcNextPawnPosition(coords, this.allPawns[i].FigurePosition, figure) != null)
                     {
                         this.allPawns[i].FigurePosition[0] = coords[0];
                         this.allPawns[i].FigurePosition[1] = coords[1];
+                    }
+                    else
+                    {
+                        this.ProcessPawnSide();
                     }
 
                     break;

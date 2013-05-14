@@ -59,11 +59,10 @@ namespace KingSurvival
         /// </summary>
         public void ShowBoard()
         {
-            //// TODO: Fix a bug thats not showing the illegal move message
-            ////// After every figure move clear console
-            ////Console.Clear();
+            // After every figure move clear console
+            Console.Clear();
 
-            // This will print empty line on console
+            // This will print empty line on top of board
             Console.WriteLine();
 
             // Make board colorful

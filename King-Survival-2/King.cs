@@ -75,7 +75,7 @@ namespace KingSurvival
             }
         }
 
-        public override int[] GetNewFigureCoords(string command)
+        public override int[] GetFigureNewCoords(string command)
         {
             throw new NotImplementedException();
         }
