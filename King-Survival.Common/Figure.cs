@@ -13,10 +13,10 @@ namespace KingSurvival
     public abstract class Figure
     {
         /// <summary>
-        /// Gets the figure sign.
+        /// Gets or sets the figure sign.
         /// </summary>
         /// <value>The sign that represents the current figure.</value>
-        public virtual char FigureSign { get; private set; }
+        public virtual char FigureSign { get; set; }
 
         /// <summary>
         /// Gets or sets the position for the current figure.
@@ -25,10 +25,10 @@ namespace KingSurvival
         public virtual int[] FigurePosition { get; set; }
 
         /// <summary>
-        /// Gets the list of valid inputs that the figure can process.
+        /// Gets or sets the list of valid inputs that the figure can process.
         /// </summary>
         /// <value>A list of valid inputs that the figure can process.</value>
-        public virtual string[] ValidFigureInputs { get; private set; }
+        public virtual string[] ValidFigureInputs { get; set; }
 
         /// <summary>
         /// Gets or sets the moves that the figure can make.

@@ -18,10 +18,10 @@ namespace KingSurvival
         private int movementsCounter = 0;
         private bool gameIsFinished = false;
         private GameBoard kingSurvivalGameBoard;
-        private PawnA firstPawn;
-        private PawnB secondPawn;
-        private PawnC thirdPawn;
-        private PawnD fourthPawn;
+        private Pawn firstPawn;
+        private Pawn secondPawn;
+        private Pawn thirdPawn;
+        private Pawn fourthPawn;
         private King theKing;
         private readonly List<Figure> allPawns;
 
@@ -34,7 +34,7 @@ namespace KingSurvival
         /// <param name="thirdPawn">Takes the games third pawn.</param>
         /// <param name="fourthPawn">Takes the games fourth pawn.</param>
         /// <param name="theKing">Takes the games king.</param>
-        public GameEngine(GameBoard kingSurvivalGameBoard, PawnA firstPawn, PawnB secondPawn, PawnC thirdPawn, PawnD fourthPawn, King theKing)
+        public GameEngine(GameBoard kingSurvivalGameBoard, Pawn firstPawn, Pawn secondPawn, Pawn thirdPawn, Pawn fourthPawn, King theKing)
         {
             this.kingSurvivalGameBoard = kingSurvivalGameBoard;
             this.firstPawn = firstPawn;
