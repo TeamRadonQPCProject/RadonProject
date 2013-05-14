@@ -1,10 +1,23 @@
-﻿namespace KingSurvival
+﻿//-----------------------------------------------------------------------
+// <copyright file="Pawn.cs" company="TelerikAcademy">
+//     All rights reserved © Telerik Academy 2012-2013
+// </copyright>
+//-----------------------------------------------------------------------
+namespace KingSurvival
 {
     using System;
-
+    
+    /// <summary>
+    /// A parent class for all the pawns in the game.
+    /// </summary>
     public class Pawn : Figure
     {
-        public override int[] MoveFigure(string command)
+        /// <summary>
+        /// Gets the new pawn position.
+        /// </summary>
+        /// <param name="command">Takes a valid pawn command.</param>
+        /// <returns>Returns the new valid pawn position.</returns>
+        public override int[] GetNewFigureCoords(string command)
         {
             int[] displasmentDownLeft = { 1, -2 };
             int[] displasmentDownRight = { 1, 2 };

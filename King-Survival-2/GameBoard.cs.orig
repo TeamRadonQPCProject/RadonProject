@@ -1,21 +1,11 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="GameBoard.cs" company="TelerikAcademy">
-//     All rights reserved © Telerik Academy 2012-2013
-// </copyright>
-//-----------------------------------------------------------------------
-namespace KingSurvival
+﻿namespace KingSurvival
 {
     using System;
 
-    /// <summary>
-    /// A class for Kings Survival game board.
-    /// </summary>
     public class GameBoard
     {
-        /// <summary>
-        /// The game boards corners.
-        /// </summary>
-        private readonly int[,] boardCorners = 
+        // consts
+        private readonly int[,] BoardCorners = 
         {
             { 2, 4 }, 
             { 2, 18 }, 
@@ -23,9 +13,7 @@ namespace KingSurvival
             { 9, 18 }
         };
 
-        /// <summary>
-        /// The game boards contents.
-        /// </summary>
+        // fileds
         private readonly char[,] board = 
         {
             { 'U', 'L', ' ', ' ', '0', ' ', '1', ' ', '2', ' ', '3', ' ', '4', ' ', '5', ' ', '6', ' ', '7', ' ', ' ', 'U', 'R' },
@@ -42,10 +30,6 @@ namespace KingSurvival
             { 'D', 'L', ' ', ' ', '0', ' ', '1', ' ', '2', ' ', '3', ' ', '4', ' ', '5', ' ', '6', ' ', '7', ' ', ' ', 'D', 'R' },
         };
 
-        /// <summary>
-        /// Gets the game board contents.
-        /// </summary>
-        /// <value>The game board contents.</value>
         public char[,] Board
         {
             get
@@ -54,14 +38,12 @@ namespace KingSurvival
             }
         }
 
-        /// <summary>
-        /// Draws the game board on the console.
-        /// </summary>
+        // methods
         public void ShowBoard()
         {
-            //// TODO: Fix a bug thats not showing the illegal move message
-            ////// After every figure move clear console
-            ////Console.Clear();
+            // TODO: Fix a bug thats not showing the illegal move message
+            //// After every figure move clear console
+            //Console.Clear();
 
             // This will print empty line on console
             Console.WriteLine();
@@ -116,33 +98,30 @@ namespace KingSurvival
             Console.WriteLine();
         }
 
-        /// <summary>
-        /// Checks if a given position is within the game board.
-        /// </summary>
-        /// <param name="positionCoordinates">Takes a valid set of coordinates.</param>
-        /// <returns>Returns a <see cref="System.Boolean"/> variable if the position is in the board or if its not.</returns>
         public bool CheckPositionInBoard(int[] positionCoordinates)
         {
+<<<<<<< HEAD
+            int positonRow = positionCoodinates[0];
+
+            bool isRowInBoard = 
+                (positonRow >= BoardCorners[0, 0]) && 
+                (positonRow <= BoardCorners[3, 0]);
+
+            int positonCol = positionCoodinates[1];
+
+            bool isColInBoard = 
+                (positonCol >= BoardCorners[0, 1]) && 
+                (positonCol <= BoardCorners[3, 1]);
+
+=======
             int positonRow = positionCoordinates[0];
-
-            bool isRowInBoard =
-                (positonRow >= this.boardCorners[0, 0]) &&
-                (positonRow <= this.boardCorners[3, 0]);
-
+            bool isRowInBoard = (positonRow >= BoardCorners[0, 0]) && (positonRow <= BoardCorners[3, 0]);
             int positonCol = positionCoordinates[1];
-
-            bool isColInBoard =
-                (positonCol >= this.boardCorners[0, 1]) &&
-                (positonCol <= this.boardCorners[3, 1]);
-
+            bool isColInBoard = (positonCol >= BoardCorners[0, 1]) && (positonCol <= BoardCorners[3, 1]);
+>>>>>>> e799737fa36a13db846ebb85ead52983c35f8be2
             return isRowInBoard && isColInBoard;
         }
 
-        /// <summary>
-        /// A helper method the prints blue squares with black font on the <see cref="System.Console"/>.
-        /// </summary>
-        /// <param name="row">Takes a valid game board row coordinate.</param>
-        /// <param name="col">Takes a valid game board column coordinate.</param>
         private void PrintBlueSquareWithBlackFont(int row, int col)
         {
             // Set colors on console
@@ -154,11 +133,6 @@ namespace KingSurvival
             Console.ResetColor();
         }
 
-        /// <summary>
-        /// A helper method the prints green squares with black font on the <see cref="System.Console"/>.
-        /// </summary>
-        /// <param name="row">Takes a valid game board row coordinate.</param>
-        /// <param name="col">Takes a valid game board column coordinate.</param>
         private void PrintGreenSquareWithBlackFont(int row, int col)
         {
             // Set colors on console
