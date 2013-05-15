@@ -12,6 +12,7 @@
             Pawn pawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 2, 4 });
             Assert.AreEqual('A', pawn.FigureSign);
         }
+
         [TestMethod]
         public void Pawn_TestPositionSet()
         {

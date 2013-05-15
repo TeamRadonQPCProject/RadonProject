@@ -3,13 +3,13 @@
     using System;
     using KingSurvival;
 
-    class KingSurvivalGame
+    public class KingSurvivalGame
     {
-        static void Main()
+        public static void Main()
         {
             PlayerInteractor myGame = new PlayerInteractor();
             myGame.StartGame();
-            Console.WriteLine("\nThank you for using this game!\n\n");
+            Console.WriteLine("{0}Thank you for using this game!{0}{0}", Environment.NewLine);
         }
     }
 }
