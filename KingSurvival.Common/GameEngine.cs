@@ -18,12 +18,12 @@ namespace KingSurvival
         private readonly List<Figure> allPawns;
         private int movementsCounter = 0;
         private bool gameIsFinished = false;
-        private GameBoard kingSurvivalGameBoard;
-        private Pawn firstPawn;
-        private Pawn secondPawn;
-        private Pawn thirdPawn;
-        private Pawn fourthPawn;
-        private King theKing;
+        private readonly GameBoard kingSurvivalGameBoard;
+        private readonly Pawn firstPawn;
+        private readonly Pawn secondPawn;
+        private readonly Pawn thirdPawn;
+        private readonly Pawn fourthPawn;
+        private readonly King theKing;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GameEngine"/> class with all its needed components.
