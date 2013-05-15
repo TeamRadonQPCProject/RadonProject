@@ -15,7 +15,7 @@ namespace KingSurvival
         /// <summary>
         /// The PawnA sign.
         /// </summary>
-        private char figureSign;
+        private readonly char figureSign;
 
         /// <summary>
         /// The valid PawnA move commands.
