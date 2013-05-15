@@ -1,8 +1,8 @@
-﻿namespace KingSurvival.Tests
-{
-    using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+namespace KingSurvival.Tests
+{
     [TestClass]
     public class GameBoardTest
     {
