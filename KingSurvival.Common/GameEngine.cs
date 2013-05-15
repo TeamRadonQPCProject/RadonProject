@@ -284,6 +284,11 @@ namespace KingSurvival
         /// <returns>Returns if the king has won.</returns>
         public bool CheckForKingExit(int currentKingXAxe)
         {
+            if (currentKingXAxe < 2 || currentKingXAxe > 10)
+            {
+                throw new ArgumentOutOfRangeException("King is out of board boundaries.");
+            }
+
             if (currentKingXAxe == 2)
             {
                 return true;
