@@ -16,7 +16,7 @@ namespace KingSurvival
     {
         // fileds
         private readonly List<Figure> allPawns;
-        private int movementsCounter = 0;
+        private int movementsCounter = 0; 
         private bool gameIsFinished = false;
         private readonly GameBoard kingSurvivalGameBoard;
         private readonly Pawn firstPawn;
