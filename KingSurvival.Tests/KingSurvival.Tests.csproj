@@ -52,13 +52,14 @@
   <ItemGroup>
     <Compile Include="GameLogic.Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pawns.Test.cs" />
+    <Compile Include="Pawn.Test.cs" />
     <Compile Include="GameBoard.Test.cs" />
+    <Compile Include="King.Test.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\King-Survival-2\KingSurvival.csproj">
+    <ProjectReference Include="..\KingSurvival.Common\KingSurvival.Common.csproj">
       <Project>{842daf0e-7b19-48ce-8066-4639cc1f6fb0}</Project>
-      <Name>KingSurvival</Name>
+      <Name>KingSurvival.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

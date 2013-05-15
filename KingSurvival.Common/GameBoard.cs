@@ -60,7 +60,7 @@ namespace KingSurvival
         public void ShowBoard()
         {
             // After every figure move clear console
-            //Console.Clear();
+            Console.Clear();
 
             // This will print empty line on top of board
             Console.WriteLine();

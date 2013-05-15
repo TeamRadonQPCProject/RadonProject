@@ -17,15 +17,15 @@ namespace KingSurvival
         /// </summary>
         public void StartGame()
         {
-            PawnA firstPawn = new PawnA();
-            PawnB secondPawn = new PawnB();
-            PawnC thirdPawn = new PawnC();
-            PawnD fourthPawn = new PawnD();
+            Pawn firstPawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 2, 4 });
+            Pawn secondPawn = new Pawn('B', new string[] { "BDL", "BDR" }, new int[] { 2, 8 });
+            Pawn thirdPawn = new Pawn('C', new string[] { "CDL", "CDR" }, new int[] { 2, 12 });
+            Pawn fourthPawn = new Pawn('D', new string[] { "DDL", "DDR" }, new int[] { 2, 16 });
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
             myTestEngine.StartGame();
-            myTestEngine.InteractWithUser();
+            myTestEngine.StartNextTurn();
         }
     }
 }

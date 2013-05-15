@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KingSurvival</RootNamespace>
-    <AssemblyName>ConsoleApplication1</AssemblyName>
+    <AssemblyName>KingSurvival</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,15 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleWriter.cs" />
     <Compile Include="GameBoard.cs" />
     <Compile Include="Figure.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="King.cs" />
     <Compile Include="Pawn.cs" />
-    <Compile Include="PawnA.cs" />
-    <Compile Include="PawnB.cs" />
-    <Compile Include="PawnC.cs" />
-    <Compile Include="PawnD.cs" />
     <Compile Include="PlayerInteractor.cs" />
   </ItemGroup>
   <ItemGroup>
