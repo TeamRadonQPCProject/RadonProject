@@ -101,7 +101,7 @@ namespace KingSurvival
                 }
 
                 // Check is figure position in board.
-                if ((value[1] < 4 || value[1] > 18) && (value[0] < 2 || value[0] > 9))
+                if ((value[1] < 4 || value[1] > 18) || (value[0] < 2 || value[0] > 9))
                 {
                     throw new ArgumentException("You try to set king position out of board.");
                 }

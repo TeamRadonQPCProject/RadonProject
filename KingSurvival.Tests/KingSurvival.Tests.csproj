@@ -52,8 +52,9 @@
   <ItemGroup>
     <Compile Include="GameLogic.Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pawns.Test.cs" />
+    <Compile Include="Pawn.Test.cs" />
     <Compile Include="GameBoard.Test.cs" />
+    <Compile Include="King.Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KingSurvival.Common\KingSurvival.Common.csproj">
