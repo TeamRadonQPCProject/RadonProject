@@ -564,7 +564,7 @@ namespace KingSurvival
         /// <summary>
         /// Checks if the pawns have more existing moves.
         /// </summary>
-        private void HasPawnsExistingMove()
+        public void HasPawnsExistingMove()
         {
             bool allAreFalse = true;
             int[,] displasment = 
