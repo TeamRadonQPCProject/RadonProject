@@ -303,7 +303,7 @@ namespace KingSurvival
         /// Sets the new position of the King.
         /// </summary>
         /// <param name="gameCommand">Takes a valid console command.</param>
-        private void SetNewKingPosition(string gameCommand)
+        public void SetNewKingPosition(string gameCommand)
         {
             int[] oldCoordinates = new int[2];
 

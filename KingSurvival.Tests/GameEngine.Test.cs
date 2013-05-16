@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
-
-namespace KingSurvival.Tests
+﻿namespace KingSurvival.Tests
 {
+    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class TestGameLogic
     {
@@ -127,6 +126,21 @@ namespace KingSurvival.Tests
             Assert.IsTrue(myTestEngine.HasKingExistingMove(kingCurrentCoords));
         }
 
+        [TestMethod]
+        public void SetNewKingPostion_UpRightMove()
+        {
+            Pawn firstPawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 2, 4 });
+            Pawn secondPawn = new Pawn('B', new string[] { "BDL", "BDR" }, new int[] { 2, 8 });
+            Pawn thirdPawn = new Pawn('C', new string[] { "CDL", "CDR" }, new int[] { 2, 12 });
+            Pawn fourthPawn = new Pawn('D', new string[] { "DDL", "DDR" }, new int[] { 9, 16 });
+            King theKing = new King();
+            GameBoard gameBoard = new GameBoard();
+            GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
+            myTestEngine.StartGame();
 
+            int[] expectedCoords = new int[] { 8, 12 };
+            myTestEngine.SetNewKingPosition("KUR");
+            CollectionAssert.AreEqual(expectedCoords, theKing.FigurePosition);
+        }
     }
 }
