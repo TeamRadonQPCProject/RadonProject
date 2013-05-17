@@ -380,7 +380,7 @@ namespace KingSurvival
         /// </summary>
         /// <param name="currentCoordinates">Takes the King's current coordinates.</param>
         /// <param name="newCoords">Takes the King's new coordinates.</param>
-        private void MoveKingOnBoard(int[] currentCoordinates, int[] newCoords)
+        public void MoveKingOnBoard(int[] currentCoordinates, int[] newCoords)
         {
             char sign = this.kingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]];
             this.kingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
@@ -406,7 +406,7 @@ namespace KingSurvival
         /// <param name="currentCoordinates">Takes the Pawn's current coordinates.</param>
         /// <param name="currentPawnSign">Takes the current pawn sign.</param>
         /// <returns>Returns if the move is successful.</returns>
-        private bool MovePawnOnBoard(int[] newCoords, int[] currentCoordinates, char currentPawnSign)
+        public bool MovePawnOnBoard(int[] newCoords, int[] currentCoordinates, char currentPawnSign)
         {
             bool figureIsMoved = false;
 
@@ -599,7 +599,7 @@ namespace KingSurvival
         /// </summary>
         /// <param name="gameCommand">Takes a valid game command.</param>
         /// <returns>Returns if the position set was successful.</returns>
-        private bool SetNewPawnPosition(string gameCommand)
+        public bool SetNewPawnPosition(string gameCommand)
         {
             char figure = gameCommand[0];
             int[] coords = new int[3];

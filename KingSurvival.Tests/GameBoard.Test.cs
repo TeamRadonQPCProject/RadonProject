@@ -1,6 +1,7 @@
 ﻿namespace KingSurvival.Tests
 {
     using System;
+    using System.IO;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
@@ -49,8 +50,31 @@
         public void GameBoard_TestShowBoard()
         {
             GameBoard gameBoard = new GameBoard();
+            StringWriter stringWriter = new StringWriter();
+            using (stringWriter)
+            {
+                Console.SetOut(stringWriter);
 
-            gameBoard.ShowBoard();
+                gameBoard.ShowBoard();
+
+                string expectedString =
+@"
+UL  0 1 2 3 4 5 6 7  UR
+   _________________   
+0 | A   B   C   D   | 0
+1 |                 | 1
+2 |                 | 2
+3 |                 | 3
+4 |                 | 4
+5 |                 | 5
+6 |                 | 6
+7 |       K         | 7
+  |_________________|  
+DL  0 1 2 3 4 5 6 7  DR
+
+";
+                Assert.AreEqual(expectedString, stringWriter.ToString());
+            }
         }
     }
 }

@@ -6,6 +6,7 @@
 namespace KingSurvival
 {
     using System;
+    using System.IO;
 
     /// <summary>
     /// A class for player interaction.

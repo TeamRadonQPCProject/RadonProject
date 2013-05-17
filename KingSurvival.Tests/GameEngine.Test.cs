@@ -1,6 +1,7 @@
 ﻿namespace KingSurvival.Tests
 {
     using System;
+    using System.IO;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
@@ -144,22 +145,6 @@
         }
 
         [TestMethod]
-        public void HasPawnsExistingMoves_TheHaveMoves()
-        {
-            Pawn firstPawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 2, 4 });
-            Pawn secondPawn = new Pawn('B', new string[] { "BDL", "BDR" }, new int[] { 2, 8 });
-            Pawn thirdPawn = new Pawn('C', new string[] { "CDL", "CDR" }, new int[] { 2, 12 });
-            Pawn fourthPawn = new Pawn('D', new string[] { "DDL", "DDR" }, new int[] { 9, 16 });
-            King theKing = new King();
-            GameBoard gameBoard = new GameBoard();
-            GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
-            myTestEngine.HasPawnsExistingMove();
-            bool[] expected = { true, true };
-            Assert.AreEqual(expected, firstPawn.FigureExistingMoves);
-        }
-
-        [TestMethod]
         public void HasPawnsExistingMoves_DoesNotHaveMovesKingWin()
         {
             Pawn firstPawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 9, 4 });
@@ -177,6 +162,7 @@
             Assert.AreEqual(expected, myTestEngine.GameIsFinished);
         }
 
+        [Ignore]
         [TestMethod]
         public void SetNewKingPostion_DownLeftFromStartPositionDoesNotChangeCoordinates()
         {
@@ -192,6 +178,97 @@
             int[] expectedCoords = new int[] { 9, 10 };
             myTestEngine.SetNewKingPosition("KDL");
             CollectionAssert.AreEqual(expectedCoords, theKing.FigurePosition);
+        }
+
+        [TestMethod]
+        public void CheckForKingExit_KingHasExit()
+        {
+            Pawn firstPawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 2, 4 });
+            Pawn secondPawn = new Pawn('B', new string[] { "BDL", "BDR" }, new int[] { 2, 8 });
+            Pawn thirdPawn = new Pawn('C', new string[] { "CDL", "CDR" }, new int[] { 2, 12 });
+            Pawn fourthPawn = new Pawn('D', new string[] { "DDL", "DDR" }, new int[] { 9, 16 });
+            King theKing = new King();
+            GameBoard gameBoard = new GameBoard();
+            GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
+            myTestEngine.StartGame();
+
+            Assert.IsTrue(myTestEngine.CheckForKingExit(2));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void CheckForKingExit_KingPositionIsInvalid()
+        {
+            Pawn firstPawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 2, 4 });
+            Pawn secondPawn = new Pawn('B', new string[] { "BDL", "BDR" }, new int[] { 2, 8 });
+            Pawn thirdPawn = new Pawn('C', new string[] { "CDL", "CDR" }, new int[] { 2, 12 });
+            Pawn fourthPawn = new Pawn('D', new string[] { "DDL", "DDR" }, new int[] { 9, 16 });
+            King theKing = new King();
+            GameBoard gameBoard = new GameBoard();
+            GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
+            myTestEngine.StartGame();
+
+            myTestEngine.CheckForKingExit(-3);
+        }
+
+        [TestMethod]
+        public void MovePawnOnBoard_InvalidMove()
+        {
+            Pawn firstPawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 2, 4 });
+            Pawn secondPawn = new Pawn('B', new string[] { "BDL", "BDR" }, new int[] { 2, 8 });
+            Pawn thirdPawn = new Pawn('C', new string[] { "CDL", "CDR" }, new int[] { 2, 12 });
+            Pawn fourthPawn = new Pawn('D', new string[] { "DDL", "DDR" }, new int[] { 9, 16 });
+            King theKing = new King();
+            GameBoard gameBoard = new GameBoard();
+            GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
+            myTestEngine.StartGame();
+
+            Assert.IsFalse(myTestEngine.MovePawnOnBoard(new int[] { 2, 8 }, new int[] { 3, 10 }, 'A'));
+        }
+
+        [TestMethod]
+        public void MovePawnOnBoard_ValidMove()
+        {
+            Pawn firstPawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 2, 4 });
+            Pawn secondPawn = new Pawn('B', new string[] { "BDL", "BDR" }, new int[] { 2, 8 });
+            Pawn thirdPawn = new Pawn('C', new string[] { "CDL", "CDR" }, new int[] { 2, 12 });
+            Pawn fourthPawn = new Pawn('D', new string[] { "DDL", "DDR" }, new int[] { 9, 16 });
+            King theKing = new King();
+            GameBoard gameBoard = new GameBoard();
+            GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
+            myTestEngine.StartGame();
+
+            Assert.IsTrue(myTestEngine.MovePawnOnBoard(new int[] { 5, 5 }, new int[] { 2, 2 }, 'A'));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void MoveKingOnBoard_OutOfRangeMove()
+        {
+            Pawn firstPawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 2, 4 });
+            Pawn secondPawn = new Pawn('B', new string[] { "BDL", "BDR" }, new int[] { 2, 8 });
+            Pawn thirdPawn = new Pawn('C', new string[] { "CDL", "CDR" }, new int[] { 2, 12 });
+            Pawn fourthPawn = new Pawn('D', new string[] { "DDL", "DDR" }, new int[] { 9, 16 });
+            King theKing = new King();
+            GameBoard gameBoard = new GameBoard();
+            GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
+            myTestEngine.StartGame();
+
+            myTestEngine.MoveKingOnBoard(new int[] { -100, -100 }, new int[] { });
+        }
+        [TestMethod]
+        public void SetNewPawnPosition_ValidPosition()
+        {
+            Pawn firstPawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 2, 4 });
+            Pawn secondPawn = new Pawn('B', new string[] { "BDL", "BDR" }, new int[] { 2, 8 });
+            Pawn thirdPawn = new Pawn('C', new string[] { "CDL", "CDR" }, new int[] { 2, 12 });
+            Pawn fourthPawn = new Pawn('D', new string[] { "DDL", "DDR" }, new int[] { 9, 16 });
+            King theKing = new King();
+            GameBoard gameBoard = new GameBoard();
+            GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
+            
+            Assert.IsTrue(myTestEngine.SetNewPawnPosition("ADR"));
+
         }
     }
 }
