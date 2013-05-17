@@ -133,12 +133,13 @@ namespace KingSurvival
         }
 
         /// <summary>
-        /// Gets the new coordinates for the King figure. 
+        /// Not implemented. Show get the figures new position.
         /// </summary>
-        /// <param name="command">Take's a valid string command.</param>
-        /// <returns>Returns the new coordinates for the King figure.</returns>
+        /// <param name="command">A valid figure command.</param>
+        /// <returns>Returns the new figure coordinates.</returns>
         public override int[] GetFigureNewCoords(string command)
         {
+            // TODO: Implement this method
             throw new NotImplementedException();
         }
     }

@@ -332,7 +332,7 @@ namespace KingSurvival
         /// <param name="currentCoordinates">Takes the King's current coordinates.</param>
         /// <param name="gameCommand">Takes a valid console command.</param>
         /// <returns>Returns the new coordinates of the King.</returns>
-        private int[] GetNewKingCoords(int[] currentCoordinates, string gameCommand)
+        public int[] GetNewKingCoords(int[] currentCoordinates, string gameCommand)
         {
             int[] newCoords = new int[2];
             int[] displacementDirection = new int[2];
@@ -584,9 +584,7 @@ namespace KingSurvival
                     isCommandValid = this.ChechInputForGivenFigure(stringToCheck, this.fourthPawn.ValidFigureInputs);
                     break;
                 default:
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid command name!");
-                    Console.ResetColor();
+                    ConsoleWriter.WriteInvalidCommand();
                     isCommandValid = false;
                     break;
             }

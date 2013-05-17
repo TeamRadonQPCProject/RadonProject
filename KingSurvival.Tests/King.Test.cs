@@ -31,7 +31,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void King_TestEmptyIvalidInputsArraySet()
+        public void King_TestEmptyvalidInputsArraySet()
         {
             string[] inputs = 
             {                               
