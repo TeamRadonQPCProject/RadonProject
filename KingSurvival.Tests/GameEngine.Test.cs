@@ -4,7 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class TestGameLogic
+    public class TestGameEngine
     {
         [TestMethod]
         public void CheckPawnPlayerInput_PawnInputsDownLeftIsValidTest()
@@ -221,24 +221,6 @@
             Assert.AreEqual(expected, myTestEngine.GameIsFinished);
         }
 
-        [Ignore]
-        [TestMethod]
-        public void SetNewKingPostion_DownLeftFromStartPositionDoesNotChangeCoordinates()
-        {
-            Pawn firstPawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 2, 4 });
-            Pawn secondPawn = new Pawn('B', new string[] { "BDL", "BDR" }, new int[] { 2, 8 });
-            Pawn thirdPawn = new Pawn('C', new string[] { "CDL", "CDR" }, new int[] { 2, 12 });
-            Pawn fourthPawn = new Pawn('D', new string[] { "DDL", "DDR" }, new int[] { 9, 16 });
-            King theKing = new King();
-            GameBoard gameBoard = new GameBoard();
-            GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
-
-            int[] expectedCoords = new int[] { 9, 10 };
-            myTestEngine.SetNewKingPosition("KDL");
-            CollectionAssert.AreEqual(expectedCoords, theKing.FigurePosition);
-        }
-
         [TestMethod]
         public void CheckForKingExit_KingHasExit()
         {
@@ -315,6 +297,7 @@
 
             myTestEngine.MoveKingOnBoard(new int[] { -100, -100 }, new int[] { });
         }
+
         [TestMethod]
         public void SetNewPawnPosition_ValidPosition()
         {
@@ -327,7 +310,6 @@
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
             myTestEngine.StartGame();
             Assert.IsTrue(myTestEngine.SetNewPawnPosition("ADR"));
-
         }
 
         [TestMethod]
@@ -345,7 +327,6 @@
             int[] expectedNewCoords = { 4, 7 };
 
             CollectionAssert.AreEqual(expectedNewCoords, myTestEngine.GetNewKingCoords(new int[] { 5, 5 }, "KUR"));
-
         }
 
         [TestMethod]
@@ -363,7 +344,6 @@
             int[] expectedNewCoords = { 7, 6 };
 
             CollectionAssert.AreEqual(expectedNewCoords, myTestEngine.GetNewKingCoords(new int[] { 8, 8 }, "KUL"));
-
         }
 
         [TestMethod]
@@ -381,7 +361,6 @@
             int[] expectedNewCoords = { 9, 6 };
 
             CollectionAssert.AreEqual(expectedNewCoords, myTestEngine.GetNewKingCoords(new int[] { 8, 8 }, "KDL"));
-
         }
 
         [TestMethod]
@@ -399,7 +378,6 @@
             int[] expectedNewCoords = { 7, 8 };
 
             CollectionAssert.AreEqual(expectedNewCoords, myTestEngine.GetNewKingCoords(new int[] { 6, 6 }, "KDR"));
-
         }
     }
 }
