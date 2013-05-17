@@ -157,5 +157,39 @@
             bool[] expected = { true, true };
             Assert.AreEqual(expected, firstPawn.FigureExistingMoves);
         }
+
+        public void HasPawnsExistingMoves_DoesNotHaveMovesKingWin()
+        {
+            Pawn firstPawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 9, 4 });
+            Pawn secondPawn = new Pawn('B', new string[] { "BDL", "BDR" }, new int[] { 9, 8 });
+            Pawn thirdPawn = new Pawn('C', new string[] { "CDL", "CDR" }, new int[] { 9, 12 });
+            Pawn fourthPawn = new Pawn('D', new string[] { "DDL", "DDR" }, new int[] { 9, 16 });
+            King theKing = new King();
+            theKing.FigurePosition[0] = 7;
+            theKing.FigurePosition[1] = 10;
+            GameBoard gameBoard = new GameBoard();
+            GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
+            myTestEngine.StartGame();
+            myTestEngine.HasPawnsExistingMove();
+            bool expected = true;
+            Assert.AreEqual(expected, myTestEngine.GameIsFinished);
+        }
+
+        [TestMethod]
+        public void SetNewKingPostion_DownLeftFromStartPositionDoesNotChangeCoordinates()
+        {
+            Pawn firstPawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 2, 4 });
+            Pawn secondPawn = new Pawn('B', new string[] { "BDL", "BDR" }, new int[] { 2, 8 });
+            Pawn thirdPawn = new Pawn('C', new string[] { "CDL", "CDR" }, new int[] { 2, 12 });
+            Pawn fourthPawn = new Pawn('D', new string[] { "DDL", "DDR" }, new int[] { 9, 16 });
+            King theKing = new King();
+            GameBoard gameBoard = new GameBoard();
+            GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
+            myTestEngine.StartGame();
+
+            int[] expectedCoords = new int[] { 9, 10 };
+            myTestEngine.SetNewKingPosition("KDL");
+            CollectionAssert.AreEqual(expectedCoords, theKing.FigurePosition);
+        }
     }
 }
