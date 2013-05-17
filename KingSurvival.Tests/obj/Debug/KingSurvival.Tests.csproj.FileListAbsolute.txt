@@ -22,3 +22,4 @@ C:\Users\Teodor\Desktop\C# Projects\RadonProject\KingSurvival.Tests\bin\Debug\Ki
 C:\Users\Teodor\Desktop\C# Projects\RadonProject\KingSurvival.Tests\bin\Debug\KingSurvival.pdb
 D:\GitHub\RadonProject\KingSurvival.Tests\bin\Debug\KingSurvival.dll
 D:\GitHub\RadonProject\KingSurvival.Tests\bin\Debug\KingSurvival.pdb
+C:\Users\Teodor\Desktop\C# Projects\RadonProject\KingSurvival.Tests\bin\Debug\KingSurvival.xml

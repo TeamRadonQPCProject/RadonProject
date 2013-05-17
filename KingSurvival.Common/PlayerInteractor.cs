@@ -6,7 +6,6 @@
 namespace KingSurvival
 {
     using System;
-    using System.IO;
 
     /// <summary>
     /// A class for player interaction.
@@ -25,8 +24,8 @@ namespace KingSurvival
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
+            myTestEngine.InitGame();
             myTestEngine.StartGame();
-            myTestEngine.StartNextTurn();
         }
     }
 }

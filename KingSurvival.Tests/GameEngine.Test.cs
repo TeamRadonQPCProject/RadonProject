@@ -17,7 +17,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
             Assert.IsTrue(myTestEngine.CheckPawnPlayerInput(input));
         }
 
@@ -32,7 +32,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
             Assert.IsFalse(myTestEngine.CheckPawnPlayerInput(input));
         }
 
@@ -47,7 +47,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
             Assert.IsTrue(myTestEngine.CheckPawnPlayerInput(input));
         }
 
@@ -62,7 +62,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
             Assert.IsTrue(myTestEngine.CheckPawnPlayerInput(input));
         }
 
@@ -77,7 +77,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
             Assert.IsTrue(myTestEngine.CheckPawnPlayerInput(input));
         }
 
@@ -92,7 +92,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
             Assert.IsFalse(myTestEngine.CheckPawnPlayerInput(input));
         }
 
@@ -106,7 +106,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
             Assert.IsTrue(myTestEngine.CheckForKingExit(2));
         }
 
@@ -120,7 +120,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
             Assert.IsFalse(myTestEngine.CheckForKingExit(6));
         }
 
@@ -135,7 +135,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
             myTestEngine.CheckForKingExit(0);
         }
 
@@ -150,7 +150,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
             myTestEngine.CheckForKingExit(1000);
         }
 
@@ -164,7 +164,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
             int[] kingCurrentCoords = new int[] { 18, 10 };
             Assert.IsFalse(myTestEngine.HasKingExistingMove(kingCurrentCoords));
         }
@@ -179,7 +179,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
 
             // This is start king position
             int[] kingCurrentCoords = new int[] { 9, 10 };
@@ -196,7 +196,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
 
             int[] expectedCoords = new int[] { 8, 12 };
             myTestEngine.SetNewKingPosition("KUR");
@@ -215,7 +215,7 @@
             theKing.FigurePosition[1] = 10;
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
             myTestEngine.HasPawnsExistingMove();
             bool expected = true;
             Assert.AreEqual(expected, myTestEngine.GameIsFinished);
@@ -231,7 +231,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
 
             Assert.IsTrue(myTestEngine.CheckForKingExit(2));
         }
@@ -247,7 +247,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
 
             myTestEngine.CheckForKingExit(-3);
         }
@@ -262,7 +262,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
 
             Assert.IsFalse(myTestEngine.MovePawnOnBoard(new int[] { 2, 8 }, new int[] { 3, 10 }, 'A'));
         }
@@ -277,7 +277,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
 
             Assert.IsTrue(myTestEngine.MovePawnOnBoard(new int[] { 5, 5 }, new int[] { 2, 2 }, 'A'));
         }
@@ -293,7 +293,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
 
             myTestEngine.MoveKingOnBoard(new int[] { -100, -100 }, new int[] { });
         }
@@ -308,7 +308,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
             Assert.IsTrue(myTestEngine.SetNewPawnPosition("ADR"));
         }
 
@@ -322,7 +322,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
 
             int[] expectedNewCoords = { 4, 7 };
 
@@ -339,7 +339,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
 
             int[] expectedNewCoords = { 7, 6 };
 
@@ -356,7 +356,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
 
             int[] expectedNewCoords = { 9, 6 };
 
@@ -373,7 +373,7 @@
             King theKing = new King();
             GameBoard gameBoard = new GameBoard();
             GameEngine myTestEngine = new GameEngine(gameBoard, firstPawn, secondPawn, thirdPawn, fourthPawn, theKing);
-            myTestEngine.StartGame();
+            myTestEngine.InitGame();
 
             int[] expectedNewCoords = { 7, 8 };
 

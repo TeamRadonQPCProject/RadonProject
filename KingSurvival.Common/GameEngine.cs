@@ -3,7 +3,6 @@
 //     All rights reserved © Telerik Academy 2012-2013
 // </copyright>
 //-----------------------------------------------------------------------
-
 namespace KingSurvival
 {
     using System;
@@ -87,9 +86,20 @@ namespace KingSurvival
         #region COMMAND PROCESS
 
         /// <summary>
+        /// Starts the current game by adding all the pawns.
+        /// </summary>
+        public void InitGame()
+        {
+            this.allPawns.Add(this.firstPawn);
+            this.allPawns.Add(this.secondPawn);
+            this.allPawns.Add(this.thirdPawn);
+            this.allPawns.Add(this.fourthPawn);
+        }
+
+        /// <summary>
         /// Handles turn processing.
         /// </summary>
-        public void StartNextTurn()
+        public void StartGame()
         {
             if (this.GameIsFinished)
             {
@@ -111,37 +121,18 @@ namespace KingSurvival
 
                     if (this.GameIsFinished != true)
                     {
-                        this.ShowCurrentBoard();
+                        this.kingSurvivalGameBoard.ShowBoard();
                         this.ValidateKingsCommand();
                         this.MovementsCounter++;
-                        this.StartNextTurn();
+                        this.StartGame();
                     }
                 }
                 else
                 {
-                    this.ShowCurrentBoard();
+                    this.kingSurvivalGameBoard.ShowBoard();
                     this.ValidatePawnCommand();
                 }
             }
-        }
-
-        /// <summary>
-        /// Starts the current game by adding all the pawns.
-        /// </summary>
-        public void StartGame()
-        {
-            this.allPawns.Add(this.firstPawn);
-            this.allPawns.Add(this.secondPawn);
-            this.allPawns.Add(this.thirdPawn);
-            this.allPawns.Add(this.fourthPawn);
-        }
-
-        /// <summary>
-        /// Shows the currents state of the board.
-        /// </summary>
-        public void ShowCurrentBoard()
-        {
-            this.kingSurvivalGameBoard.ShowBoard();
         }
 
         /// <summary>
@@ -399,58 +390,6 @@ namespace KingSurvival
             }
         }
 
-        /// <summary>
-        /// Move the Pawn figure on the game board.
-        /// </summary>
-        /// <param name="newCoords">Takes the Pawn's new coordinates.</param>
-        /// <param name="currentCoordinates">Takes the Pawn's current coordinates.</param>
-        /// <param name="currentPawnSign">Takes the current pawn sign.</param>
-        /// <returns>Returns if the move is successful.</returns>
-        public bool MovePawnOnBoard(int[] newCoords, int[] currentCoordinates, char currentPawnSign)
-        {
-            bool figureIsMoved = false;
-
-            if (this.kingSurvivalGameBoard.CheckPositionInBoard(newCoords) && this.kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' ')
-            {
-                char sign = this.kingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]];
-                this.kingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
-                this.kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] = sign;
-                this.MovementsCounter++;
-
-                for (int i = 0; i < this.allPawns.Count; i++)
-                {
-                    if (this.allPawns[i].FigureSign == currentPawnSign)
-                    {
-                        this.allPawns[i].FigureExistingMoves[0] = true;
-                        this.allPawns[i].FigureExistingMoves[1] = true;
-                        figureIsMoved = true;
-                        break;
-                    }
-                }
-
-                return figureIsMoved;
-            }
-            else
-            {
-                for (int i = 0; i < this.allPawns.Count; i++)
-                {
-                    if (this.allPawns[i].FigureSign == currentPawnSign)
-                    {
-                        this.allPawns[i].FigureExistingMoves[0] = false;
-                        this.allPawns[i].FigureExistingMoves[1] = false;
-                        figureIsMoved = false;
-                        break;
-                    }
-                }
-
-                Console.BackgroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine("You can't go in this direction! ");
-                Console.ResetColor();
-
-                return figureIsMoved;
-            }
-        }
-
         ////private int indexKing = 0;
 
         public virtual string ReadKingInput()
@@ -556,7 +495,7 @@ namespace KingSurvival
             }
 
             this.HasPawnsExistingMove();
-            this.StartNextTurn();
+            this.StartGame();
         }
 
         /// <summary>
@@ -590,6 +529,58 @@ namespace KingSurvival
             }
 
             return isCommandValid;
+        }
+
+        /// <summary>
+        /// Move the Pawn figure on the game board.
+        /// </summary>
+        /// <param name="newCoords">Takes the Pawn's new coordinates.</param>
+        /// <param name="currentCoordinates">Takes the Pawn's current coordinates.</param>
+        /// <param name="currentPawnSign">Takes the current pawn sign.</param>
+        /// <returns>Returns if the move is successful.</returns>
+        public bool MovePawnOnBoard(int[] newCoords, int[] currentCoordinates, char currentPawnSign)
+        {
+            bool figureIsMoved = false;
+
+            if (this.kingSurvivalGameBoard.CheckPositionInBoard(newCoords) && this.kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] == ' ')
+            {
+                char sign = this.kingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]];
+                this.kingSurvivalGameBoard.Board[currentCoordinates[0], currentCoordinates[1]] = ' ';
+                this.kingSurvivalGameBoard.Board[newCoords[0], newCoords[1]] = sign;
+                this.MovementsCounter++;
+
+                for (int i = 0; i < this.allPawns.Count; i++)
+                {
+                    if (this.allPawns[i].FigureSign == currentPawnSign)
+                    {
+                        this.allPawns[i].FigureExistingMoves[0] = true;
+                        this.allPawns[i].FigureExistingMoves[1] = true;
+                        figureIsMoved = true;
+                        break;
+                    }
+                }
+
+                return figureIsMoved;
+            }
+            else
+            {
+                for (int i = 0; i < this.allPawns.Count; i++)
+                {
+                    if (this.allPawns[i].FigureSign == currentPawnSign)
+                    {
+                        this.allPawns[i].FigureExistingMoves[0] = false;
+                        this.allPawns[i].FigureExistingMoves[1] = false;
+                        figureIsMoved = false;
+                        break;
+                    }
+                }
+
+                Console.BackgroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("You can't go in this direction! ");
+                Console.ResetColor();
+
+                return figureIsMoved;
+            }
         }
 
         /// <summary>
