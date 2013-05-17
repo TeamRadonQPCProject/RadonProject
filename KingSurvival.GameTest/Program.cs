@@ -3,9 +3,9 @@
     using System;
     using KingSurvival;
 
-    class KingSurvivalGame
+    public class KingSurvivalGame
     {
-        static void Main()
+        public static void Main()
         {
             PlayerInteractor myGame = new PlayerInteractor();
             myGame.StartGame();

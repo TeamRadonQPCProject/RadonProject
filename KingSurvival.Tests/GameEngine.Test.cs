@@ -143,6 +143,7 @@
             CollectionAssert.AreEqual(expectedCoords, theKing.FigurePosition);
         }
 
+        [TestMethod]
         public void HasPawnsExistingMoves_TheHaveMoves()
         {
             Pawn firstPawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 2, 4 });
@@ -158,6 +159,7 @@
             Assert.AreEqual(expected, firstPawn.FigureExistingMoves);
         }
 
+        [TestMethod]
         public void HasPawnsExistingMoves_DoesNotHaveMovesKingWin()
         {
             Pawn firstPawn = new Pawn('A', new string[] { "ADL", "ADR" }, new int[] { 9, 4 });

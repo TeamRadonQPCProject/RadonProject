@@ -84,7 +84,7 @@ namespace KingSurvival
             }
         }
 
-        /* COMMAND PROCESS */
+        #region COMMAND PROCESS
 
         /// <summary>
         /// Handles turn processing.
@@ -189,7 +189,9 @@ namespace KingSurvival
             return hasAnEqual;
         }
 
-        /* KING LOGIC - moved to class King*/
+        #endregion
+
+        #region KING LOGIC
 
         /// <summary>
         /// Validates the kings command.
@@ -449,7 +451,71 @@ namespace KingSurvival
             }
         }
 
-        /* PAWN LOGIC */
+        ////private int indexKing = 0;
+
+        public virtual string ReadKingInput()
+        {
+            ////string[] sampleInput = new string[] {
+            ////"kur",
+            ////"kur",
+            ////"kul",
+            ////"kdr",
+            ////"kdr",
+            ////"kdr"
+            ////};
+            ////string[] sampleInput = new string[] {
+            ////"kur",
+            ////"kur",
+            ////"kur",
+            ////"kur",
+            ////"kul",
+            ////"kul",
+            ////"kur"
+            ////};
+            ////// Test all pawns down
+            ////string[] sampleInput = new string[] {
+            ////"kur",
+            ////"kur",
+            ////"kdl",
+            ////"kur",
+            ////"kdl",
+            ////"kur",
+            ////"kdl",
+            ////"kur",
+            ////"kdl",
+            ////"kur",
+            ////"kdl",
+            ////"kur",
+            ////"kdl",
+            ////"kur",
+            ////"kdl",
+            ////"kul",
+            ////"kul",
+            ////"kul",
+            ////"kdr",
+            ////"kul",
+            ////"kdr",
+            ////"kul",
+            ////"kdr",
+            ////"kul",
+            ////"kdr",
+            ////"kul",
+            ////"kdr",
+            ////"kul"
+            ////};
+            ////if (indexKing < sampleInput.Length)
+            ////{
+            ////    //Console.WriteLine(indexKing);
+            ////    Console.WriteLine(sampleInput[indexKing]);
+            ////    return sampleInput[indexKing++];
+            ////}
+            string kingInput = Console.ReadLine();
+            return kingInput;
+        }
+
+#endregion
+
+        #region PAWN LOGIC
 
         /// <summary>
         /// Validates the pawn input.
@@ -678,66 +744,6 @@ namespace KingSurvival
             return pawnInput;
         }
 
-        ////private int indexKing = 0;
-
-        public virtual string ReadKingInput()
-        {
-            ////string[] sampleInput = new string[] {
-            ////"kur",
-            ////"kur",
-            ////"kul",
-            ////"kdr",
-            ////"kdr",
-            ////"kdr"
-            ////};
-            ////string[] sampleInput = new string[] {
-            ////"kur",
-            ////"kur",
-            ////"kur",
-            ////"kur",
-            ////"kul",
-            ////"kul",
-            ////"kur"
-            ////};
-            ////// Test all pawns down
-            ////string[] sampleInput = new string[] {
-            ////"kur",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kur",
-            ////"kdl",
-            ////"kul",
-            ////"kul",
-            ////"kul",
-            ////"kdr",
-            ////"kul",
-            ////"kdr",
-            ////"kul",
-            ////"kdr",
-            ////"kul",
-            ////"kdr",
-            ////"kul",
-            ////"kdr",
-            ////"kul"
-            ////};
-            ////if (indexKing < sampleInput.Length)
-            ////{
-            ////    //Console.WriteLine(indexKing);
-            ////    Console.WriteLine(sampleInput[indexKing]);
-            ////    return sampleInput[indexKing++];
-            ////}
-            string kingInput = Console.ReadLine();
-            return kingInput;
-        }
+        #endregion
     }
 }
